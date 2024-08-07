@@ -1,9 +1,30 @@
 {
   "version": 2,
-  "public": true,
   "builds": [
-    { "src": "api/tesla/header/megamenu/v1_2/index.html", "use": "@vercel/static" },
-    { "src": "public/**/*", "use": "@vercel/static" }
+    {
+      "src": "api/tesla/header/megamenu/v1_2/index.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "_flysystem/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "tesla-contents/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "themes/custom/tesla_frontend/assets/favicons/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "scripts/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
+    }
   ],
   "routes": [
     {
@@ -11,12 +32,12 @@
       "dest": "/api/tesla/header/megamenu/v1_2/index.html"
     },
     {
-      "src": "/api/tesla/header/megamenu/v1_2/index.html",
-      "dest": "/api/tesla/header/megamenu/v1_2/index.html"
-    },
-    {
       "src": "/(.*)",
       "dest": "/$1"
+    },
+    {
+      "src": "/",
+      "dest": "/index.html"
     }
   ]
 }
