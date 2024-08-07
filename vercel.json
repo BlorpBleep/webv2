@@ -1,0 +1,14 @@
+{
+    "version": 2,
+    "routes": [
+      {
+        "src": "/api/tesla/header/megamenu/v1_2/",
+        "dest": "/api/tesla/header/megamenu/v1_2/index.html"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/index.html"
+      }
+    ]
+  }
+  
