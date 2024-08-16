@@ -54,6 +54,8 @@ export const Hero = () => {
         <h2 className={subtitle({fullWidth: true, class: "text-center md:text-left"})}>
           Choose a 2-year plan and give your friend 3 months CicadaVPN protection for free. Stay safer online with the world’s leading VPN service.
         </h2>
+
+
         <div className="flex flex-col md:flex-row items-center gap-4">
           <Button
             as={NextLink}
@@ -77,10 +79,29 @@ export const Hero = () => {
               });
             }}
           >
-            Get Started
+            Get the Deal
           </Button>
 
+          <Button
+            as={NextLink}
+            className="w-full md:h-11 md:w-auto"
+            color="secondary"
 
+            href="/docs/guide/introduction"
+            radius="full"
+            size="lg"
+            onPress={() => {
+              trackEvent("Hero - Get Started", {
+                name: "Free Trial",
+                action: "click",
+                category: "landing-page",
+                data: "/docs/guide/introduction",
+              });
+            }}
+          >
+            Try free for 7 days
+          </Button>
+{/* 
           <Snippet
             className="w-full rounded-full hidden md:flex sm:w-auto"
             copyButtonProps={{
@@ -118,7 +139,8 @@ export const Hero = () => {
             }}
           >
             Github
-          </Button>
+          </Button> */}
+
         </div>
       </div>
 
