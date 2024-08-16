@@ -45,10 +45,11 @@ export const Hero = () => {
         </div>
         <div className="text-center leading-8 md:leading-10 md:text-left">
           <div className="inline-block">
-            <h1 className={title()}>Make&nbsp;</h1>
-            <h1 className={title({color: "violet"})}>beautiful&nbsp;</h1>
+            <h1 className={title({color: "violet"})}>Get 63% off&nbsp;</h1>
+            <h1 className={title()}>CicadaVPN + 3 months free&nbsp;</h1>
+            <h1 className={title({color: "blue"})}>for a friend</h1>
+
           </div>
-          <h1 className={title()}>websites regardless of your design experience.</h1>
         </div>
         <h2 className={subtitle({fullWidth: true, class: "text-center md:text-left"})}>
           Beautiful, fast and modern React UI library.
@@ -78,6 +79,8 @@ export const Hero = () => {
           >
             Get Started
           </Button>
+
+
           <Snippet
             className="w-full rounded-full hidden md:flex sm:w-auto"
             copyButtonProps={{
@@ -94,6 +97,7 @@ export const Hero = () => {
           >
             npx nextui-cli@latest init
           </Snippet>
+
           <Button
             fullWidth
             isExternal

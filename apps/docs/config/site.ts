@@ -1,8 +1,8 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "NextUI - Beautiful, fast and modern React UI Library",
-  description: "Make beautiful websites regardless of your design experience.",
+  name: "The best online VPN service for ultimate performance | cicadaVPN",
+  description: "Get 63% off CicadaVPN + 3 months free for a friend",
   ogImage: "https://nextui.org/twitter-cards/nextui.jpeg",
   author: "Junior Garcia",
   email: "jrgarciadev@gmail.com",
@@ -13,7 +13,7 @@ export const siteConfig = {
     locale: "en_US",
     url: "https://nextui.org",
     siteName: "NextUI",
-    description: "Beautiful, fast and modern React UI Library",
+    description: "The best online VPN service for ultimate performance | cicadaVPN",
     images: [
       {
         url: "https://nextui.org/twitter-cards/nextui.jpeg",
