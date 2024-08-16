@@ -43,7 +43,7 @@ export const ProBanner = () => {
   if (!shouldBeVisible) return null;
 
   return (
-    <div className="relative z-50 isolate flex items-center gap-x-6 overflow-hidden bg-background border-b-1 border-divider px-6 py-2 sm:px-3.5 sm:before:flex-1">
+    <div className="relative z-50 isolate flex items-center gap-x-6 overflow-hidden bg-background border-b-1 border-divider px-6 py-1 sm:px-3.5 sm:before:flex-1">
       <div
         aria-hidden="true"
         className="absolute left-[max(-7rem,calc(50%-52rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl"
@@ -68,6 +68,8 @@ export const ProBanner = () => {
           }}
         />
       </div>
+
+      
       <div className="flex w-full items-center justify-between md:justify-center gap-x-3">
         <a
           className="text-small flex items-end sm:text-[0.93rem] text-foreground hover:opacity-80 transition-opacity"

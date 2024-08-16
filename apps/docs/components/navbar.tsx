@@ -34,7 +34,7 @@ import {currentVersion} from "@/utils/version";
 import {siteConfig} from "@/config/site";
 import {Route} from "@/libs/docs/page";
 import {LargeLogo, SmallLogo, ThemeSwitch} from "@/components";
-import {TwitterIcon, GithubIcon, DiscordIcon, SearchLinearIcon} from "@/components/icons";
+import {TwitterIcon, GithubIcon, HelpIcon, SearchLinearIcon, BugIcon} from "@/components/icons";
 import {useIsMounted} from "@/hooks/use-is-mounted";
 import {DocsSidebar} from "@/components/docs/sidebar";
 import {useCmdkStore} from "@/components/cmdk";
@@ -307,7 +307,7 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
-        <NavbarItem className="hidden sm:flex">
+{/*         <NavbarItem className="hidden sm:flex">
           <Chip
             as={NextLink}
             className="bg-default-100/50 hover:bg-default-100 border-default-200/80 dark:border-default-100/80 transition-colors cursor-pointer"
@@ -321,7 +321,7 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
               🚀
             </span>
           </Chip>
-        </NavbarItem>
+        </NavbarItem> */}
         <NavbarItem className="hidden sm:flex">
           <Link
             isExternal
@@ -330,7 +330,7 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
             href={siteConfig.links.twitter}
             onPress={() => handlePressNavbarItem("Twitter", siteConfig.links.twitter)}
           >
-            <TwitterIcon className="text-default-600 dark:text-default-500" />
+            <HelpIcon className="text-default-600 dark:text-default-500" />
           </Link>
           <Link
             isExternal
@@ -339,7 +339,7 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
             href={siteConfig.links.discord}
             onPress={() => handlePressNavbarItem("Discord", siteConfig.links.discord)}
           >
-            <DiscordIcon className="text-default-600 dark:text-default-500" />
+            <BugIcon className="text-default-600 dark:text-default-500" />
           </Link>
           <Link
             isExternal
@@ -352,7 +352,7 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
           </Link>
           <ThemeSwitch />
         </NavbarItem>
-        <NavbarItem className="hidden lg:flex">{searchButton}</NavbarItem>
+        {/* <NavbarItem className="hidden lg:flex">{searchButton}</NavbarItem> */}
         {/* <NavbarItem className="hidden md:flex">
           <Button
             isExternal

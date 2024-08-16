@@ -52,7 +52,7 @@ export const Hero = () => {
           </div>
         </div>
         <h2 className={subtitle({fullWidth: true, class: "text-center md:text-left"})}>
-          Beautiful, fast and modern React UI library.
+          Choose a 2-year plan and give your friend 3 months CicadaVPN protection for free. Stay safer online with the world’s leading VPN service.
         </h2>
         <div className="flex flex-col md:flex-row items-center gap-4">
           <Button
