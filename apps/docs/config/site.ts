@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "The best online VPN service for ultimate performance | cicadaVPN",
+  name: "CicadaVPN |The best VPN service for ultimate performance",
   description: "Get 63% off CicadaVPN + 3 months free for a friend",
   ogImage: "https://nextui.org/twitter-cards/nextui.jpeg",
   author: "Junior Garcia",
@@ -25,8 +25,8 @@ export const siteConfig = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "NextUI - Beautiful, fast and modern React UI Library",
-    description: "Make beautiful websites regardless of your design experience.",
+    title: "CicadaVPN |The best VPN service for ultimate performance",
+    description: "CicadaVPN |The best VPN service for ultimate performance",
     image: "https://nextui.org/twitter-cards/nextui.jpeg",
     creator: "@getnextui",
   },
