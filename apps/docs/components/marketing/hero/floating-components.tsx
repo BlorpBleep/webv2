@@ -38,7 +38,7 @@ export const FloatingComponents: React.FC<{}> = () => {
       <>
         <Switch
           classNames={{
-            base: "absolute -top-[220px] -right-[40px] animate-[levitate_13s_ease_infinite_1s_reverse]",
+            base: "absolute -top-[200px] -right-[40px] animate-[levitate_13s_ease_infinite_1s_reverse]",
             wrapper: "shadow-sm",
             startContent: "text-white",
           }}
@@ -77,9 +77,10 @@ export const FloatingComponents: React.FC<{}> = () => {
           </CardFooter>
         </Card>
 
-        <FloatingTabs />
+        <FloatingTabs />{/* Notes, Tasks, Files */}
 
-        <UserTwitterCard className="absolute left-[80px] -top-[80px] animate-[levitate_16s_ease_infinite] border-none" />
+
+        <UserTwitterCard className="absolute left-[80px] -top-[80px] animate-[levitate_16s_ease_infinite] border-none" />{/* Zoey Lang example */}
 
         <Card
           className="absolute right-[110px] -top-[60px] animate-[levitate_18s_ease_infinite] z-10 max-w-fit border-none"
@@ -90,6 +91,7 @@ export const FloatingComponents: React.FC<{}> = () => {
           </CardBody>
         </Card>
 
+{/* Pagination widget */}
         <div className="absolute z-10 -top-[40px] -right-[230px] animate-[levitate_14s_ease_infinite_1s]">
           <Pagination
             isCompact
@@ -107,7 +109,7 @@ export const FloatingComponents: React.FC<{}> = () => {
           <Tooltip
             className="text-sm animate-[levitate_14s_ease_infinite]"
             color="secondary"
-            content="Developers love Next.js"
+            content="Dave loves Next.js"
             isOpen={!isTablet}
             placement="top"
             style={{
@@ -120,19 +122,19 @@ export const FloatingComponents: React.FC<{}> = () => {
               size="sm"
               variant="flat"
             >
-              Tooltip
+              Tooltip rulz
             </Button>
           </Tooltip>
         )}
 
-        <Card
-          className="absolute right-[10px] top-[30px] animate-[levitate_16s_ease_infinite] z-10 max-w-fit border-none"
+{/*         <Card
+          className="absolute right-[100px] top-[30px] animate-[levitate_16s_ease_infinite] z-10 max-w-fit border-none"
           shadow="lg"
         >
           <CardBody>
             <Spinner color="secondary" size="lg" />
           </CardBody>
-        </Card>
+        </Card> */}
 
         <Card
           isFooterBlurred
