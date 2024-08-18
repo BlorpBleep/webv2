@@ -17,28 +17,28 @@ import {
 export default {
   topFeatures: [
     {
-      title: "Themeable",
+      title: "No Logs Policy",
       description:
-        "Provides a plugin to customize default themes, you can change all semantic tokens or create an entire new theme.",
-      icon: <MagicIcon className="text-pink-500" />,
-    },
-    {
-      title: "Fast",
-      description:
-        "Built on top of Tailwind CSS, which means no runtime styles, and no unnecessary classes in your bundle.",
-      icon: <FlashIcon className="text-pink-500" />,
-    },
-    {
-      title: "Light & Dark UI",
-      description:
-        "Automatic dark mode recognition, NextUI automatically changes the theme when detects HTML theme prop changes.",
+        "We never track, share, or sell your data. Our New Zealand HQ also protects you with strong privacy laws..",
       icon: <MoonIcon className="text-pink-500" />,
     },
     {
-      title: "Unique DX",
+      title: "Strong Encryption",
       description:
-        "NextUI is fully-typed to minimize the learning curve, and provide the best possible developer experience.",
+        "Hide your location and scramble your internet traffic with industry-leading encryption.",
+      icon: <MagicIcon className="text-pink-500" />,
+    },
+    {
+      title: "Large Server Fleet",
+      description:
+        "Access your favorite content with our global servers across America, Europe, Africa, and Asia.",
       icon: <DevicesIcon className="text-pink-500" />,
+    },
+    {
+      title: "Fast Speeds",
+      description:
+        "Stream live sports, watch movies, and play online games with blazing-fast speeds.",
+      icon: <FlashIcon className="text-pink-500" />,
     },
   ],
   fullFeatures: [

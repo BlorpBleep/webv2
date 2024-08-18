@@ -36,7 +36,7 @@ export const FloatingComponents: React.FC<{}> = () => {
   return (
     <div className="hidden lg:flex flex-col relative z-20 w-1/2">
       <>
-        <Switch
+{/*         <Switch
           classNames={{
             base: "absolute -top-[200px] -right-[40px] animate-[levitate_13s_ease_infinite_1s_reverse]",
             wrapper: "shadow-sm",
@@ -47,9 +47,9 @@ export const FloatingComponents: React.FC<{}> = () => {
           size="lg"
           startContent={<SunFilledIcon />}
           onChange={onChange}
-        />
+        /> */}
 
-        <Input
+{/*         <Input
           className="absolute -top-[130px] -right-[120px] animate-[levitate_10s_ease_infinite] w-[200px]"
           color="secondary"
           defaultValue="NextUI"
@@ -57,9 +57,9 @@ export const FloatingComponents: React.FC<{}> = () => {
           labelPlacement="outside"
           variant="bordered"
           onClear={() => {}}
-        />
+        /> */}
 
-        <Card
+{/*         <Card
           isFooterBlurred
           className="absolute -top-[260px] right-[100px] h-[120px] animate-[levitate_12s_ease_infinite_1s] z-0 max-w-fit"
         >
@@ -77,14 +77,14 @@ export const FloatingComponents: React.FC<{}> = () => {
           </CardFooter>
         </Card>
 
-        <FloatingTabs />{/* Notes, Tasks, Files */}
+        <FloatingTabs />{/* Notes, Tasks, Files */} */}
 
 
         {/* <UserTwitterCard className="absolute left-[80px] -top-[80px] animate-[levitate_16s_ease_infinite] border-none" /> */}
         {/* Zoey Lang example */}
 
 
-
+{/* 
         <Card
           isFooterBlurred
           className="absolute left-[80px] -top-[100px] animate-[levitate_12s_ease_infinite_1s] "
@@ -109,20 +109,20 @@ export const FloatingComponents: React.FC<{}> = () => {
               Notify me
             </Button>
           </CardFooter>
-        </Card>
+        </Card> */}
 
 
-        <Card
+{/*         <Card
           className="absolute right-[110px] -top-[60px] animate-[levitate_18s_ease_infinite] z-10 max-w-fit border-none"
           shadow="lg"
         >
           <CardBody>
             <NextUILogo small size={60} />
           </CardBody>
-        </Card>
+        </Card> */}
 
 {/* Pagination widget */}
-        <div className="absolute z-10 -top-[40px] -right-[230px] animate-[levitate_14s_ease_infinite_1s]">
+{/*         <div className="absolute z-10 -top-[40px] -right-[230px] animate-[levitate_14s_ease_infinite_1s]">
           <Pagination
             isCompact
             showControls
@@ -155,7 +155,7 @@ export const FloatingComponents: React.FC<{}> = () => {
               Tooltip rulz
             </Button>
           </Tooltip>
-        )}
+        )} */}
 
 {/*         <Card
           className="absolute right-[100px] top-[30px] animate-[levitate_16s_ease_infinite] z-10 max-w-fit border-none"
@@ -168,18 +168,18 @@ export const FloatingComponents: React.FC<{}> = () => {
 
         <Card
           isFooterBlurred
-          className="absolute right-[60px] top-[100px] animate-[levitate_12s_ease_infinite_1s] z-0 max-w-fit"
+          className="absolute right-[140px] top-[-150px] animate-[levitate_12s_ease_infinite_1s] z-0 max-w-fit"
         >
           <Image
             alt="Woman listing to music"
             as={NextImage}
             className="object-cover"
-            height={200}
+            height={400}
             src="/images/ts.gif"
             width={200}
           />
           <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
-            <p className="text-tiny text-white/80">Available soon.</p>
+            <p className="text-tiny text-white/80">Mobile.</p>
             <Button
               className="text-tiny text-white bg-black/20"
               color="default"
@@ -187,7 +187,7 @@ export const FloatingComponents: React.FC<{}> = () => {
               size="sm"
               variant="flat"
             >
-              Notify me
+              Try now
             </Button>
           </CardFooter>
         </Card>
