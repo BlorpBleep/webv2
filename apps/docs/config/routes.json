@@ -2,7 +2,7 @@
   "routes": [
     {
       "key": "faq",
-      "title": "Frequently Asked Questions",
+      "title": "FAQ",
       "defaultOpen": true,
       "keywords": "faq, getting started, start, nextui",
       "routes": [
@@ -20,14 +20,14 @@
         },
         {
           "key": "activation_keys",
-          "title": "Activation Keys",
+          "title": "Activation",
           "keywords": "cli, command line interface",
           "path": "/docs/faq/activation_keys.mdx",
           "newPost": true
         },
         {
           "key": "accounts_subscriptions",
-          "title": "Accounts & Subscriptions",
+          "title": "Accounts",
           "keywords": "accounts_subscriptions, nextui",
           "path": "/docs/faq/accounts_subscriptions.mdx"
         },
@@ -39,20 +39,20 @@
         },
         {
           "key": "privacy_anonymity",
-          "title": "Privacy & Anonymity",
+          "title": "Privacy",
           "keywords": "client side routing, routing, browser routing, nextui, next.js router, react router, remix router",
           "path": "/docs/faq/privacy_anonymity.mdx"
         },
         {
           "key": "servers_encryption",
-          "title": "Servers & Encryption",
+          "title": "Servers",
           "keywords": "upgrade, v2, nextui",
           "path": "/docs/faq/servers_encryption.mdx",
           "newPost": true
         },
         {
           "key": "p2p_torrents",
-          "title": "P2P Torrents",
+          "title": "Torrents",
           "keywords": "upgrade, v2, nextui",
           "path": "/docs/faq/p2p_torrents.mdx",
           "newPost": true
@@ -67,13 +67,13 @@
       "routes": [
         {
           "key": "general_terms",
-          "title": "General Terms",
+          "title": "General",
           "keywords": "remix, nextui",
           "path": "/docs/policies/general_terms.mdx"
         },
         {
           "key": "subscription_terms",
-          "title": "Subscription Terms",
+          "title": "Subscription",
           "keywords": "subscription_terms, nextui, next.js",
           "path": "/docs/policies/subscription_terms.mdx"
         },
@@ -117,7 +117,7 @@
         },
         {
           "key": "customize-theme",
-          "title": "Customize theme",
+          "title": "Customize",
           "path": "/docs/customization/customize-theme.mdx"
         },
         {
@@ -132,12 +132,12 @@
         },
         {
           "key": "override-styles",
-          "title": "Override styles",
+          "title": "Override ",
           "path": "/docs/customization/override-styles.mdx"
         },
         {
           "key": "custom-variants",
-          "title": "Custom variants",
+          "title": "Custom ",
           "path": "/docs/customization/custom-variants.mdx"
         }
       ]
@@ -207,7 +207,7 @@
         },
         {
           "key": "checkbox-group",
-          "title": "Checkbox Group",
+          "title": "CheckGroup",
           "keywords": "checkbox group, binary choice, selection control, toggle",
           "path": "/docs/components/checkbox-group.mdx"
         },
@@ -219,7 +219,7 @@
         },
         {
           "key": "circular-progress",
-          "title": "Circular Progress",
+          "title": "Circular",
           "keywords": "circular progress, loading indicator, activity sign, process display",
           "path": "/docs/components/circular-progress.mdx"
         },
@@ -245,7 +245,7 @@
         },
         {
           "key": "date-range-picker",
-          "title": "Date Range Picker",
+          "title": "Date Range",
           "keywords": "date-range-picker, date-picker, time, input, timezone",
           "path": "/docs/components/date-range-picker.mdx",
           "newPost": true
@@ -330,14 +330,14 @@
         },
         {
           "key": "range-calendar",
-          "title": "Range Calendar",
+          "title": "Range",
           "keywords": "range calendar, date picker, month picker, year picker",
           "path": "/docs/components/range-calendar.mdx",
           "newPost": true
         },
         {
           "key": "scroll-shadow",
-          "title": "Scroll Shadow",
+          "title": "Scroll",
           "keywords": "scroll shadow, scroll indicator, scroll bar, scroll position",
           "path": "/docs/components/scroll-shadow.mdx"
         },
@@ -433,14 +433,14 @@
       "routes": [
         {
           "key": "cli-api",
-          "title": "NextUI CLI",
+          "title": "CLI",
           "keywords": "api references, nextui, api, cli",
           "path": "/docs/api-references/cli-api.mdx",
           "updated": true
         },
         {
           "key": "nextui-provider",
-          "title": "NextUI Provider",
+          "title": "Provider",
           "keywords": "api references, nextui, api, nextui provider",
           "path": "/docs/api-references/nextui-provider.mdx",
           "updated": true
