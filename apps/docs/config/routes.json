@@ -1,85 +1,95 @@
 {
   "routes": [
     {
-      "key": "guide",
-      "title": "Guide",
+      "key": "faq",
+      "title": "Frequently Asked Questions",
       "defaultOpen": true,
-      "keywords": "guide, getting started, start, nextui",
+      "keywords": "faq, getting started, start, nextui",
       "routes": [
         {
-          "key": "introduction",
-          "title": "Introduction",
+          "key": "plans_orders",
+          "title": "Plans & Orders",
           "keywords": "introduction, nextui",
-          "path": "/docs/guide/introduction.mdx"
+          "path": "/docs/faq/plans_orders.mdx"
         },
         {
-          "key": "installation",
-          "title": "Installation",
+          "key": "billing",
+          "title": "Billing",
           "keywords": "getting started, installation, start, nextui",
-          "path": "/docs/guide/installation.mdx"
+          "path": "/docs/faq/billing.mdx"
         },
         {
-          "key": "cli",
-          "title": "CLI",
+          "key": "activation_keys",
+          "title": "Activation Keys",
           "keywords": "cli, command line interface",
-          "path": "/docs/guide/cli.mdx",
+          "path": "/docs/faq/activation_keys.mdx",
           "newPost": true
         },
         {
-          "key": "design-principles",
-          "title": "Design Principles",
-          "keywords": "design principles, nextui",
-          "path": "/docs/guide/design-principles.mdx"
+          "key": "accounts_subscriptions",
+          "title": "Accounts & Subscriptions",
+          "keywords": "accounts_subscriptions, nextui",
+          "path": "/docs/faq/accounts_subscriptions.mdx"
         },
         {
-          "key": "routing",
-          "title": "Routing",
+          "key": "cicada_vpn",
+          "title": "Cicada VPN",
+          "keywords": "cicada_vpn, routing, browser routing, nextui, next.js router, react router, remix router",
+          "path": "/docs/faq/cicada_vpn.mdx"
+        },
+        {
+          "key": "privacy_anonymity",
+          "title": "Privacy & Anonymity",
           "keywords": "client side routing, routing, browser routing, nextui, next.js router, react router, remix router",
-          "path": "/docs/guide/routing.mdx"
+          "path": "/docs/faq/privacy_anonymity.mdx"
         },
         {
-          "key": "pricing",
-          "title": "Pricing",
-          "keywords": "client side routing, routing, browser routing, nextui, next.js router, react router, remix router",
-          "path": "/docs/guide/routing.mdx"
-        },
-        {
-          "key": "upgrade-to-v2",
-          "title": "Upgrade to v2",
+          "key": "servers_encryption",
+          "title": "Servers & Encryption",
           "keywords": "upgrade, v2, nextui",
-          "path": "/docs/guide/upgrade-to-v2.mdx"
+          "path": "/docs/faq/servers_encryption.mdx",
+          "newPost": true
+        },
+        {
+          "key": "p2p_torrents",
+          "title": "P2P Torrents",
+          "keywords": "upgrade, v2, nextui",
+          "path": "/docs/faq/p2p_torrents.mdx",
+          "newPost": true
         }
       ]
     },
     {
-      "key": "frameworks",
-      "title": "Frameworks",
+      "key": "policies",
+      "title": "Policies",
       "defaultOpen": true,
-      "keywords": "frameworks, nextjs + nextui, vite + nextui, remix + nextui, astro + nextui",
+      "keywords": "policies, subscription_terms + cookie, vite + nextui, remix + nextui, astro + nextui, privacy",
       "routes": [
         {
-          "key": "nextjs",
-          "title": "Next.js",
-          "keywords": "nextjs, nextui, next.js",
-          "path": "/docs/frameworks/nextjs.mdx"
-        },
-        {
-          "key": "vite",
-          "title": "Vite",
-          "keywords": "vite, nextui",
-          "path": "/docs/frameworks/vite.mdx"
-        },
-        {
-          "key": "remix",
-          "title": "Remix",
+          "key": "general_terms",
+          "title": "General Terms",
           "keywords": "remix, nextui",
-          "path": "/docs/frameworks/remix.mdx"
+          "path": "/docs/policies/general_terms.mdx"
         },
         {
-          "key": "astro",
-          "title": "Astro",
-          "keywords": "astro, nextui",
-          "path": "/docs/frameworks/astro.mdx"
+          "key": "subscription_terms",
+          "title": "Subscription Terms",
+          "keywords": "subscription_terms, nextui, next.js",
+          "path": "/docs/policies/subscription_terms.mdx"
+        },
+
+        {
+          "key": "privacy",
+          "title": "Privacy",
+          "keywords": "privacy, nextui",
+          "path": "/docs/policies/privacy.mdx"
+        },
+        {
+          "key": "cookie",
+          "title": "Cookie",
+          "keywords": "cookie, nextui",
+          "path": "/docs/policies/cookie.mdx",
+          "newPost": true
         }
       ]
     },
@@ -447,13 +457,13 @@
       "routes": [
         {
           "key": "docs",
-          "title": "Documentation",
+          "title": "Pricing",
           "keywords": "documentation, guide, nextui",
           "path": "/docs/guide/introduction.mdx"
         },
         {
           "key": "components",
-          "title": "Components",
+          "title": "Downloads",
           "keywords": "components, nextui",
           "path": "/docs/components/avatar"
         },
@@ -466,7 +476,7 @@
 
         {
           "key": "figma",
-          "title": "Figma",
+          "title": "Teams",
           "keywords": "figma, nextui, design, ui kit",
           "path": "/figma"
         },

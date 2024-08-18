@@ -52,7 +52,7 @@ export const Hero = () => {
           </div>
         </div>
         <h2 className={subtitle({fullWidth: true, class: "text-center md:text-left"})}>
-          Choose a 2-year plan and give your friend 3 months CicadaVPN protection for free. Stay safer online with the world’s leading VPN service.
+          Choose a 2-year plan, gift your friend 3 months CicadaVPN protection free. 
         </h2>
 
 
