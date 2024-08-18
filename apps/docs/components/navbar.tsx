@@ -40,6 +40,10 @@ import {DocsSidebar} from "@/components/docs/sidebar";
 import {useCmdkStore} from "@/components/cmdk";
 import {FbRoadmapLink} from "@/components/featurebase/fb-roadmap-link";
 import {trackEvent} from "@/utils/va";
+import arrowRightUpIcon from "@iconify/icons-solar/arrow-right-up-linear";
+import {Icon} from "@iconify/react/dist/offline";
+
+
 
 export interface NavbarProps {
   routes: Route[];
@@ -213,6 +217,8 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
               Pricing
             </NextLink>
           </NavbarItem>
+
+
           <NavbarItem>
             <NextLink
               className={navLinkClasses}
@@ -221,9 +227,11 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
               href="/docs/components/avatar"
               onClick={() => handlePressNavbarItem("Components", "/docs/components/avatar")}
             >
-              Components
+              Download
             </NextLink>
           </NavbarItem>
+
+
           <NavbarItem>
             <NextLink
               className={navLinkClasses}
@@ -235,17 +243,21 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
               Blog
             </NextLink>
           </NavbarItem>
+
+
           <NavbarItem>
             <NextLink
               className={navLinkClasses}
               color="foreground"
-              data-active={includes(pathname, "figma")}
-              href="/figma"
-              onClick={() => handlePressNavbarItem("Figma", "/figma")}
+              data-active={includes(pathname, "teams")}
+              href="/teams"
+              onClick={() => handlePressNavbarItem("Teams", "/teams")}
             >
-              Figma
+              Teams
             </NextLink>
           </NavbarItem>
+
+
           {/* hide feedback and changelog at this moment */}
           {/* <NavbarItem>
             <NextLink className={navLinkClasses} color="foreground" href="#">
@@ -257,9 +269,31 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
               <FbFeedbackButton key="feedback" userEmail="" />
             </NextLink>
           </NavbarItem> */}
+          
+
           <NavbarItem>
+            <NextLink
+                className={navLinkClasses}
+                color="foreground"
+                data-active={includes(pathname, "figma")}
+                href="/figma"
+                onClick={() => handlePressNavbarItem("Figma", "/figma")}
+            >
+              <div className={clsx("relative")}>
+                Roadmap
+                <Icon
+                  className="absolute right-[-10px] top-0 outline-none transition-transform group-data-[hover=true]:translate-y-0.5 [&>path]:stroke-[2.5px]"
+                  icon={arrowRightUpIcon}
+                  width={10}
+                />
+              </div>
+            </NextLink>
+            </NavbarItem>
+
+{/*           <NavbarItem>
             <FbRoadmapLink className={navLinkClasses} />
-          </NavbarItem>
+          </NavbarItem> */}
+          
           {/* <NavbarItem>
             <Chip
               as={NextLink}
@@ -335,6 +369,9 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
         </NavbarItem> */}
         <NavbarItem className="hidden sm:flex">
 
+
+        {/* Help */}
+
           <Link
             className="p-1"
             color="foreground"
@@ -348,6 +385,7 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
 
 
 
+        {/* login */}
 
 
           <Link
@@ -359,6 +397,10 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
           >
             <BugIcon className="text-default-600 dark:text-default-500" />
           </Link>
+
+        {/* Github */}
+
+
           <Link
             isExternal
             aria-label="Github"
@@ -368,8 +410,14 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
           >
             <GithubIcon className="text-default-600 dark:text-default-500" />
           </Link>
+
+
+
           <ThemeSwitch />
         </NavbarItem>
+
+
+
         {/* <NavbarItem className="hidden lg:flex">{searchButton}</NavbarItem> */}
         {/* <NavbarItem className="hidden md:flex">
           <Button
