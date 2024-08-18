@@ -38,6 +38,12 @@
           "path": "/docs/guide/routing.mdx"
         },
         {
+          "key": "pricing",
+          "title": "Pricing",
+          "keywords": "client side routing, routing, browser routing, nextui, next.js router, react router, remix router",
+          "path": "/docs/guide/routing.mdx"
+        },
+        {
           "key": "upgrade-to-v2",
           "title": "Upgrade to v2",
           "keywords": "upgrade, v2, nextui",
@@ -457,6 +463,7 @@
           "keywords": "blog, nextui, news, updates",
           "path": "/blog"
         },
+
         {
           "key": "figma",
           "title": "Figma",

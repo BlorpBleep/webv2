@@ -78,6 +78,10 @@ export const BlogPost = defineDocumentType(() => ({
   }
 }));
 
+
+
+
+
 export default makeSource({
   contentDirPath: "./content",
   documentTypes: [Doc, BlogPost],

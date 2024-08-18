@@ -146,6 +146,8 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
       position="sticky"
       onMenuOpenChange={setIsMenuOpen}
     >
+
+      
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink
@@ -157,7 +159,7 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
             <SmallLogo className="w-6 h-6 md:hidden" />
             <LargeLogo className="h-5 md:h-6" />
           </NextLink>
-          {ref.current ? (
+          {/* {ref.current ? (
             <Dropdown placement="bottom-start" portalContainer={ref.current}>
               <AnimatePresence>
                 {isMounted && (
@@ -176,6 +178,8 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
                   </motion.div>
                 )}
               </AnimatePresence>
+
+
               <DropdownMenu
                 aria-label="NextUI versions"
                 defaultSelectedKeys={["v2"]}
@@ -187,11 +191,16 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
                   v1.0.0
                 </DropdownItem>
               </DropdownMenu>
+
+
             </Dropdown>
           ) : (
             <div className="w-[74px]" />
-          )}
+          )} */}
         </NavbarBrand>
+        </NavbarContent>
+        <NavbarContent className="basis-full justify-center" justify="center">
+
         <ul className="hidden lg:flex gap-4 justify-start items-center">
           <NavbarItem>
             <NextLink
@@ -201,7 +210,7 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
               href="/pricing"
               onClick={() => handlePressNavbarItem("Docs", "/pricing")}
             >
-              Docs
+              Pricing
             </NextLink>
           </NavbarItem>
           <NavbarItem>
@@ -269,6 +278,8 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
         </ul>
       </NavbarContent>
 
+
+
       <NavbarContent className="flex w-full gap-2 sm:hidden" justify="end">
         <NavbarItem className="flex h-full items-center">
           <Link
@@ -323,20 +334,25 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
           </Chip>
         </NavbarItem> */}
         <NavbarItem className="hidden sm:flex">
+
           <Link
-            isExternal
-            aria-label="Help"
             className="p-1"
             color="foreground"
-            data-active={includes(docsPaths, pathname)}
-            href="/docs/guide/introduction"
-            onPress={() => handlePressNavbarItem("Docs", "/docs/guide/introduction")}
+            data-active={includes(pathname, "components")}
+            href="/docs/components/avatar"
+            onPress={() => handlePressNavbarItem("Components", "/docs/components/avatar")}
           >
             <HelpIcon className="text-default-600 dark:text-default-500" />
           </Link>
+
+
+
+
+
+
           <Link
             isExternal
-            aria-label="Login"
+            aria-label="Discord"
             className="p-1"
             href={siteConfig.links.discord}
             onPress={() => handlePressNavbarItem("Discord", siteConfig.links.discord)}
