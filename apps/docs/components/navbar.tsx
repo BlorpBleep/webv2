@@ -198,8 +198,8 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
               className={navLinkClasses}
               color="foreground"
               data-active={includes(docsPaths, pathname)}
-              href="/docs/guide/introduction"
-              onClick={() => handlePressNavbarItem("Docs", "/docs/guide/introduction")}
+              href="/pricing"
+              onClick={() => handlePressNavbarItem("Docs", "/pricing")}
             >
               Docs
             </NextLink>
