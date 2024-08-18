@@ -80,7 +80,37 @@ export const FloatingComponents: React.FC<{}> = () => {
         <FloatingTabs />{/* Notes, Tasks, Files */}
 
 
-        <UserTwitterCard className="absolute left-[80px] -top-[80px] animate-[levitate_16s_ease_infinite] border-none" />{/* Zoey Lang example */}
+        {/* <UserTwitterCard className="absolute left-[80px] -top-[80px] animate-[levitate_16s_ease_infinite] border-none" /> */}
+        {/* Zoey Lang example */}
+
+
+
+        <Card
+          isFooterBlurred
+          className="absolute left-[80px] -top-[100px] animate-[levitate_12s_ease_infinite_1s] "
+        >
+          <Image
+            alt="Woman listing to music"
+            as={NextImage}
+            className="object-cover"
+            height={200}
+            src="/images/ts.gif"
+            width={200}
+          />
+          <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
+            <p className="text-tiny text-white/80">Available soon.</p>
+            <Button
+              className="text-tiny text-white bg-black/20"
+              color="default"
+              radius="lg"
+              size="sm"
+              variant="flat"
+            >
+              Notify me
+            </Button>
+          </CardFooter>
+        </Card>
+
 
         <Card
           className="absolute right-[110px] -top-[60px] animate-[levitate_18s_ease_infinite] z-10 max-w-fit border-none"
@@ -145,7 +175,7 @@ export const FloatingComponents: React.FC<{}> = () => {
             as={NextImage}
             className="object-cover"
             height={200}
-            src="/images/relaxing.jpeg"
+            src="/images/ts.gif"
             width={200}
           />
           <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
