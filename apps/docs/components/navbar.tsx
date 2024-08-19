@@ -315,7 +315,7 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
 
 
       <NavbarContent className="flex w-full gap-2 sm:hidden" justify="end">
-        <NavbarItem className="flex h-full items-center">
+{/*         <NavbarItem className="flex h-full items-center">
           <Link
             isExternal
             aria-label="Github"
@@ -325,10 +325,16 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
           >
             <GithubIcon className="text-default-600 dark:text-default-500" />
           </Link>
-        </NavbarItem>
+        </NavbarItem> */}
+       
+       
+       
         <NavbarItem className="flex h-full items-center">
           <ThemeSwitch />
         </NavbarItem>
+        
+        
+        
         <NavbarItem className="flex h-full items-center">
           <button
             className={clsx(
@@ -343,6 +349,9 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
             <SearchLinearIcon className="mt-px text-default-600 dark:text-default-500" size={20} />
           </button>
         </NavbarItem>
+
+
+
         <NavbarItem className="w-10 h-full">
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -374,6 +383,7 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
 
           <Link
             className="p-1"
+            aria-label="Help"
             color="foreground"
             data-active={includes(pathname, "components")}
             href="/docs/components/avatar"
@@ -389,19 +399,19 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
 
 
           <Link
-            isExternal
-            aria-label="Discord"
+            color="foreground"
+            aria-label="Login"
             className="p-1"
-            href={siteConfig.links.discord}
-            onPress={() => handlePressNavbarItem("Discord", siteConfig.links.discord)}
+            href="/login"
+            onPress={() => handlePressNavbarItem("Components", "/login")}
           >
             <BugIcon className="text-default-600 dark:text-default-500" />
           </Link>
 
-        {/* Github */}
+         {/* Github */}
 
 
-          <Link
+{/*           <Link
             isExternal
             aria-label="Github"
             className="p-1"
@@ -409,7 +419,7 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
             onPress={() => handlePressNavbarItem("Github", siteConfig.links.github)}
           >
             <GithubIcon className="text-default-600 dark:text-default-500" />
-          </Link>
+          </Link> */}
 
 
 
