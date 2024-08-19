@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { teams } from "@/components/marketing/teams"
+import { TeamsGrid } from "@/components/marketing/TeamsGrid"
 
 export default function TeamsPage() {
   return (
@@ -11,10 +11,10 @@ export default function TeamsPage() {
           <div className="text-center max-w-xl">
             <h1 className="mb-2 font-bold text-4xl">Buy a VPN for your team: 2 Years for 2.19 €/mo</h1>
             <h5 className="text-default-500 text-lg">
-              A Figma file that contains the basis of the NextUI design system to help you design your applications.
+              A team that contains the basis of the NextUI design system to help you design your applications.
             </h5>
           </div>
-          <teams />
+          <TeamsGrid />
         </section>
       </main>
     </>
