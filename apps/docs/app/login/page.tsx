@@ -10,7 +10,7 @@ export default function LoginPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800 dark:text-gray-700">
-        Log in to your account and start securing your digital life.</h2>
+        Log in</h2>
           <form>
             <div className="mb-4">
               <label className="block text-gray-700">Email address</label>
