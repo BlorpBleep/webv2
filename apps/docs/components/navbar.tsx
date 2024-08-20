@@ -142,21 +142,21 @@ export const Navbar: FC<NavbarProps> = ({ children, routes, mobileRoutes = [], s
       ref={ref}
       className={clsx({
         "z-[100001]": isMenuOpen,
-        "bg-transparent !important": true, // Ensure the navbar is transparent !important
+        "bg-transparent": true, // Ensure the navbar is transparent
       })}
       isMenuOpen={isMenuOpen}
-      maxWidth="xl"
+      maxWidth="full" 
+      
+      
       position="sticky"
       onMenuOpenChange={setIsMenuOpen}
-      style={{
-        backgroundColor: 'transparent', backdropFilter: "none", 
-      }}
     >
-      <NavbarContent className="basis-1/5 sm:basis-full bg-transparent !important" justify="start">
-        <NavbarBrand as="li" className="gap-3 max-w-fit">
+      {/* Left section: Logo */}
+      <NavbarContent className="basis-1/5 sm:basis-full bg-transparent" justify="start">
+        <NavbarBrand as="li" className="gap-3 ">
           <NextLink
             aria-label="Home"
-            className="flex justify-start items-center gap-2 tap-highlight-transparent !important transition-opacity active:opacity-50"
+            className="flex justify-start items-center gap-2 tap-highlight-transparent transition-opacity active:opacity-50"
             href="/"
             onClick={() => handlePressNavbarItem("Home", "/")}
           >
@@ -166,7 +166,8 @@ export const Navbar: FC<NavbarProps> = ({ children, routes, mobileRoutes = [], s
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="basis-full justify-center bg-transparent !important" justify="center">
+      {/* Middle section: Navigation Links */}
+      <NavbarContent className="basis-full justify-center bg-transparent" justify="center">
         <ul className="hidden lg:flex gap-4 justify-start items-center">
           <NavbarItem>
             <NextLink
@@ -233,7 +234,8 @@ export const Navbar: FC<NavbarProps> = ({ children, routes, mobileRoutes = [], s
         </ul>
       </NavbarContent>
 
-      <NavbarContent className="flex w-full gap-2 sm:hidden bg-transparent !important" justify="end">
+      {/* Right section: Theme Switch and Search */}
+      <NavbarContent className="flex w-full gap-2 sm:hidden bg-transparent" justify="end">
         <NavbarItem className="flex h-full items-center">
           <ThemeSwitch />
         </NavbarItem>
@@ -259,7 +261,8 @@ export const Navbar: FC<NavbarProps> = ({ children, routes, mobileRoutes = [], s
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full justify-end bg-transparent !important">
+      {/* Responsive Menu */}
+      <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full justify-end bg-transparent">
         <NavbarItem className="hidden sm:flex">
           <Link
             className="p-1"
