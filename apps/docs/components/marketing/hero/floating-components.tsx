@@ -77,7 +77,7 @@ export const FloatingComponents: React.FC<{}> = () => {
           </CardFooter>
         </Card>
 
-        <FloatingTabs />{/* Notes, Tasks, Files */} */}
+        <FloatingTabs />{/* Notes, Tasks, Files */}
 
 
         {/* <UserTwitterCard className="absolute left-[80px] -top-[80px] animate-[levitate_16s_ease_infinite] border-none" /> */}
