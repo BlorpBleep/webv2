@@ -1,6 +1,6 @@
 "use client";
 
-import {useRef, useState, FC, ReactNode, Key} from "react";
+import { useRef, useState, FC, ReactNode, Key } from "react";
 import {
   link,
   Navbar as NextUINavbar,
@@ -18,32 +18,30 @@ import {
   DropdownTrigger,
   Chip,
 } from "@nextui-org/react";
-import {dataFocusVisibleClasses} from "@nextui-org/theme";
-import {ChevronDownIcon, LinkIcon} from "@nextui-org/shared-icons";
-import {isAppleDevice} from "@react-aria/utils";
-import {clsx} from "@nextui-org/shared-utils";
+import { dataFocusVisibleClasses } from "@nextui-org/theme";
+import { ChevronDownIcon, LinkIcon } from "@nextui-org/shared-icons";
+import { isAppleDevice } from "@react-aria/utils";
+import { clsx } from "@nextui-org/shared-utils";
 import NextLink from "next/link";
-import {usePathname} from "next/navigation";
-import {includes} from "lodash";
-import {motion, AnimatePresence} from "framer-motion";
-import {useEffect} from "react";
-import {usePress} from "@react-aria/interactions";
-import {useFocusRing} from "@react-aria/focus";
+import { usePathname } from "next/navigation";
+import { includes } from "lodash";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
+import { usePress } from "@react-aria/interactions";
+import { useFocusRing } from "@react-aria/focus";
 
-import {currentVersion} from "@/utils/version";
-import {siteConfig} from "@/config/site";
-import {Route} from "@/libs/docs/page";
-import {LargeLogo, SmallLogo, ThemeSwitch} from "@/components";
-import {TwitterIcon, GithubIcon, HelpIcon, SearchLinearIcon, BugIcon} from "@/components/icons";
-import {useIsMounted} from "@/hooks/use-is-mounted";
-import {DocsSidebar} from "@/components/docs/sidebar";
-import {useCmdkStore} from "@/components/cmdk";
-import {FbRoadmapLink} from "@/components/featurebase/fb-roadmap-link";
-import {trackEvent} from "@/utils/va";
+import { currentVersion } from "@/utils/version";
+import { siteConfig } from "@/config/site";
+import { Route } from "@/libs/docs/page";
+import { LargeLogo, SmallLogo, ThemeSwitch } from "@/components";
+import { TwitterIcon, GithubIcon, HelpIcon, SearchLinearIcon, BugIcon } from "@/components/icons";
+import { useIsMounted } from "@/hooks/use-is-mounted";
+import { DocsSidebar } from "@/components/docs/sidebar";
+import { useCmdkStore } from "@/components/cmdk";
+import { FbRoadmapLink } from "@/components/featurebase/fb-roadmap-link";
+import { trackEvent } from "@/utils/va";
 import arrowRightUpIcon from "@iconify/icons-solar/arrow-right-up-linear";
-import {Icon} from "@iconify/react/dist/offline";
-
-
+import { Icon } from "@iconify/react/dist/offline";
 
 export interface NavbarProps {
   routes: Route[];
@@ -53,7 +51,7 @@ export interface NavbarProps {
   children?: ReactNode;
 }
 
-export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], slug, tag}) => {
+export const Navbar: FC<NavbarProps> = ({ children, routes, mobileRoutes = [], slug, tag }) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean | undefined>(false);
   const [commandKey, setCommandKey] = useState<"ctrl" | "command">("command");
 
@@ -83,10 +81,10 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
     });
   };
 
-  const {pressProps} = usePress({
+  const { pressProps } = usePress({
     onPress: handleOpenCmdk,
   });
-  const {focusProps, isFocusVisible} = useFocusRing();
+  const { focusProps, isFocusVisible } = useFocusRing();
 
   const docsPaths = [
     "/docs/guide/introduction",
@@ -120,7 +118,7 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
     return null;
   }
 
-  const navLinkClasses = clsx(link({color: "foreground"}), "data-[active=true]:text-primary");
+  const navLinkClasses = clsx(link({ color: "foreground" }), "data-[active=true]:text-primary");
 
   const handleVersionChange = (key: Key) => {
     if (key === "v1") {
@@ -144,67 +142,31 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
       ref={ref}
       className={clsx({
         "z-[100001]": isMenuOpen,
+        "bg-transparent !important": true, // Ensure the navbar is transparent !important
       })}
       isMenuOpen={isMenuOpen}
       maxWidth="xl"
       position="sticky"
       onMenuOpenChange={setIsMenuOpen}
+      style={{
+        backgroundColor: 'transparent', backdropFilter: "none", 
+      }}
     >
-
-      
-      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
+      <NavbarContent className="basis-1/5 sm:basis-full bg-transparent !important" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink
             aria-label="Home"
-            className="flex justify-start items-center gap-2 tap-highlight-transparent transition-opacity active:opacity-50"
+            className="flex justify-start items-center gap-2 tap-highlight-transparent !important transition-opacity active:opacity-50"
             href="/"
             onClick={() => handlePressNavbarItem("Home", "/")}
           >
             <SmallLogo className="w-6 h-6 md:hidden" />
             <LargeLogo className="h-5 md:h-6" />
           </NextLink>
-          {/* {ref.current ? (
-            <Dropdown placement="bottom-start" portalContainer={ref.current}>
-              <AnimatePresence>
-                {isMounted && (
-                  <motion.div animate={{opacity: 1}} exit={{opacity: 0}} initial={{opacity: 0}}>
-                    <DropdownTrigger>
-                      <Button
-                        className="hidden text-xs h-6 w-[74px] py-1 min-w-fit sm:flex gap-0.5 bg-default-400/20 dark:bg-default-500/20"
-                        endContent={<ChevronDownIcon className="text-tiny" />}
-                        radius="full"
-                        size="sm"
-                        variant="flat"
-                      >
-                        v{currentVersion}
-                      </Button>
-                    </DropdownTrigger>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-
-              <DropdownMenu
-                aria-label="NextUI versions"
-                defaultSelectedKeys={["v2"]}
-                selectionMode="single"
-                onAction={handleVersionChange}
-              >
-                <DropdownItem key="v2">v{currentVersion}</DropdownItem>
-                <DropdownItem key="v1" endContent={<LinkIcon />}>
-                  v1.0.0
-                </DropdownItem>
-              </DropdownMenu>
-
-
-            </Dropdown>
-          ) : (
-            <div className="w-[74px]" />
-          )} */}
         </NavbarBrand>
-        </NavbarContent>
-        <NavbarContent className="basis-full justify-center" justify="center">
+      </NavbarContent>
 
+      <NavbarContent className="basis-full justify-center bg-transparent !important" justify="center">
         <ul className="hidden lg:flex gap-4 justify-start items-center">
           <NavbarItem>
             <NextLink
@@ -217,8 +179,6 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
               Pricing
             </NextLink>
           </NavbarItem>
-
-
           <NavbarItem>
             <NextLink
               className={navLinkClasses}
@@ -230,8 +190,6 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
               Download
             </NextLink>
           </NavbarItem>
-
-
           <NavbarItem>
             <NextLink
               className={navLinkClasses}
@@ -243,8 +201,6 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
               Blog
             </NextLink>
           </NavbarItem>
-
-
           <NavbarItem>
             <NextLink
               className={navLinkClasses}
@@ -256,28 +212,13 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
               Teams
             </NextLink>
           </NavbarItem>
-
-
-          {/* hide feedback and changelog at this moment */}
-          {/* <NavbarItem>
-            <NextLink className={navLinkClasses} color="foreground" href="#">
-              <FbChangelogButton key="changelog" userName="" />
-            </NextLink>
-          </NavbarItem>
-          <NavbarItem>
-            <NextLink className={navLinkClasses} color="foreground" href="#">
-              <FbFeedbackButton key="feedback" userEmail="" />
-            </NextLink>
-          </NavbarItem> */}
-          
-
           <NavbarItem>
             <NextLink
-                className={navLinkClasses}
-                color="foreground"
-                data-active={includes(pathname, "figma")}
-                href="/figma"
-                onClick={() => handlePressNavbarItem("Figma", "/figma")}
+              className={navLinkClasses}
+              color="foreground"
+              data-active={includes(pathname, "figma")}
+              href="/figma"
+              onClick={() => handlePressNavbarItem("Figma", "/figma")}
             >
               <div className={clsx("relative")}>
                 Roadmap
@@ -288,53 +229,14 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
                 />
               </div>
             </NextLink>
-            </NavbarItem>
-
-{/*           <NavbarItem>
-            <FbRoadmapLink className={navLinkClasses} />
-          </NavbarItem> */}
-          
-          {/* <NavbarItem>
-            <Chip
-              as={NextLink}
-              className="hover:bg-default-100 border-default-200/80 dark:border-default-100/80 transition-colors cursor-pointer"
-              color="secondary"
-              href="/blog/v2.2.0"
-              variant="dot"
-              onClick={() => handlePressNavbarItem("Introducing v2.2.0", "/blog/v2.2.0")}
-            >
-              Introducing v2.2.0&nbsp;
-              <span aria-label="rocket emoji" role="img">
-                🚀
-              </span>
-            </Chip>
-          </NavbarItem> */}
+          </NavbarItem>
         </ul>
       </NavbarContent>
 
-
-
-      <NavbarContent className="flex w-full gap-2 sm:hidden" justify="end">
-{/*         <NavbarItem className="flex h-full items-center">
-          <Link
-            isExternal
-            aria-label="Github"
-            className="p-1"
-            href="https://github.com/nextui-org/nextui"
-            onClick={() => handlePressNavbarItem("Github", "https://github.com/nextui-org/nextui")}
-          >
-            <GithubIcon className="text-default-600 dark:text-default-500" />
-          </Link>
-        </NavbarItem> */}
-       
-       
-       
+      <NavbarContent className="flex w-full gap-2 sm:hidden bg-transparent !important" justify="end">
         <NavbarItem className="flex h-full items-center">
           <ThemeSwitch />
         </NavbarItem>
-        
-        
-        
         <NavbarItem className="flex h-full items-center">
           <button
             className={clsx(
@@ -349,9 +251,6 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
             <SearchLinearIcon className="mt-px text-default-600 dark:text-default-500" size={20} />
           </button>
         </NavbarItem>
-
-
-
         <NavbarItem className="w-10 h-full">
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -360,44 +259,18 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
-{/*         <NavbarItem className="hidden sm:flex">
-          <Chip
-            as={NextLink}
-            className="bg-default-100/50 hover:bg-default-100 border-default-200/80 dark:border-default-100/80 transition-colors cursor-pointer"
-            color="default"
-            href="/blog/v2.4.0"
-            variant="dot"
-            onClick={() => handlePressNavbarItem("New version v2.4.0", "/blog/v2.4.0")}
-          >
-            New version v2.4.0&nbsp;
-            <span aria-label="emoji" role="img">
-              🚀
-            </span>
-          </Chip>
-        </NavbarItem> */}
+      <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full justify-end bg-transparent !important">
         <NavbarItem className="hidden sm:flex">
-
-
-        {/* Help */}
-
           <Link
             className="p-1"
             aria-label="Help"
             color="foreground"
             data-active={includes(pathname, "components")}
-            href="/docs/components/avatar"
-            onPress={() => handlePressNavbarItem("Components", "/docs/components/avatar")}
+            href="docs/faq/plans_orders"
+            onPress={() => handlePressNavbarItem("Components", "docs/faq/plans_orders")}
           >
             <HelpIcon className="text-default-600 dark:text-default-500" />
           </Link>
-
-
-
-
-        {/* login */}
-
-
           <Link
             color="foreground"
             aria-label="Login"
@@ -407,43 +280,8 @@ export const Navbar: FC<NavbarProps> = ({children, routes, mobileRoutes = [], sl
           >
             <BugIcon className="text-default-600 dark:text-default-500" />
           </Link>
-
-         {/* Github */}
-
-
-{/*           <Link
-            isExternal
-            aria-label="Github"
-            className="p-1"
-            href={siteConfig.links.github}
-            onPress={() => handlePressNavbarItem("Github", siteConfig.links.github)}
-          >
-            <GithubIcon className="text-default-600 dark:text-default-500" />
-          </Link> */}
-
-
-
           <ThemeSwitch />
         </NavbarItem>
-
-
-
-        {/* <NavbarItem className="hidden lg:flex">{searchButton}</NavbarItem> */}
-        {/* <NavbarItem className="hidden md:flex">
-          <Button
-            isExternal
-            as={Link}
-            className="group text-sm font-normal text-default-600 bg-default-400/20 dark:bg-default-500/20"
-            href={siteConfig.links.sponsor}
-            startContent={
-              <HeartFilledIcon className="text-danger group-data-[hover=true]:animate-heartbeat" />
-            }
-            variant="flat"
-            onPress={() => handlePressNavbarItem("Sponsor", siteConfig.links.sponsor)}
-          >
-            Sponsor
-          </Button>
-        </NavbarItem> */}
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="hidden sm:flex lg:hidden ml-4"

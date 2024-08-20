@@ -37,8 +37,8 @@ export const Hero = () => {
     src="video.mp4" // Ensure the path is correct
   />
 
-  <div className="flex relative z-10 flex-col gap-6 w-full max-w-lg lg:w-1/2 xl:mt-10 pr-12 md:pr-20">
-    <div className="text-left leading-8 md:leading-10">
+<div className="flex relative z-10 flex-col gap-6 w-full max-w-2xl lg:w-3/4 xl:mt-10 px-8 md:px-12 lg:px-16">
+<div className="text-left leading-8 md:leading-10">
       <div className="inline-block">
         <h1 className={title({color: "violet"})}>Get 63% off&nbsp;</h1>
         <h1 className={title()}>CicadaVPN + 3 months free&nbsp;</h1>
