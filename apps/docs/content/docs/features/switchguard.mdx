@@ -1,198 +1,50 @@
 ---
-title: NextUI Provider
-description: API References for NextUI Provider
+title: Switchguard
+description: Switchguard feature explanation
 ---
 
-# NextUI Provider
+# Cicada SwitchGuard: Uninterrupted Protection for Your Online Privacy
 
-API reference for the `NextUIProvider`. 
+In an increasingly digital world, online privacy and security are top priorities for users across the globe. Whether you’re a professional working with sensitive information, a journalist reporting under restrictive regimes, or simply someone concerned with maintaining personal privacy, a reliable VPN is essential. However, even the most robust VPN can face occasional disconnections, leading to potential data exposure. This is where **Cicada SwitchGuard**, our advanced kill switch feature, comes into play, ensuring your security remains intact even if your VPN connection falters.
 
-------
+## What is a VPN Kill Switch?
 
-## Import
+A VPN kill switch is a critical feature designed to protect your data if your VPN connection drops unexpectedly. When this happens, your device may automatically switch back to using a standard, unsecured internet connection, leaving your IP address and online activities exposed. A kill switch steps in to prevent this by immediately cutting off your internet access until the VPN connection is re-established. This seamless yet vital function is the backbone of comprehensive online protection, ensuring that your data and identity remain private.
 
-<ImportTabs
-  commands={{
-    main: 'import {NextUIProvider} from "@nextui-org/react";',
-    individual: 'import {NextUIProvider} from "@nextui-org/system";',
-  }}
-/>
+## Introducing Cicada SwitchGuard
 
-## Usage
+**Cicada SwitchGuard** is our proprietary VPN kill switch technology that takes this protection a step further. Engineered for real-time response, it instantly blocks all internet traffic the moment it detects a VPN drop. Once your connection is restored, Cicada SwitchGuard automatically reconnects you to the internet, ensuring no interruptions to your workflow. Our focus is on providing a dynamic, user-friendly experience that keeps you secure without the need for constant monitoring.
 
-```jsx
-import * as React from "react";
-import {NextUIProvider} from "@nextui-org/react";
+## Benefits of Using Cicada SwitchGuard
 
-function App() {
-  return (
-    <NextUIProvider>
-      <YourApplication />
-    </NextUIProvider>
-  );
-}
-```
+### 1. Enhanced Security and Privacy
 
-## Props
+When your VPN connection drops, the risk of exposing your IP address and other sensitive data skyrockets. Cicada SwitchGuard instantly cuts off internet access, ensuring that no data leaks occur during these vulnerable moments. Whether you’re handling confidential business data, engaging in sensitive financial transactions, or simply browsing the web, you can trust that your information is secure.
 
-<Spacer y={6}/>
+### 2. Continuous Protection in All Conditions
 
-`navigate`
+Cicada SwitchGuard is built to operate across multiple platforms—Windows, macOS, iOS, Android, and Linux—making it a versatile solution for all types of users. This cross-platform compatibility, coupled with real-time alerts and customizable settings, offers peace of mind regardless of your environment. The feature even works flawlessly during network changes, such as when switching between Wi-Fi and mobile data, preventing unauthorized data exposure.
 
-- **Description**: Provides a client side router to all nested components such as Link, Menu, Tabs, Table, etc.
-- **Type**: `((path: string) => void) | undefined`
+### 3. Seamless Integration and Alerts
 
-<Spacer y={2}/>
+Cicada SwitchGuard doesn’t just protect you—it keeps you informed. With real-time alerts, you’ll immediately know when the kill switch is activated, giving you the confidence to browse securely even during unexpected disconnections. Moreover, seamless integration with other apps and services makes it easier for businesses and advanced users to incorporate this vital layer of protection into their existing cybersecurity frameworks.
 
-`locale`
+## Why You Need Cicada SwitchGuard
 
-- **Description**: The locale to apply to the children.
-- **Type**: `string | undefined`
-- **Default**: `en-US`
+The internet is filled with risks, especially in situations where data integrity and privacy are critical. From unstable public Wi-Fi connections to frequent ISP throttling, unexpected VPN drops can occur more often than you think. Without a kill switch like Cicada SwitchGuard, a momentary lapse in your VPN connection can lead to data breaches, IP leaks, and even surveillance. This makes a kill switch not just an optional add-on, but a necessary tool in safeguarding your online presence.
 
+Moreover, in regions with stringent internet censorship or where activists face high levels of surveillance, Cicada SwitchGuard provides an additional layer of security. It ensures that even if your VPN drops under pressure, your location and identity remain protected, enabling you to navigate the web freely without fear of exposure.
 
-Here's the supported locales. By default, It is `en-US`.
+## How It Works in the App
 
-```tsx
-const localeValues = [
-  'fr-FR', 'fr-CA', 'de-DE', 'en-US', 'en-GB', 'ja-JP',
-  'da-DK', 'nl-NL', 'fi-FI', 'it-IT', 'nb-NO', 'es-ES', 
-  'sv-SE', 'pt-BR', 'zh-CN', 'zh-TW', 'ko-KR', 'bg-BG', 
-  'hr-HR', 'cs-CZ', 'et-EE', 'hu-HU', 'lv-LV', 'lt-LT', 
-  'pl-PL', 'ro-RO', 'ru-RU', 'sr-SP', 'sk-SK', 'sl-SI', 
-  'tr-TR', 'uk-UA', 'ar-AE', 'ar-DZ', 'AR-EG', 'ar-SA', 
-  'el-GR', 'he-IL', 'fa-AF', 'am-ET', 'hi-IN', 'th-TH'
-];
-```
+When using the CicadaVPN app, Cicada SwitchGuard is always active, blocking your internet connection in the event of a VPN failure. Here’s how it works:
 
-Here's an example to set a Spanish locale.
+1. If the VPN connection drops while you’re connected, you may notice that your internet suddenly stops working. Check if the status indicator shows that the kill switch is active, typically displayed with a notification that says "Internet Blocked."
 
-```tsx
-"use client";
+2. Cicada SwitchGuard will continue blocking your traffic until a secure VPN connection is restored or re-established. This ensures that your traffic is never accidentally exposed outside the encrypted tunnel.
 
-import {type ReactNode} from "react";
-import {NextUIProvider} from "@nextui-org/react";
+This built-in kill switch feature works automatically, requiring no manual intervention, and is always on to protect your privacy and data.
 
-export function AppProvider(props: AppProviderProps) {
-  const {children, className} = props;
+## Conclusion: Always On, Always Protected
 
-  return (
-    <NextUIProvider locale="es-ES" className={className}>
-      {children}
-    </NextUIProvider>
-  );
-}
-
-interface AppProviderProps {
-  children: ReactNode;
-  className?: string;
-}
-```
-
-<Spacer y={2}/>
-
-`defaultDates`
-
-- **Description**: The default dates range that can be selected in the calendar.
-- **Type**: `{ minDate?: CalendarDate | undefined; maxDate?: CalendarDate | undefined; }`
-- **Default**: `{ minDate: new CalendarDate(1900, 1, 1), maxDate: new CalendarDate(2099, 12, 31) }`
-
-<Spacer y={2}/>
-
-`createCalendar`
-
-- **Description**: 
-    This function helps to reduce the bundle size by providing a custom calendar system.
-
-    By default, this includes all calendar systems supported by `@internationalized/date`. However,
-    if your application supports a more limited set of regions, or you know you will only be picking dates
-    in a certain calendar system, you can reduce your bundle size by providing your own implementation
-    of `createCalendar` that includes a subset of these Calendar implementations.
-
-    For example, if your application only supports Gregorian dates, you could implement a `createCalendar`
-    function like this:
-
-    ```tsx
-    import {GregorianCalendar} from '@internationalized/date';
-
-    function createCalendar(identifier) {
-    switch (identifier) {
-      case 'gregory':
-        return new GregorianCalendar();
-      default:
-        throw new Error(`Unsupported calendar ${identifier}`);
-    }
-    }
-    ```
-
-    This way, only GregorianCalendar is imported, and the other calendar implementations can be tree-shaken.
-
-- **Type**: `((calendar: SupportedCalendars) => Calendar | null) | undefined`
-
-<Spacer y={2}/>
-
-`disableAnimation`
-
-- **Description**: Disables animations globally. This will also avoid `framer-motion` features to be loaded in the bundle which can potentially reduce the bundle size.
-- **Type**: `boolean`
-- **Default**: `false`
-
-<Spacer y={2}/>
-
-`disableRipple`
-
-- **Description**: Disables ripple effect globally.
-- **Type**: `boolean`
-- **Default**: `false`
-
-<Spacer y={2}/>
-
-`skipFramerMotionAnimations`
-
-- **Description**:
-  Controls whether `framer-motion` animations are skipped within the application.
-  This property is automatically enabled (`true`) when the `disableAnimation` prop is set to `true`,
-  effectively skipping all `framer-motion` animations. To retain `framer-motion` animations while
-  using the `disableAnimation` prop for other purposes, set this to `false`. However, note that
-  animations in NextUI Components are still omitted if the `disableAnimation` prop is `true`.
-- **Type**: `boolean`
-- **Default**: Same as `disableAnimation`
-
-<Spacer y={2}/>
-
-`validationBehavior`
-
-- **Description**: Whether to use native HTML form validation to prevent form submission when the value is missing or invalid, 
-or mark the field as required or invalid via ARIA.
-- **Type**: `native | aria`
-- **Default**: `aria`
-
----
-
-## Types
-
-`CalendarDate`
-
-- **Description**: A [CalendarDate](https://react-spectrum.adobe.com/internationalized/date/CalendarDate.html) represents a date without any time components in a specific calendar system from `@internationalized/date`.
-- **Type**: `import {CalendarDate} from '@internationalized/date';`
-
-### SupportedCalendars
-
-Supported react-aria i18n calendars.
-
-```tsx
-type SupportedCalendars =
-  | "buddhist"
-  | "ethiopic"
-  | "ethioaa"
-  | "coptic"
-  | "hebrew"
-  | "indian"
-  | "islamic-civil"
-  | "islamic-tbla"
-  | "islamic-umalqura"
-  | "japanese"
-  | "persian"
-  | "roc"
-  | "gregory";
-```
+Cicada SwitchGuard offers a robust, dynamic, and user-friendly solution to online security. By automatically disconnecting your internet whenever the VPN drops, it guarantees uninterrupted protection for your privacy and sensitive data. With real-time alerts, customizable settings, and multi-platform compatibility, Cicada SwitchGuard empowers you to take control of your online safety effortlessly. Whether you’re a privacy-conscious individual, a business professional, or someone dealing with sensitive information, Cicada SwitchGuard is an essential tool to keep your data safe and your identity secure.
