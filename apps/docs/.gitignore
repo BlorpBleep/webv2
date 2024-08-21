@@ -18,6 +18,9 @@ sitemap.xml
 
 # production
 /build
+.contentlayer/
+/apps/docs/.contentlayer/
+
 
 # misc
 .DS_Store
@@ -31,6 +34,8 @@ yarn-error.log*
 # local env files
 .env
 .env*.local
+.env.local
+
 
 # vercel
 .vercel

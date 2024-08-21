@@ -49,6 +49,7 @@
     "@react-stately/layout": "3.13.9",
     "@react-stately/tree": "3.8.1",
     "@rehooks/local-storage": "^2.4.5",
+    "@supabase/supabase-js": "^2.45.1",
     "@vercel/analytics": "^1.2.2",
     "canvas-confetti": "^1.9.2",
     "cmdk": "^0.2.0",
