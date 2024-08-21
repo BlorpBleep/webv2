@@ -31,7 +31,7 @@ export const Hero = () => {
         muted 
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
-        src="video.mp4" // Ensure the path is correct
+        src="video_8njVpHML.mp4" // Ensure the path is correct
       />
 
       {/* Hero Text Container */}

@@ -426,8 +426,8 @@
       ]
     },
     {
-      "key": "api-references",
-      "title": "API References",
+      "key": "features",
+      "title": "Features",
       "defaultOpen": true,
       "keywords": "api references, nextui, api",
       "routes": [
@@ -435,14 +435,14 @@
           "key": "cli-api",
           "title": "CLI",
           "keywords": "api references, nextui, api, cli",
-          "path": "/docs/api-references/cli-api.mdx",
+          "path": "/docs/features/cli-api.mdx",
           "updated": true
         },
         {
           "key": "nextui-provider",
-          "title": "Provider",
+          "title": "Threatblocker",
           "keywords": "api references, nextui, api, nextui provider",
-          "path": "/docs/api-references/nextui-provider.mdx",
+          "path": "/docs/features/threatblocker.mdx",
           "updated": true
         }
       ]

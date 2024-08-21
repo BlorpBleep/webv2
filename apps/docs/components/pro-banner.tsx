@@ -1,12 +1,30 @@
 "use client";
 
-import {Icon} from "@iconify/react/dist/offline";
+import { Icon } from "@iconify/react/dist/offline";
 import arrowRightIcon from "@iconify/icons-solar/arrow-right-linear";
-import {usePathname} from "next/navigation";
-import {useEffect} from "react";
+import type { SVGProps } from 'react';
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
-import {trackEvent} from "@/utils/va";
+import { trackEvent } from "@/utils/va";
 import emitter from "@/libs/emitter";
+
+// Define the SVG component
+export function SolarLockKeyholeUnlockedBoldDuotone(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" style={{ verticalAlign: 'bottom', marginLeft: '0.3em' }} {...props}>
+      <defs>
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style={{ stopColor: '#D6009A', stopOpacity: 1 }} />
+          <stop offset="50%" style={{ stopColor: '#8a56cc', stopOpacity: 1 }} />
+          <stop offset="100%" style={{ stopColor: '#D6009A', stopOpacity: 1 }} />
+        </linearGradient>
+      </defs>
+      <path fill="url(#gradient)" d="M2 16c0-2.828 0-4.243.879-5.121C3.757 10 5.172 10 8 10h8c2.828 0 4.243 0 5.121.879C22 11.757 22 13.172 22 16s0 4.243-.879 5.121C20.243 22 18.828 22 16 22H8c-2.828 0-4.243 0-5.121-.879C2 20.243 2 18.828 2 16" opacity={0.5}></path>
+      <path fill="url(#gradient)" d="M12 18a2 2 0 1 0 0-4a2 2 0 0 0 0 4M6.75 8a5.25 5.25 0 0 1 10.335-1.313a.75.75 0 0 0 1.452-.374A6.75 6.75 0 0 0 5.25 8v2.055a24 24 0 0 1 1.5-.051z"></path>
+    </svg>
+  );
+}
 
 const hideOnPaths = ["examples"];
 
@@ -24,7 +42,6 @@ export const ProBanner = () => {
   useEffect(() => {
     if (!shouldBeVisible) return;
 
-    // listen to scroll event, dispatch an event when scroll is at the top < 48 px
     const handleScroll = () => {
       if (window.scrollY < 48) {
         emitter.emit("proBannerVisibilityChange", "visible");
@@ -69,7 +86,6 @@ export const ProBanner = () => {
         />
       </div>
 
-      
       <div className="flex w-full items-center justify-between md:justify-center gap-x-3">
         <a
           className="text-small flex items-end sm:text-[0.93rem] text-foreground hover:opacity-80 transition-opacity"
@@ -79,7 +95,7 @@ export const ProBanner = () => {
           onClick={handleClick}
         >
           <span aria-label="rocket" className="hidden md:block" role="img">
-          IP Address: 
+            IP Address: 
           </span>
           <span
             className="inline-flex md:ml-1 animate-text-gradient font-medium bg-clip-text text-transparent bg-[linear-gradient(90deg,#D6009A_0%,#8a56cc_50%,#D6009A_100%)] dark:bg-[linear-gradient(90deg,#FFEBF9_0%,#8a56cc_50%,#FFEBF9_100%)]"
@@ -90,7 +106,13 @@ export const ProBanner = () => {
               WebkitBackgroundClip: "text",
               color: "transparent",
             }}
-          >🕵️‍♂️ 188.26.211.91 Unprotected!</span>
+          >
+            🕵️‍♂️ 188.26.211.91 
+            <span className="hidden md:inline">Unprotected!</span>
+            <span className="md:hidden">
+              <SolarLockKeyholeUnlockedBoldDuotone />
+            </span>
+          </span>
         </a>
         <a
           className="flex group min-w-[120px] items-center font-semibold text-foreground shadow-sm gap-1.5 relative overflow-hidden rounded-full p-[1px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
