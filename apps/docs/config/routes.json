@@ -60,6 +60,131 @@
       ]
     },
     {
+      "key": "guides",
+      "title": "Installation Guides",
+      "defaultOpen": true,
+      "keywords": "faq, getting started, start, nextui",
+      "routes": [
+        {
+          "key": "iphone",
+          "title": "iPhone",
+          "keywords": "introduction, nextui",
+          "path": "/docs/guides/iphone.mdx"
+        },
+        {
+          "key": "android",
+          "title": "Android",
+          "keywords": "getting started, installation, start, nextui",
+          "path": "/docs/guides/android.mdx"
+        },
+        {
+          "key": "macos",
+          "title": "macOS",
+          "keywords": "cli, command line interface",
+          "path": "/docs/guides/macos.mdx",
+          "newPost": true
+        },
+        {
+          "key": "windows",
+          "title": "Windows",
+          "keywords": "accounts_subscriptions, nextui",
+          "path": "/docs/guides/windows.mdx"
+        },
+        {
+          "key": "linux",
+          "title": "Linux",
+          "keywords": "cicada_vpn, routing, browser routing, nextui, next.js router, react router, remix router",
+          "path": "/docs/guides/linux.mdx"
+        },
+        {
+          "key": "router",
+          "title": "Router",
+          "keywords": "client side routing, routing, browser routing, nextui, next.js router, react router, remix router",
+          "path": "/docs/guides/router.mdx"
+        },
+        {
+          "key": "chrome",
+          "title": "Chrome",
+          "keywords": "upgrade, v2, nextui",
+          "path": "/docs/guides/chrome.mdx",
+          "newPost": true
+        },
+        {
+          "key": "edge",
+          "title": "Edge",
+          "keywords": "upgrade, v2, nextui",
+          "path": "/docs/guides/edge.mdx",
+          "newPost": true
+        }
+      ]
+    },
+
+    {
+      "key": "features",
+      "title": "Features",
+      "defaultOpen": true,
+      "keywords": "api references, nextui, api",
+      "routes": [
+        {
+          "key": "switchguard",
+          "title": "SwitchGuard",
+          "keywords": "api references, nextui, api, cli",
+          "path": "/docs/features/switchguard.mdx",
+          "newPost": true
+        },
+        {
+          "key": "nextui-provider",
+          "title": "Threatblocker",
+          "keywords": "api references, nextui, api, nextui provider",
+          "path": "/docs/features/threatblocker.mdx"
+          
+        },
+        {
+          "key": "speedboost",
+          "title": "SpeedBoost",
+          "keywords": "api references, nextui, api, nextui provider",
+          "path": "/docs/features/speedboost.mdx"
+        },
+        {
+          "key": "addefender",
+          "title": "AdDefender",
+          "keywords": "api references, nextui, api, nextui provider",
+          "path": "/docs/features/addefender.mdx"
+        },
+        {
+          "key": "twinshield",
+          "title": "TwinShield",
+          "keywords": "api references, nextui, api, nextui provider",
+          "path": "/docs/features/twinshield.mdx"
+        },
+        {
+          "key": "breachscanner",
+          "title": "Breach Scanner",
+          "keywords": "api references, nextui, api, nextui provider",
+          "path": "/docs/features/breachscanner.mdx"
+        },
+        {
+          "key": "customdns",
+          "title": "Custom DNS",
+          "keywords": "api references, nextui, api, nextui provider",
+          "path": "/docs/features/customdns.mdx"
+        },
+        {
+          "key": "40gbp",
+          "title": "40Gbps",
+          "keywords": "api references, nextui, api, nextui provider",
+          "path": "/docs/features/40gbp.mdx"
+        },
+        {
+          "key": "familyfilter",
+          "title": "Family Filter",
+          "keywords": "api references, nextui, api, nextui provider",
+          "path": "/docs/features/familyfilter.mdx",
+          "updated": true
+        }
+      ]
+    },
+    {
       "key": "policies",
       "title": "Policies",
       "defaultOpen": true,
@@ -90,411 +215,6 @@
           "keywords": "cookie, nextui",
           "path": "/docs/policies/cookie.mdx",
           "newPost": true
-        }
-      ]
-    },
-
-    {
-      "key": "features",
-      "title": "Features",
-      "defaultOpen": true,
-      "keywords": "api references, nextui, api",
-      "routes": [
-        {
-          "key": "switchguard",
-          "title": "SwitchGuard",
-          "keywords": "api references, nextui, api, cli",
-          "path": "/docs/features/switchguard.mdx",
-          "updated": true
-        },
-        {
-          "key": "nextui-provider",
-          "title": "Threatblocker",
-          "keywords": "api references, nextui, api, nextui provider",
-          "path": "/docs/features/threatblocker.mdx",
-          "updated": true
-        },
-        {
-          "key": "speedboost",
-          "title": "SpeedBoost",
-          "keywords": "api references, nextui, api, nextui provider",
-          "path": "/docs/features/speedboost.mdx",
-          "updated": true
-        },
-        {
-          "key": "addefender",
-          "title": "AdDefender",
-          "keywords": "api references, nextui, api, nextui provider",
-          "path": "/docs/features/addefender.mdx",
-          "updated": true
-        },
-        {
-          "key": "twinshield",
-          "title": "TwinShield",
-          "keywords": "api references, nextui, api, nextui provider",
-          "path": "/docs/features/twinshield.mdx",
-          "updated": true
-        },
-        {
-          "key": "breachscanner",
-          "title": "Breach Scanner",
-          "keywords": "api references, nextui, api, nextui provider",
-          "path": "/docs/features/breachscanner.mdx",
-          "updated": true
-        },
-        {
-          "key": "customdns",
-          "title": "Custom DNS",
-          "keywords": "api references, nextui, api, nextui provider",
-          "path": "/docs/features/customdns.mdx",
-          "updated": true
-        },
-        {
-          "key": "40gbp",
-          "title": "40Gbps Gateways",
-          "keywords": "api references, nextui, api, nextui provider",
-          "path": "/docs/features/40gbp.mdx",
-          "updated": true
-        },
-        {
-          "key": "familyfilter",
-          "title": "Family Filter",
-          "keywords": "api references, nextui, api, nextui provider",
-          "path": "/docs/features/familyfilter.mdx",
-          "updated": true
-        }
-      ]
-    },
-    
-    {
-      "key": "customization",
-      "title": "Customization",
-      "keywords": "customization, nextui, themes, colors, dark mode, override styles",
-      "defaultOpen": true,
-      "routes": [
-        {
-          "key": "theme",
-          "title": "Theme",
-          "path": "/docs/customization/theme.mdx"
-        },
-        {
-          "key": "layout",
-          "title": "Layout",
-          "path": "/docs/customization/layout.mdx",
-          "updated": true
-        },
-        {
-          "key": "colors",
-          "title": "Colors",
-          "path": "/docs/customization/colors.mdx"
-        },
-        {
-          "key": "customize-theme",
-          "title": "Customize",
-          "path": "/docs/customization/customize-theme.mdx"
-        },
-        {
-          "key": "create-theme",
-          "title": "Create theme",
-          "path": "/docs/customization/create-theme.mdx"
-        },
-        {
-          "key": "dark-mode",
-          "title": "Dark mode",
-          "path": "/docs/customization/dark-mode.mdx"
-        },
-        {
-          "key": "override-styles",
-          "title": "Override ",
-          "path": "/docs/customization/override-styles.mdx"
-        },
-        {
-          "key": "custom-variants",
-          "title": "Custom ",
-          "path": "/docs/customization/custom-variants.mdx"
-        }
-      ]
-    },
-    {
-      "key": "components",
-      "title": "Components",
-      "keywords": "interface elements, interactive components, UI components, widgets",
-      "defaultOpen": true,
-      "routes": [
-        {
-          "key": "accordion",
-          "title": "Accordion",
-          "keywords": "accordion, collapse, expandable sections, content hiding",
-          "path": "/docs/components/accordion.mdx"
-        },
-        {
-          "key": "autocomplete",
-          "title": "Autocomplete",
-          "keywords": "autocomplete, auto suggest, search, typeahead",
-          "path": "/docs/components/autocomplete.mdx"
-        },
-        {
-          "key": "avatar",
-          "title": "Avatar",
-          "keywords": "avatar, profile picture, user representation, identity",
-          "path": "/docs/components/avatar.mdx"
-        },
-        {
-          "key": "badge",
-          "title": "Badge",
-          "keywords": "badge, markers, status indication, count display",
-          "path": "/docs/components/badge.mdx",
-          "updated": true
-        },
-        {
-          "key": "breadcrumbs",
-          "title": "Breadcrumbs",
-          "keywords": "breadcrumbs, navigation, path, trail, location",
-          "path": "/docs/components/breadcrumbs.mdx"
-        },
-        {
-          "key": "button",
-          "title": "Button",
-          "keywords": "button, interactive, action trigger, click events",
-          "path": "/docs/components/button.mdx"
-        },
-        {
-          "key": "calendar",
-          "title": "Calendar",
-          "keywords": "calendar, date picker, month picker, year picker",
-          "path": "/docs/components/calendar.mdx",
-          "newPost": true
-        },
-        {
-          "key": "card",
-          "title": "Card",
-          "keywords": "card, content container, informational blocks, media holder",
-          "path": "/docs/components/card.mdx"
-        },
-        {
-          "key": "checkbox",
-          "title": "Checkbox",
-          "keywords": "checkbox, binary choice, selection control, toggle",
-          "path": "/docs/components/checkbox.mdx",
-          "updated": true
-        },
-        {
-          "key": "checkbox-group",
-          "title": "CheckGroup",
-          "keywords": "checkbox group, binary choice, selection control, toggle",
-          "path": "/docs/components/checkbox-group.mdx"
-        },
-        {
-          "key": "chip",
-          "title": "Chip",
-          "keywords": "chip, tag, label, small actionable entity",
-          "path": "/docs/components/chip.mdx"
-        },
-        {
-          "key": "circular-progress",
-          "title": "Circular",
-          "keywords": "circular progress, loading indicator, activity sign, process display",
-          "path": "/docs/components/circular-progress.mdx"
-        },
-        {
-          "key": "code",
-          "title": "Code",
-          "keywords": "code, code snippet, inline code, coding",
-          "path": "/docs/components/code.mdx"
-        },
-        {
-          "key": "date-input",
-          "title": "Date Input",
-          "keywords": "date-input, time, input, timezone",
-          "path": "/docs/components/date-input.mdx",
-          "newPost": true
-        },
-        {
-          "key": "date-picker",
-          "title": "Date Picker",
-          "keywords": "date-picker, time, input, timezone",
-          "path": "/docs/components/date-picker.mdx",
-          "newPost": true
-        },
-        {
-          "key": "date-range-picker",
-          "title": "Date Range",
-          "keywords": "date-range-picker, date-picker, time, input, timezone",
-          "path": "/docs/components/date-range-picker.mdx",
-          "newPost": true
-        },
-        {
-          "key": "divider",
-          "title": "Divider",
-          "keywords": "divider, boundary, separator, section divider",
-          "path": "/docs/components/divider.mdx"
-        },
-        {
-          "key": "dropdown",
-          "title": "Dropdown",
-          "keywords": "dropdown, menu, selection, option list",
-          "path": "/docs/components/dropdown.mdx"
-        },
-        {
-          "key": "image",
-          "title": "Image",
-          "keywords": "image, media, picture, photo, graphic display",
-          "path": "/docs/components/image.mdx"
-        },
-        {
-          "key": "input",
-          "title": "Input",
-          "keywords": "input, text box, form field, data entry",
-          "path": "/docs/components/input.mdx"
-        },
-        {
-          "key": "kbd",
-          "title": "Kbd",
-          "keywords": "keyboard input, shortcut, keys, user input display",
-          "path": "/docs/components/kbd.mdx"
-        },
-        {
-          "key": "link",
-          "title": "Link",
-          "keywords": "link, navigation, href, web page connection",
-          "path": "/docs/components/link.mdx"
-        },
-        {
-          "key": "listbox",
-          "title": "Listbox",
-          "keywords": "listbox, selection, option list, multiple choice",
-          "path": "/docs/components/listbox.mdx"
-        },
-        {
-          "key": "modal",
-          "title": "Modal",
-          "keywords": "modal, dialog box, popup, overlay, content focus",
-          "path": "/docs/components/modal.mdx"
-        },
-        {
-          "key": "navbar",
-          "title": "Navbar",
-          "keywords": "navbar, navigation, top menu, website header",
-          "path": "/docs/components/navbar.mdx"
-        },
-        {
-          "key": "pagination",
-          "title": "Pagination",
-          "keywords": "pagination, page navigation, content division, browsing control",
-          "path": "/docs/components/pagination.mdx"
-        },
-        {
-          "key": "popover",
-          "title": "Popover",
-          "keywords": "popover, tooltip, floating content, additional information",
-          "path": "/docs/components/popover.mdx"
-        },
-        {
-          "key": "progress",
-          "title": "Progress",
-          "keywords": "progress, progress bar, task status, loading indicator",
-          "path": "/docs/components/progress.mdx"
-        },
-        {
-          "key": "radio-group",
-          "title": "Radio Group",
-          "keywords": "radio group, selection set, option selection, exclusive choices",
-          "path": "/docs/components/radio-group.mdx"
-        },
-        {
-          "key": "range-calendar",
-          "title": "Range",
-          "keywords": "range calendar, date picker, month picker, year picker",
-          "path": "/docs/components/range-calendar.mdx",
-          "newPost": true
-        },
-        {
-          "key": "scroll-shadow",
-          "title": "Scroll",
-          "keywords": "scroll shadow, scroll indicator, scroll bar, scroll position",
-          "path": "/docs/components/scroll-shadow.mdx"
-        },
-        {
-          "key": "select",
-          "title": "Select",
-          "keywords": "select, selection, option list, multiple choice",
-          "path": "/docs/components/select.mdx"
-        },
-        {
-          "key": "skeleton",
-          "title": "Skeleton",
-          "keywords": "skeleton, loading state, placeholder, content preview",
-          "path": "/docs/components/skeleton.mdx",
-          "updated": true
-        },
-        {
-          "key": "slider",
-          "title": "Slider",
-          "keywords": "slider, range input, value selector, sliding control",
-          "path": "/docs/components/slider.mdx"
-        },
-        {
-          "key": "snippet",
-          "title": "Snippet",
-          "keywords": "snippet, code block, programming, code example",
-          "path": "/docs/components/snippet.mdx"
-        },
-        {
-          "key": "spacer",
-          "title": "Spacer",
-          "keywords": "spacer, padding, margin, whitespace, gap",
-          "path": "/docs/components/spacer.mdx"
-        },
-        {
-          "key": "spinner",
-          "title": "Spinner",
-          "keywords": "spinner, loading, activity indicator, processing signal",
-          "path": "/docs/components/spinner.mdx"
-        },
-        {
-          "key": "switch",
-          "title": "Switch",
-          "keywords": "switch, toggle, binary input, on/off control",
-          "path": "/docs/components/switch.mdx"
-        },
-        {
-          "key": "table",
-          "title": "Table",
-          "keywords": "table, data display, grid, spreadsheet",
-          "path": "/docs/components/table.mdx"
-        },
-        {
-          "key": "tabs",
-          "title": "Tabs",
-          "keywords": "tabs, section navigation, categorized content, tabbed interface",
-          "path": "/docs/components/tabs.mdx",
-          "updated": true
-        },
-        {
-          "key": "textarea",
-          "title": "Textarea",
-          "keywords": "textarea, multi-line text input, large text field, form control",
-          "path": "/docs/components/textarea.mdx"
-        },
-        {
-          "key": "time-input",
-          "title": "Time Input",
-          "keywords": "timeinput, time, input, timezone",
-          "path": "/docs/components/time-input.mdx",
-          "newPost": true
-        },
-        {
-          "key": "tooltip",
-          "title": "Tooltip",
-          "keywords": "tooltip, hint, descriptive message, hover info",
-          "path": "/docs/components/tooltip.mdx",
-          "updated": true
-        },
-        {
-          "key": "user",
-          "title": "User",
-          "keywords": "user, account, user profile, identity",
-          "path": "/docs/components/user.mdx"
         }
       ]
     }
