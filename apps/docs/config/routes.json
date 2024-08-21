@@ -113,6 +113,55 @@
           "keywords": "api references, nextui, api, nextui provider",
           "path": "/docs/features/threatblocker.mdx",
           "updated": true
+        },
+        {
+          "key": "speedboost",
+          "title": "SpeedBoost",
+          "keywords": "api references, nextui, api, nextui provider",
+          "path": "/docs/features/speedboost.mdx",
+          "updated": true
+        },
+        {
+          "key": "addefender",
+          "title": "AdDefender",
+          "keywords": "api references, nextui, api, nextui provider",
+          "path": "/docs/features/addefender.mdx",
+          "updated": true
+        },
+        {
+          "key": "twinshield",
+          "title": "TwinShield",
+          "keywords": "api references, nextui, api, nextui provider",
+          "path": "/docs/features/twinshield.mdx",
+          "updated": true
+        },
+        {
+          "key": "breachscanner",
+          "title": "Breach Scanner",
+          "keywords": "api references, nextui, api, nextui provider",
+          "path": "/docs/features/breachscanner.mdx",
+          "updated": true
+        },
+        {
+          "key": "customdns",
+          "title": "Custom DNS",
+          "keywords": "api references, nextui, api, nextui provider",
+          "path": "/docs/features/customdns.mdx",
+          "updated": true
+        },
+        {
+          "key": "40gbp",
+          "title": "40Gbps Gateways",
+          "keywords": "api references, nextui, api, nextui provider",
+          "path": "/docs/features/40gbp.mdx",
+          "updated": true
+        },
+        {
+          "key": "familyfilter",
+          "title": "Family Filter",
+          "keywords": "api references, nextui, api, nextui provider",
+          "path": "/docs/features/familyfilter.mdx",
+          "updated": true
         }
       ]
     },
