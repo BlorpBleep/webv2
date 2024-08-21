@@ -19,6 +19,7 @@ sitemap.xml
 # production
 /build
 .contentlayer/
+/apps/docs/.contentlayer/
 
 # misc
 .DS_Store
