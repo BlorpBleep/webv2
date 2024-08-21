@@ -12,7 +12,7 @@ import emitter from "@/libs/emitter";
 // Define the SVG component
 export function SolarLockKeyholeUnlockedBoldDuotone(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" style={{ verticalAlign: 'bottom', marginLeft: '0.3em' }} {...props}>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" style={{ verticalAlign: 'middle', marginLeft: '0.3em' }} {...props}>
       <defs>
         <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" style={{ stopColor: '#D6009A', stopOpacity: 1 }} />
@@ -94,9 +94,7 @@ export const ProBanner = () => {
           target="_blank"
           onClick={handleClick}
         >
-          <span aria-label="rocket" className="hidden md:block" role="img">
-            IP Address: 
-          </span>
+
           <span
             className="inline-flex md:ml-1 animate-text-gradient font-medium bg-clip-text text-transparent bg-[linear-gradient(90deg,#D6009A_0%,#8a56cc_50%,#D6009A_100%)] dark:bg-[linear-gradient(90deg,#FFEBF9_0%,#8a56cc_50%,#FFEBF9_100%)]"
             style={{
@@ -107,11 +105,9 @@ export const ProBanner = () => {
               color: "transparent",
             }}
           >
-            🕵️‍♂️ 188.26.211.91 
-            <span className="hidden md:inline">Unprotected!</span>
-            <span className="md:hidden">
-              <SolarLockKeyholeUnlockedBoldDuotone />
-            </span>
+            🕵️‍♂️ 188.26.211.91 🔓
+            <span className="hidden px-1 md:inline">UNPROTECTED!</span>
+
           </span>
         </a>
         <a
