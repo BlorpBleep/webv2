@@ -60,23 +60,23 @@
       ]
     },
     {
-      "key": "api-references",
+      "key": "features",
       "title": "Features",
       "defaultOpen": true,
       "keywords": "api references, nextui, api",
       "routes": [
         {
-          "key": "cli-api",
-          "title": "CLI",
+          "key": "switchguard",
+          "title": "SwitchGuard",
           "keywords": "api references, nextui, api, cli",
-          "path": "/docs/api-references/cli-api.mdx",
+          "path": "/docs/features/switchguard.mdx",
           "updated": true
         },
         {
           "key": "threatblocker",
           "title": "Threatblocker",
           "keywords": "api references, nextui, api, nextui provider",
-          "path": "/docs/api-references/threatblocker.mdx",
+          "path": "/docs/features/threatblocker.mdx",
           "updated": true
         }
       ]
