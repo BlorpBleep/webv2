@@ -101,10 +101,10 @@
       "keywords": "api references, nextui, api",
       "routes": [
         {
-          "key": "cli-api",
-          "title": "CLI",
+          "key": "switchguard",
+          "title": "SwitchGuard",
           "keywords": "api references, nextui, api, cli",
-          "path": "/docs/features/cli-api.mdx",
+          "path": "/docs/features/switchguard.mdx",
           "updated": true
         },
         {
