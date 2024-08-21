@@ -276,10 +276,10 @@ export const Navbar: FC<NavbarProps> = ({ children, routes, mobileRoutes = [], s
           </Link>
           <Link
             color="foreground"
-            aria-label="account"
+            aria-label="auth"
             className="p-1"
-            href="/account"
-            onPress={() => handlePressNavbarItem("Account", "/account")}
+            href="/auth"
+            onPress={() => handlePressNavbarItem("Auth", "/auth")}
           >
             <BugIcon className="text-default-600 dark:text-default-500" />
           </Link>

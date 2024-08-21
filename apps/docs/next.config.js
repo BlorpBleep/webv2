@@ -5,12 +5,18 @@ const nextConfig = {
   transpilePackages: ["@nextui-org/react", "@nextui-org/theme"],
   swcMinify: true,
   reactStrictMode: true, // Recommended for the `pages` directory, default in `app`.
-  redirects: require("./next-redirect.js"),
+  redirects: async () => [
+    {
+      source: '/privacy',
+      destination: '/docs/policies/privacy',
+      permanent: true,
+    },
+    ...(await require("./next-redirect.js")())
+  ],
   eslint: {
     ignoreDuringBuilds: true,
   },
   typescript: {
-    // ignoreBuildErrors: process.env.IS_VERCEL_ENV === "true",
     ignoreBuildErrors: true,
   },
   images: {
