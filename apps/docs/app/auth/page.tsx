@@ -1,44 +1,116 @@
 "use client";
 import Layout from "./layout";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaApple, FaGoogle } from "react-icons/fa";
 import { createClient } from "@supabase/supabase-js";
-import { useRouter } from "next/navigation"; // Use useRouter for navigation
+import { useRouter } from "next/navigation";
 
 // Initialize Supabase client using environment variables
+console.log("Initializing Supabase client...");
 const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
+console.log("Supabase client initialized:", supabase);
 
 export default function LoginPage() {
+  console.log("LoginPage component rendered");
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const router = useRouter(); // Initialize the router
+  const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+    console.log("Login form submitted");
+    console.log("Email:", email);
+    console.log("Password: [HIDDEN]");
 
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      console.log("Supabase response received");
 
-    if (error) {
-      setError(error.message ?? "An unknown error occurred");
-    } else {
-      router.push("/account"); // Redirect to /account on success
+      if (error) {
+        console.error("Error during login:", error.message);
+        setError(error.message ?? "An unknown error occurred");
+      } else {
+        console.log("Login successful, user data:", data);
+        console.log("Redirecting to /account");
+        router.push("/account");
+      }
+    } catch (err) {
+      console.error("Unexpected error during login:", err);
+      setError("An unexpected error occurred during login");
     }
   };
 
   const handleOAuthLogin = async (provider: "apple" | "google") => {
-    const { error } = await supabase.auth.signInWithOAuth({ provider });
+    console.log(`Starting OAuth login with ${provider}`);
+    try {
+      console.log("About to call signInWithOAuth...");
+      const { error } = await supabase.auth.signInWithOAuth({ provider });
+      console.log("signInWithOAuth call completed");
 
-    if (error) {
-      setError(error.message ?? "An unknown error occurred");
-    } else {
-      router.push("/account"); // Redirect to /account on success
+      if (error) {
+        console.error(`Error during ${provider} OAuth login:`, error.message);
+        setError(error.message ?? "An unknown error occurred");
+      } else {
+        console.log(`${provider} OAuth login initiated`);
+      }
+    } catch (err) {
+      console.error(`Unexpected error during ${provider} OAuth login:`, err);
+      setError(`An unexpected error occurred during ${provider} OAuth login`);
     }
   };
+
+  useEffect(() => {
+    console.log("useEffect triggered");
+    const handleOAuthResponse = async () => {
+      console.log("Checking for OAuth response in URL...");
+      const hash = window.location.hash;
+      console.log("URL hash:", hash);
+
+      if (hash) {
+        console.log("Processing OAuth response...");
+        const params = new URLSearchParams(hash.substring(1));
+        const accessToken = params.get("access_token");
+        const refreshToken = params.get("refresh_token");
+        console.log("Access Token:", accessToken);
+        console.log("Refresh Token:", refreshToken);
+
+        if (accessToken && refreshToken) {
+          try {
+            const { data, error } = await supabase.auth.setSession({
+              access_token: accessToken,
+              refresh_token: refreshToken,
+            });
+            console.log("Supabase session response received");
+
+            if (error) {
+              console.error("Error setting the session with Supabase:", error.message);
+              setError("Error setting the session with Supabase");
+            } else {
+              console.log("Session set successfully, user data:", data);
+              console.log("Redirecting to /account");
+              router.push("/account");
+            }
+          } catch (err) {
+            console.error("Unexpected error while setting the session:", err);
+            setError("An unexpected error occurred while setting the session");
+          }
+        } else {
+          console.error("OAuth callback did not contain valid tokens");
+          setError("OAuth callback did not contain valid tokens");
+        }
+      } else {
+        console.log("No OAuth response found in URL.");
+      }
+    };
+
+    handleOAuthResponse();
+  }, [router]);
 
   return (
     <Layout>
@@ -53,7 +125,10 @@ export default function LoginPage() {
               <input
                 type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  console.log("Email input changed:", e.target.value);
+                  setEmail(e.target.value);
+                }}
                 className="w-full p-2 border border-gray-300 rounded mt-1"
                 placeholder="Enter your email"
                 required
@@ -64,7 +139,10 @@ export default function LoginPage() {
               <input
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  console.log("Password input changed: [HIDDEN]");
+                  setPassword(e.target.value);
+                }}
                 className="w-full p-2 border border-gray-300 rounded mt-1"
                 placeholder="Enter your password"
                 required
