@@ -60,7 +60,7 @@ export const metadata: Metadata = {
   },
   viewport:
     "viewport-fit=cover, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0",
-  metadataBase: new URL('https://cicadavpn.com'),  // Add this line for metadataBase
+  metadataBase: new URL('https://cicadavpn.com'),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -69,10 +69,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head />
       <body className={clsx("min-h-screen bg-background font-sans antialiased", fontSans.variable)}>
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="relative flex flex-col" id="app-container">
+          <div className="relative flex flex-col min-h-screen">
             <ProBanner />
             <Navbar mobileRoutes={manifest.mobileRoutes} routes={manifest.routes} />
-            {children}
+            <main className="flex-grow">
+              {children}
+            </main>
             <Footer />
           </div>
           <Cmdk />
