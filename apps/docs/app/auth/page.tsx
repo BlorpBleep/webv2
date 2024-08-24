@@ -1,4 +1,5 @@
 "use client";
+
 import Layout from "./layout";
 import React, { useState, useEffect } from "react";
 import { FaApple, FaGoogle } from "react-icons/fa";
@@ -6,27 +7,34 @@ import { createClient } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
 
 // Initialize Supabase client using environment variables
-console.log("Initializing Supabase client...");
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
-console.log("Supabase client initialized:", supabase);
 
 export default function LoginPage() {
-  console.log("LoginPage component rendered");
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
+  useEffect(() => {
+    const checkUserSession = async () => {
+      const session = supabase.auth.getSession();
+
+      if ((await session).data.session) {
+        console.log("User is already logged in, redirecting to /account");
+        router.push("/account");
+      }
+    };
+
+    checkUserSession();
+  }, [router]);
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     console.log("Login form submitted");
-    console.log("Email:", email);
-    console.log("Password: [HIDDEN]");
 
     try {
       const { data, error } = await supabase.auth.signInWithPassword({ email, password });
@@ -37,7 +45,6 @@ export default function LoginPage() {
         setError(error.message ?? "An unknown error occurred");
       } else {
         console.log("Login successful, user data:", data);
-        console.log("Redirecting to /account");
         router.push("/account");
       }
     } catch (err) {
@@ -49,8 +56,12 @@ export default function LoginPage() {
   const handleOAuthLogin = async (provider: "apple" | "google") => {
     console.log(`Starting OAuth login with ${provider}`);
     try {
-      console.log("About to call signInWithOAuth...");
-      const { error } = await supabase.auth.signInWithOAuth({ provider });
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider,
+        options: {
+          redirectTo: `${window.location.origin}/account`,
+        },
+      });
       console.log("signInWithOAuth call completed");
 
       if (error) {
@@ -66,19 +77,15 @@ export default function LoginPage() {
   };
 
   useEffect(() => {
-    console.log("useEffect triggered");
     const handleOAuthResponse = async () => {
       console.log("Checking for OAuth response in URL...");
       const hash = window.location.hash;
-      console.log("URL hash:", hash);
 
       if (hash) {
         console.log("Processing OAuth response...");
         const params = new URLSearchParams(hash.substring(1));
         const accessToken = params.get("access_token");
         const refreshToken = params.get("refresh_token");
-        console.log("Access Token:", accessToken);
-        console.log("Refresh Token:", refreshToken);
 
         if (accessToken && refreshToken) {
           try {
@@ -93,7 +100,6 @@ export default function LoginPage() {
               setError("Error setting the session with Supabase");
             } else {
               console.log("Session set successfully, user data:", data);
-              console.log("Redirecting to /account");
               router.push("/account");
             }
           } catch (err) {
@@ -125,10 +131,7 @@ export default function LoginPage() {
               <input
                 type="email"
                 value={email}
-                onChange={(e) => {
-                  console.log("Email input changed:", e.target.value);
-                  setEmail(e.target.value);
-                }}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full p-2 border border-gray-300 rounded mt-1"
                 placeholder="Enter your email"
                 required
@@ -139,10 +142,7 @@ export default function LoginPage() {
               <input
                 type="password"
                 value={password}
-                onChange={(e) => {
-                  console.log("Password input changed: [HIDDEN]");
-                  setPassword(e.target.value);
-                }}
+                onChange={(e) => setPassword(e.target.value)}
                 className="w-full p-2 border border-gray-300 rounded mt-1"
                 placeholder="Enter your password"
                 required

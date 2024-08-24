@@ -1,22 +1,50 @@
-"use client";
+"use client"; 
 
-import React from "react";
-import { TeamsGrid } from "@/components/marketing/TeamsGrid"
+import React, { useState } from "react";
+import Sidebar from "@/components/account/sidebar";
+import Membership from "@/components/account/membership";
+import Devices from "@/components/account/devices";
+import Profiles from "@/components/account/profiles";
+import Security from "@/components/account/security";
+import Overview from "@/components/account/accountoverview";
+import MembershipDetails from "@/components/account/MembershipDetails"; // Import MembershipDetails
 
 export default function AccountPage() {
+  const [selectedSection, setSelectedSection] = useState<string>("overview");
+
+  const handleSectionSelect = (section: string) => {
+    setSelectedSection(section);
+  };
+
+  const renderContent = () => {
+    switch (selectedSection) {
+      case "overview":
+        return (
+          <>
+            <MembershipDetails onSelectSection={handleSectionSelect} />
+            <Overview />
+          </>
+        );
+      case "membership":
+        return <Membership />;
+      case "devices":
+        return <Devices />;
+      case "profiles":
+        return <Profiles />;
+      case "security":
+        return <Security />;
+      default:
+        return <Overview />;
+    }
+  };
+
   return (
-    <>
-      <main className="relative container mx-auto max-w-7xl z-10 px-6 min-h-[calc(100vh_-_64px_-_108px)] mb-12 flex-grow">
-        <section className="w-full flex flex-col items-center lg:px-16 mt-12 gap-6">
-          <div className="text-center max-w-xl">
-            <h1 className="mb-2 font-bold text-4xl">WELCOME TO YOUR ACCOUNT PAGE!!!</h1>
-            <h5 className="text-default-500 text-lg">
-              A team that contains the basis of the NextUI design system to help you design your applications.
-            </h5>
-          </div>
-          <TeamsGrid />
-        </section>
+    <div className="flex min-h-screen bg-gray-100 dark:bg-gray-900">
+      <Sidebar onSelect={handleSectionSelect} selected={selectedSection} />
+      <main className="flex-1 p-8">
+
+        {renderContent()}
       </main>
-    </>
+    </div>
   );
 }
