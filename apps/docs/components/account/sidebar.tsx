@@ -1,23 +1,17 @@
 "use client";
 
 import React from "react";
-import { FaRegCreditCard, FaLock, FaMobileAlt, FaUserFriends, FaRegUserCircle, FaArrowLeft } from "react-icons/fa"; // Import icons
+import { FaRegCreditCard, FaLock, FaMobileAlt, FaUserFriends, FaRegUserCircle, FaSignOutAlt } from "react-icons/fa";
 
 interface SidebarProps {
   onSelect: (section: string) => void;
   selected: string;
+  onLogout: () => void; // Added prop for logout functionality
 }
 
-export default function Sidebar({ onSelect, selected }: SidebarProps) {
+export default function Sidebar({ onSelect, selected, onLogout }: SidebarProps) {
   return (
     <div className="w-64 bg-gray-100 dark:bg-gray-800 shadow-md">
-            <a
-        href="/"
-        className="flex items-center text-sm  text-gray-700 dark:text-gray-300 px-4 py-4 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-      >
-        <FaArrowLeft className="w-6 h-4 mr-2" />
-        Back to CicadaVPN
-      </a>
       <nav className="space-y-1 mt-4">
         <button
           onClick={() => onSelect("overview")}
@@ -63,6 +57,14 @@ export default function Sidebar({ onSelect, selected }: SidebarProps) {
         >
           <FaUserFriends size={20} />
           Profiles
+        </button>
+        {/* Logout button below Profiles */}
+        <button
+          onClick={onLogout}
+          className="flex items-center gap-2 block w-full text-left px-4 py-2 text-red-600 hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-red-400"
+        >
+          <FaSignOutAlt size={20} />
+          Logout
         </button>
       </nav>
     </div>
