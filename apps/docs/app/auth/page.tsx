@@ -1,122 +1,44 @@
 "use client";
-
 import Layout from "./layout";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FaApple, FaGoogle } from "react-icons/fa";
 import { createClient } from "@supabase/supabase-js";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"; // Use useRouter for navigation
 
 // Initialize Supabase client using environment variables
 const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 );
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
-
-  useEffect(() => {
-    const checkUserSession = async () => {
-      const session = supabase.auth.getSession();
-
-      if ((await session).data.session) {
-        console.log("User is already logged in, redirecting to /account");
-        router.push("/account");
-      }
-    };
-
-    checkUserSession();
-  }, [router]);
+  const router = useRouter(); // Initialize the router
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    console.log("Login form submitted");
 
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-      console.log("Supabase response received");
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
 
-      if (error) {
-        console.error("Error during login:", error.message);
-        setError(error.message ?? "An unknown error occurred");
-      } else {
-        console.log("Login successful, user data:", data);
-        router.push("/account");
-      }
-    } catch (err) {
-      console.error("Unexpected error during login:", err);
-      setError("An unexpected error occurred during login");
+    if (error) {
+      setError(error.message ?? "An unknown error occurred");
+    } else {
+      router.push("/account"); // Redirect to /account on success
     }
   };
 
   const handleOAuthLogin = async (provider: "apple" | "google") => {
-    console.log(`Starting OAuth login with ${provider}`);
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider,
-        options: {
-          redirectTo: `${window.location.origin}/account`,
-        },
-      });
-      console.log("signInWithOAuth call completed");
+    const { error } = await supabase.auth.signInWithOAuth({ provider });
 
-      if (error) {
-        console.error(`Error during ${provider} OAuth login:`, error.message);
-        setError(error.message ?? "An unknown error occurred");
-      } else {
-        console.log(`${provider} OAuth login initiated`);
-      }
-    } catch (err) {
-      console.error(`Unexpected error during ${provider} OAuth login:`, err);
-      setError(`An unexpected error occurred during ${provider} OAuth login`);
+    if (error) {
+      setError(error.message ?? "An unknown error occurred");
+    } else {
+      router.push("/account"); // Redirect to /account on success
     }
   };
-
-  useEffect(() => {
-    const handleOAuthResponse = async () => {
-      console.log("Checking for OAuth response in URL...");
-      const hash = window.location.hash;
-
-      if (hash) {
-        console.log("Processing OAuth response...");
-        const params = new URLSearchParams(hash.substring(1));
-        const accessToken = params.get("access_token");
-        const refreshToken = params.get("refresh_token");
-
-        if (accessToken && refreshToken) {
-          try {
-            const { data, error } = await supabase.auth.setSession({
-              access_token: accessToken,
-              refresh_token: refreshToken,
-            });
-            console.log("Supabase session response received");
-
-            if (error) {
-              console.error("Error setting the session with Supabase:", error.message);
-              setError("Error setting the session with Supabase");
-            } else {
-              console.log("Session set successfully, user data:", data);
-              router.push("/account");
-            }
-          } catch (err) {
-            console.error("Unexpected error while setting the session:", err);
-            setError("An unexpected error occurred while setting the session");
-          }
-        } else {
-          console.error("OAuth callback did not contain valid tokens");
-          setError("OAuth callback did not contain valid tokens");
-        }
-      } else {
-        console.log("No OAuth response found in URL.");
-      }
-    };
-
-    handleOAuthResponse();
-  }, [router]);
 
   return (
     <Layout>

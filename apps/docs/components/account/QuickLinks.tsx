@@ -14,13 +14,13 @@ import {
 export default function QuickLinks() {
   const links = [
     { text: "Change plan", icon: FaExchangeAlt },
-    { text: "Manage payment method", icon: FaCreditCard },
-    { text: "Buy an extra member slot", icon: FaUserPlus, new: true },
-    { text: "Manage access and devices", icon: FaMobileAlt },
-    { text: "Update password", icon: FaKey },
-    { text: "Transfer a profile", icon: FaShareAlt },
-    { text: "Adjust parental controls", icon: FaLock },
-    { text: "Edit settings", icon: FaCogs },
+    { text: "Payment method", icon: FaCreditCard },
+    { text: "Buy extra", icon: FaUserPlus, new: true },
+    { text: "Devices", icon: FaMobileAlt },
+    { text: "Password", icon: FaKey },
+    { text: "Transfer", icon: FaShareAlt },
+    { text: "Controls", icon: FaLock },
+    { text: "Settings", icon: FaCogs },
   ];
 
   return (

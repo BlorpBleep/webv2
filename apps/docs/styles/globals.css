@@ -96,3 +96,119 @@ z-index: 0;
     content: counter(step);
   }
 }
+
+
+
+
+/* Add this to your global stylesheet or a CSS module */
+/* Sidebar styles */
+.sidebar {
+  position: fixed;
+  top: 0.5rem; /* This matches the triangle's top */
+  left: 0;
+  width: 250px;
+  background-color: white; /* Adjust as needed */
+  height: calc(100% - 4.5rem); /* Adjust as needed */
+  box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 40;
+}
+
+
+/* Adjust sidebar position on mobile screens */
+@media (max-width: 1024px) {
+  .sidebar {
+    top: 8rem; /* Adjust this value as needed for mobile devices */
+    height: calc(100% - 5rem); /* Adjust height based on the top value */
+  }
+}
+
+
+
+
+
+/* Show sidebar when active */
+.sidebar.active {
+  transform: translateX(0);
+}
+
+.sidebar.visible {
+  transform: translateX(0);
+}
+
+.main-content {
+  transition: margin-left 0.3s ease-in-out;
+  margin-left: 0;
+}
+
+.main-content.shifted {
+  margin-left: 250px;
+}
+
+.top-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1001;
+}
+
+.menu-button {
+  position: fixed;
+  top: 22px;
+  left: 12px;
+  z-index: 1002;
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+
+.menu {
+  position: absolute;
+  top: 7.5rem; /* Adjust to place the menu below the triangle */
+  left: 1rem; /* Align with the triangle */
+  background-color: #2d3748; /* Background color of the menu */
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  display: none; /* Initially hidden */
+  transform: translateY(-20px);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  z-index: 999; /* Ensure it's above the main content */
+}
+
+.menu.show {
+  display: block;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Tab styles */
+.tab {
+  position: fixed;
+  top: 6.5rem; /* Adjust this based on your header height */
+  left: 0;
+  background-color: #e8ebee; /* Blue color */
+  color: white;
+  padding: 10px 5px;
+  border-radius: 0 4px 4px 0;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 50;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+

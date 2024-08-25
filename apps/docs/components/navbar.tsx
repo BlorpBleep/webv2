@@ -234,15 +234,20 @@ export const Navbar: FC<NavbarProps> = ({ children, routes, mobileRoutes = [], s
         </ul>
       </NavbarContent>
 
+
+
+
       {/* Right section: Theme Switch and Search */}
       <NavbarContent className="flex w-full gap-2 sm:hidden bg-transparent" justify="end">
         <NavbarItem className="flex h-full items-center">
           <ThemeSwitch />
         </NavbarItem>
+
+
         <NavbarItem className="flex h-full items-center">
           <button
             className={clsx(
-              "transition-opacity p-1 hover:opacity-80 rounded-full cursor-pointer outline-none",
+              "transition-opacity hover:opacity-80 rounded-full cursor-pointer outline-none",
               // focus ring
               ...dataFocusVisibleClasses,
             )}
@@ -250,9 +255,20 @@ export const Navbar: FC<NavbarProps> = ({ children, routes, mobileRoutes = [], s
             {...focusProps}
             {...pressProps}
           >
-            <SearchLinearIcon className="mt-px text-default-600 dark:text-default-500" size={20} />
+          <Link
+            color="foreground"
+            aria-label="auth"
+            className="p-2"
+            href="/auth"
+            onPress={() => handlePressNavbarItem("Auth", "/auth")}
+          >
+            <BugIcon className="text-default-600 dark:text-default-500" />
+          </Link>
           </button>
         </NavbarItem>
+
+
+
         <NavbarItem className="w-10 h-full">
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -260,6 +276,9 @@ export const Navbar: FC<NavbarProps> = ({ children, routes, mobileRoutes = [], s
           />
         </NavbarItem>
       </NavbarContent>
+
+
+
 
       {/* Responsive Menu */}
       <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full justify-end bg-transparent">
