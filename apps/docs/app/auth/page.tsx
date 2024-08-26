@@ -31,14 +31,18 @@ export default function LoginPage() {
   };
 
   const handleOAuthLogin = async (provider: "apple" | "google") => {
-    const { error } = await supabase.auth.signInWithOAuth({ provider });
-
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider,
+      options: {
+        redirectTo: `${window.location.origin}/account`, // Ensure redirect to /account
+      },
+    });
+  
     if (error) {
       setError(error.message ?? "An unknown error occurred");
-    } else {
-      router.push("/account"); // Redirect to /account on success
     }
   };
+  
 
   return (
     <Layout>
