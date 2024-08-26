@@ -8,9 +8,9 @@ import dynamic from "next/dynamic";
 import { title, subtitle } from "@/components/primitives";
 import { trackEvent } from "@/utils/va";
 
-const BgLooper = dynamic(() => import("./bg-looper").then((mod) => mod.BgLooper), {
+/* const BgLooper = dynamic(() => import("./hero/bg-looper").then((mod) => mod.BgLooper), {
   ssr: false,
-});
+}); */
 
 export const Hero = () => {
   const handlePressAnnouncement = (name: string, url: string) => {

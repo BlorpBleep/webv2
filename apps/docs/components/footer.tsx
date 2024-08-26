@@ -4,10 +4,43 @@ import { usePathname } from "next/navigation";
 import { getCurrentYear } from "@/utils/time";
 import { FaChevronRight } from "react-icons/fa";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { supabase } from "@/utils/supabase"; // Import supabase client
 
 export const Footer = () => {
   const pathname = usePathname();
-  const pagePath = pathname.replace("/", "").replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
+  const pagePath = pathname
+    .replace("/", "")
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (l) => l.toUpperCase());
+
+  const [jwtSnippet, setJwtSnippet] = useState<string | null>(null);
+  const [fullName, setFullName] = useState<string | null>(null);
+
+  useEffect(() => {
+    const getSession = async () => {
+      const { data } = await supabase.auth.getSession();
+      if (data.session) {
+        const token = data.session.access_token;
+        const base64Url = token.split(".")[1];
+        const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+        const jsonPayload = decodeURIComponent(
+          atob(base64)
+            .split("")
+            .map(function (c) {
+              return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+            })
+            .join("")
+        );
+
+        const parsedJwt = JSON.parse(jsonPayload);
+        setJwtSnippet(token.slice(0, 16)); // First 16 chars of the JWT
+        setFullName(parsedJwt.user_metadata?.full_name || null); // Get full name from JWT
+      }
+    };
+
+    getSession();
+  }, []);
 
   if (pathname.includes("/examples")) {
     return null;
@@ -100,9 +133,20 @@ export const Footer = () => {
             <a href="/privacy" className="hover:underline">Privacy Policy</a>
             <a href="/docs/policies/general_terms" className="hover:underline">Terms of Use</a>
             <a href="#" className="hover:underline">Sales and Refunds</a>
-
           </div>
           <p className="text-sm text-gray-600 dark:text-gray-400">United States</p>
+        </div>
+
+        {/* JWT Snippet and Full Name for Dev */}
+        <div className="text-sm text-gray-600 dark:text-gray-400 mt-8 text-center">
+          {jwtSnippet ? (
+            <>
+              <p>JWT Snippet: {jwtSnippet}</p>
+              {fullName && <p>Full Name: {fullName}</p>}
+            </>
+          ) : (
+            <p>No JWT present</p>
+          )}
         </div>
       </div>
     </footer>
