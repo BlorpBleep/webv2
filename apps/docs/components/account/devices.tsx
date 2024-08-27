@@ -46,7 +46,7 @@ export default function Devices() {
         // Fetch devices associated with the user's accounts
         const { data: devicesData, error: devicesError } = await supabase
           .from("devices")
-          .select("id, name, ipv4_address, ipv6_address, last_active, event_type, account_number")
+          .select("id, name, last_active, event_type, account_number")
           .in("account_number", accountNumbers);
 
         if (devicesError) {
@@ -108,12 +108,6 @@ export default function Devices() {
                   <FaMobileAlt className="w-6 h-6 text-gray-500 mr-4" />
                   <div>
                     <span>{device.name}</span>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      IPv4: {device.ipv4_address}
-                    </p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      IPv6: {device.ipv6_address}
-                    </p>
                     <p className="text-sm text-gray-500 dark:text-gray-400">
                       Last Active: {device.last_active}
                     </p>
