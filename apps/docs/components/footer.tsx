@@ -18,6 +18,7 @@ export const Footer = () => {
   const [fullName, setFullName] = useState<string | null>(null);
   const [userData, setUserData] = useState<any>(null);
   const [accountsData, setAccountsData] = useState<any[]>([]);
+  const [devicesData, setDevicesData] = useState<any[]>([]);
   const [authCreatedAt, setAuthCreatedAt] = useState<string | null>(null);
 
   useEffect(() => {
@@ -72,6 +73,23 @@ export const Footer = () => {
           console.error("Error fetching account data:", accountsError.message);
         } else {
           setAccountsData(accountsData || []); // Set the accounts data
+
+          // Extract the account numbers
+          const accountNumbers = accountsData?.map(account => account.account_number);
+
+          // Fetch devices associated with the user's accounts
+          if (accountNumbers.length > 0) {
+            const { data: devicesData, error: devicesError } = await supabase
+              .from('devices')
+              .select('name, ipv4_address, ipv6_address, last_active, event_type, account_number')
+              .in('account_number', accountNumbers);
+
+            if (devicesError) {
+              console.error("Error fetching devices:", devicesError.message);
+            } else {
+              setDevicesData(devicesData || []); // Set the devices data
+            }
+          }
         }
       }
     };
@@ -174,7 +192,7 @@ export const Footer = () => {
           <p className="text-sm text-gray-600 dark:text-gray-400">United States</p>
         </div>
 
-        {/* JWT Snippet, Full Name, User Data, and Account Data */}
+        {/* JWT Snippet, Full Name, User Data, Account Data, and Device Data */}
         <div className="text-sm text-gray-600 dark:text-gray-400 mt-8 text-center">
           {jwtSnippet ? (
             <>
@@ -200,6 +218,21 @@ export const Footer = () => {
                 </>
               ) : (
                 <p>No accounts associated with this user.</p>
+              )}
+              {devicesData.length > 0 ? (
+                <>
+                  <h3 className="font-bold mt-4">Devices</h3>
+                  {devicesData.map((device) => (
+                    <div key={device.name}>
+                      <p>Device Name: {device.name}</p>
+                      <p>IPv4 Address: {device.ipv4_address}</p>
+                      <p>IPv6 Address: {device.ipv6_address}</p>
+                      <p>Last Active: {device.last_active}</p>
+                    </div>
+                  ))}
+                </>
+              ) : (
+                <p>No devices associated with this user.</p>
               )}
             </>
           ) : (
