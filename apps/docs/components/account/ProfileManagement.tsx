@@ -1,4 +1,4 @@
-
+/* 
 "use client";
 
 import React from "react";
@@ -23,9 +23,10 @@ export default function ProfileManagement() {
               alt={profile.name}
               className="w-12 h-12 rounded-full"
             />
+            HERE ARE PROFILES
           </div>
         ))}
       </div>
     </div>
   );
-}
+} */

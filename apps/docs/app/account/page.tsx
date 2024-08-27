@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Sidebar from "@/components/account/sidebar";
 import Membership from "@/components/account/membership";
 import Devices from "@/components/account/devices";
-import Profiles from "@/components/account/profiles";
+import Accounts from "@/components/account/accounts";
 import Security from "@/components/account/security";
 import Overview from "@/components/account/accountoverview";
 import MembershipDetails from "@/components/account/MembershipDetails";
@@ -44,8 +44,8 @@ export default function AccountPage() {
         return <Membership />;
       case "devices":
         return <Devices />;
-      case "profiles":
-        return <Profiles />;
+      case "accounts":
+        return <Accounts />;
       case "security":
         return <Security />;
       default:

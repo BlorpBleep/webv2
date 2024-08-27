@@ -16,9 +16,12 @@ export const Footer = () => {
 
   const [jwtSnippet, setJwtSnippet] = useState<string | null>(null);
   const [fullName, setFullName] = useState<string | null>(null);
+  const [userData, setUserData] = useState<any>(null);
+  const [accountsData, setAccountsData] = useState<any[]>([]);
+  const [authCreatedAt, setAuthCreatedAt] = useState<string | null>(null);
 
   useEffect(() => {
-    const getSession = async () => {
+    const getSessionAndData = async () => {
       const { data } = await supabase.auth.getSession();
       if (data.session) {
         const token = data.session.access_token;
@@ -36,10 +39,44 @@ export const Footer = () => {
         const parsedJwt = JSON.parse(jsonPayload);
         setJwtSnippet(token.slice(0, 16)); // First 16 chars of the JWT
         setFullName(parsedJwt.user_metadata?.full_name || null); // Get full name from JWT
+
+        // Fetch the auth user data, including the created_at field
+        const { data: user, error: authError } = await supabase.auth.getUser();
+
+        if (authError) {
+          console.error("Error fetching auth user data:", authError.message);
+        } else {
+          setAuthCreatedAt(user.user?.created_at);
+        }
+
+        // Fetch user data from Supabase
+        const { data: userData, error: userError } = await supabase
+          .from('users')
+          .select('id')
+          .eq('id', parsedJwt.sub)
+          .single();
+
+        if (userError) {
+          console.error("Error fetching user data:", userError.message);
+        } else {
+          setUserData(userData);
+        }
+
+        // Fetch all account data associated with the user
+        const { data: accountsData, error: accountsError } = await supabase
+          .from('accounts')
+          .select('id, account_number, max_devices, expiry, created_at')
+          .eq('user_id', userData?.id);
+
+        if (accountsError) {
+          console.error("Error fetching account data:", accountsError.message);
+        } else {
+          setAccountsData(accountsData || []); // Set the accounts data
+        }
       }
     };
 
-    getSession();
+    getSessionAndData();
   }, []);
 
   if (pathname.includes("/examples")) {
@@ -137,12 +174,33 @@ export const Footer = () => {
           <p className="text-sm text-gray-600 dark:text-gray-400">United States</p>
         </div>
 
-        {/* JWT Snippet and Full Name for Dev */}
+        {/* JWT Snippet, Full Name, User Data, and Account Data */}
         <div className="text-sm text-gray-600 dark:text-gray-400 mt-8 text-center">
           {jwtSnippet ? (
             <>
               <p>JWT Snippet: {jwtSnippet}</p>
               {fullName && <p>Full Name: {fullName}</p>}
+              {authCreatedAt && <p>User Created At: {authCreatedAt}</p>}
+              {userData && (
+                <>
+                  <p>User ID: {userData.id}</p>
+                </>
+              )}
+              {accountsData.length > 0 ? (
+                <>
+                  {accountsData.map((account) => (
+                    <div key={account.id}>
+                      <p>Account ID: {account.id}</p>
+                      <p>Account Number: {account.account_number}</p>
+                      <p>Max Devices: {account.max_devices}</p>
+                      <p>Expiry: {account.expiry}</p>
+                      <p>Created At: {account.created_at}</p>
+                    </div>
+                  ))}
+                </>
+              ) : (
+                <p>No accounts associated with this user.</p>
+              )}
             </>
           ) : (
             <p>No JWT present</p>
