@@ -59,7 +59,7 @@ export default function PricingPage() {
           </div>
           <div className="flex justify-center items-center gap-4 mt-4">
             <div className="text-gray-500 dark:text-gray-400 text-sm">Selected Subscriptions:</div>
-            <div className="text-black dark:text-white font-bold text-sm">CyberGhost VPN - 2 Years + 2 Months FREE</div>
+            <div className="text-black dark:text-white font-bold text-sm">Cicada VPN - 2 Years + 2 Months FREE</div>
             <button className="bg-green-500 text-white font-bold py-2 px-8 rounded-lg text-sm">
               Continue to Checkout &rarr;
             </button>
