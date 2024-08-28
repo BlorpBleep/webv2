@@ -53,7 +53,7 @@ export default function Security() {
                 <span>{item.text}</span>
               </div>
               {item.description && (
-                <span className="text-sm text-gray-500 dark:text-gray-400 ml-auto">
+                <span className="text-sm text-gray-500 dark:text-gray-400 ml-auto pr-4">
                   {item.description}
                 </span>
               )}
@@ -81,7 +81,9 @@ export default function Security() {
               {item.new && (
                 <span className="text-sm text-blue-600 dark:text-blue-400 ml-2">New</span>
               )}
-              <span className="text-sm text-gray-500 dark:text-gray-400 ml-auto">{item.description}</span>
+              <span className="text-sm text-gray-500 dark:text-gray-400 ml-auto pr-4">
+                {item.description}
+              </span>
               <FaChevronRight className="w-5 h-5 text-gray-500" />
             </button>
           </div>
