@@ -17,7 +17,19 @@ export const PricingGrid = () => {
       </Card>
       <Card className="relative border-2 border-yellow-500 bg-blue-900 dark:bg-blue-800 rounded-lg p-6 flex flex-col justify-between h-[250px]">
         <Checkbox className="absolute top-4 right-4" defaultSelected />
-        <Badge color="secondary" variant="flat" className="absolute left-1/2 transform -translate-x-1/2 -translate-y-3" style={{ backgroundColor: '#6E56CF', color: 'white', padding: '4px 12px', borderRadius: '999px', fontSize: '12px' }}>
+        <Badge 
+          color="secondary" 
+          variant="flat" 
+          className="absolute left-1/2 transform -translate-x-1/2 -translate-y-3" 
+          style={{ 
+            backgroundColor: '#FF9F1C', // A bright yellow color to match the theme
+            color: 'black', 
+            padding: '4px 12px', 
+            borderRadius: '999px', 
+            fontSize: '12px',
+            fontWeight: 'bold',
+            boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)'
+          }}>
           BEST VALUE - SAVE 82%
         </Badge>
         <div className="text-center">
