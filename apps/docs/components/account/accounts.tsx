@@ -45,7 +45,7 @@ export default function Accounts() {
       // Fetch accounts data from Supabase where user_id matches the logged-in user's ID
       const { data: accountsData, error: accountsError } = await supabase
         .from("accounts")
-        .select("id, account_number, status, max_devices, created_at")
+        .select("id, account_number, status, max_devices, created_at, expiry")
         .eq("user_id", userId);
 
       if (accountsError) {
@@ -148,10 +148,13 @@ export default function Accounts() {
                   style={{ boxShadow: "none", border: "none" }}
                   onClick={() => console.log(`Account ${account.account_number || 'Unknown'} clicked`)}
                 >
-                  <div className="flex items-center">
+                  <div className="flex flex-col items-start">
                     <span>{`Account: ${account.account_number || 'Unknown'}`}</span>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 ml-4">
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
                       Status: {account.status || 'Unknown'}, Max Devices: {account.max_devices || 'Unknown'}
+                    </p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                      Expiry: {account.expiry ? new Date(account.expiry).toLocaleString() : 'No expiry date'}
                     </p>
                   </div>
                   <FaChevronRight className="w-5 h-5 text-gray-500" />

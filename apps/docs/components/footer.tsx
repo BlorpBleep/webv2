@@ -16,6 +16,7 @@ export const Footer = () => {
 
   const [jwtSnippet, setJwtSnippet] = useState<string | null>(null);
   const [fullName, setFullName] = useState<string | null>(null);
+  const [email, setEmail] = useState<string | null>(null);
   const [jwtExpiration, setJwtExpiration] = useState<number | null>(null);
   const [timeRemaining, setTimeRemaining] = useState<string | null>(null);
   const [userData, setUserData] = useState<any>(null);
@@ -42,6 +43,7 @@ export const Footer = () => {
         const parsedJwt = JSON.parse(jsonPayload);
         setJwtSnippet(token.slice(0, 16)); // First 16 chars of the JWT
         setFullName(parsedJwt.user_metadata?.full_name || null); // Get full name from JWT
+        setEmail(data.session.user?.email || ""); // Get email from Supabase session
         setJwtExpiration(parsedJwt.exp); // Set the JWT expiration time
 
         // Calculate time remaining
@@ -67,9 +69,9 @@ export const Footer = () => {
 
         // Fetch user data from Supabase
         const { data: userData, error: userError } = await supabase
-          .from('users')
-          .select('id')
-          .eq('id', parsedJwt.sub)
+          .from("users")
+          .select("id")
+          .eq("id", parsedJwt.sub)
           .single();
 
         if (userError) {
@@ -80,9 +82,9 @@ export const Footer = () => {
 
         // Fetch all account data associated with the user
         const { data: accountsData, error: accountsError } = await supabase
-          .from('accounts')
-          .select('id, account_number, max_devices, expiry, created_at')
-          .eq('user_id', userData?.id);
+          .from("accounts")
+          .select("id, account_number, max_devices, expiry, created_at")
+          .eq("user_id", userData?.id);
 
         if (accountsError) {
           console.error("Error fetching account data:", accountsError.message);
@@ -90,14 +92,18 @@ export const Footer = () => {
           setAccountsData(accountsData || []); // Set the accounts data
 
           // Extract the account numbers
-          const accountNumbers = accountsData?.map(account => account.account_number);
+          const accountNumbers = accountsData?.map(
+            (account) => account.account_number
+          );
 
           // Fetch devices associated with the user's accounts
           if (accountNumbers.length > 0) {
             const { data: devicesData, error: devicesError } = await supabase
-              .from('devices')
-              .select('name, ipv4_address, ipv6_address, last_active, event_type, account_number')
-              .in('account_number', accountNumbers);
+              .from("devices")
+              .select(
+                "name, ipv4_address, ipv6_address, last_active, event_type, account_number"
+              )
+              .in("account_number", accountNumbers);
 
             if (devicesError) {
               console.error("Error fetching devices:", devicesError.message);
@@ -164,44 +170,199 @@ export const Footer = () => {
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-sm">
           <div>
-            <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-3">Shop and Learn</h3>
+            <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-3">
+              Shop and Learn
+            </h3>
             <ul className="space-y-2">
-              <li><a href="#" className="hover:text-primary-600 dark:hover:text-primary-400">CicadaVPN</a></li>
-              <li><a href="#" className="hover:text-primary-600 dark:hover:text-primary-400">Unblock everything!</a></li>
-              <li><a href="#" className="hover:text-primary-600 dark:hover:text-primary-400">Cicada Features</a></li>
-              <li><a href="#" className="hover:text-primary-600 dark:hover:text-primary-400">Cicada Security</a></li>
-              <li><a href="#" className="hover:text-primary-600 dark:hover:text-primary-400">Cicada Family Friendly</a></li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-primary-600 dark:hover:text-primary-400"
+                >
+                  CicadaVPN
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-primary-600 dark:hover:text-primary-400"
+                >
+                  Unblock everything!
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-primary-600 dark:hover:text-primary-400"
+                >
+                  Cicada Features
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-primary-600 dark:hover:text-primary-400"
+                >
+                  Cicada Security
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-primary-600 dark:hover:text-primary-400"
+                >
+                  Cicada Family Friendly
+                </a>
+              </li>
             </ul>
           </div>
           <div>
-            <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-3">Account & Support</h3>
+            <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-3">
+              Account & Support
+            </h3>
             <ul className="space-y-2">
-              <li><a href="#" className="hover:text-primary-600 dark:hover:text-primary-400">Manage Your ID</a></li>
-              <li><a href="#" className="hover:text-primary-600 dark:hover:text-primary-400">Account Settings</a></li>
-              <li><a href="#" className="hover:text-primary-600 dark:hover:text-primary-400">Devices</a></li>
-              <li><a href="#" className="hover:text-primary-600 dark:hover:text-primary-400">Help Center</a></li>
-              <li><a href="#" className="hover:text-primary-600 dark:hover:text-primary-400">Setup Guides</a></li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-primary-600 dark:hover:text-primary-400"
+                >
+                  Manage Your ID
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-primary-600 dark:hover:text-primary-400"
+                >
+                  Account Settings
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-primary-600 dark:hover:text-primary-400"
+                >
+                  Devices
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-primary-600 dark:hover:text-primary-400"
+                >
+                  Help Center
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-primary-600 dark:hover:text-primary-400"
+                >
+                  Setup Guides
+                </a>
+              </li>
             </ul>
           </div>
           <div>
-            <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-3">Programs & Business</h3>
+            <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-3">
+              Programs & Business
+            </h3>
             <ul className="space-y-2">
-              <li><a href="#" className="hover:text-primary-600 dark:hover:text-primary-400">Affiliate</a></li>
-              <li><a href="#" className="hover:text-primary-600 dark:hover:text-primary-400">YouTube Creators</a></li>
-              <li><a href="#" className="hover:text-primary-600 dark:hover:text-primary-400">Student Discount</a></li>
-              <li><a href="#" className="hover:text-primary-600 dark:hover:text-primary-400">Graduate Discount</a></li>
-              <li><a href="#" className="hover:text-primary-600 dark:hover:text-primary-400">Business Solutions</a></li>
-              <li><a href="#" className="hover:text-primary-600 dark:hover:text-primary-400">Partnerships</a></li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-primary-600 dark:hover:text-primary-400"
+                >
+                  Affiliate
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-primary-600 dark:hover:text-primary-400"
+                >
+                  YouTube Creators
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-primary-600 dark:hover:text-primary-400"
+                >
+                  Student Discount
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-primary-600 dark:hover:text-primary-400"
+                >
+                  Graduate Discount
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-primary-600 dark:hover:text-primary-400"
+                >
+                  Business Solutions
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-primary-600 dark:hover:text-primary-400"
+                >
+                  Partnerships
+                </a>
+              </li>
             </ul>
           </div>
           <div>
-            <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-3">Legal & Policies</h3>
+            <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-3">
+              Legal & Policies
+            </h3>
             <ul className="space-y-2">
-              <li><a href="/privacy" className="hover:text-primary-600 dark:hover:text-primary-400">Privacy Policy</a></li>
-              <li><a href="/docs/policies/general_terms" className="hover:text-primary-600 dark:hover:text-primary-400">Terms & Conditions</a></li>
-              <li><a href="#" className="hover:text-primary-600 dark:hover:text-primary-400">Warranty</a></li>
-              <li><a href="#" className="hover:text-primary-600 dark:hover:text-primary-400">Sales and Refunds</a></li>
-              <li><a href="#" className="hover:text-primary-600 dark:hover:text-primary-400">Site Map</a></li>
+              <li>
+                <a
+                  href="/privacy"
+                  className="hover:text-primary-600 dark:hover:text-primary-400"
+                >
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/docs/policies/general_terms"
+                  className="hover:text-primary-600 dark:hover:text-primary-400"
+                >
+                  Terms & Conditions
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-primary-600 dark:hover:text-primary-400"
+                >
+                  Warranty
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-primary-600 dark:hover:text-primary-400"
+                >
+                  Sales and Refunds
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-primary-600 dark:hover:text-primary-400"
+                >
+                  Site Map
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -209,29 +370,50 @@ export const Footer = () => {
         {/* More Ways to Shop */}
         <div className="border-t border-gray-200 dark:border-gray-700 mt-12 pt-4 text-sm text-gray-600 dark:text-gray-400">
           <p>
-            More ways to shop: <a href="#" className="text-primary-600 dark:text-primary-400 hover:underline">Find a CicadaVPN Store</a> or <a href="#" className="text-primary-600 dark:text-primary-400 hover:underline">other retailer</a> near you.
+            More ways to shop:{" "}
+            <a
+              href="#"
+              className="text-primary-600 dark:text-primary-400 hover:underline"
+            >
+              Find a CicadaVPN Store
+            </a>{" "}
+            or{" "}
+            <a
+              href="#"
+              className="text-primary-600 dark:text-primary-400 hover:underline"
+            >
+              other retailer
+            </a>{" "}
+            near you.
           </p>
         </div>
-        
+
         {/* Legal and Policy Links */}
         <div className="border-t border-gray-200 dark:border-gray-700 mt-8 pt-8 flex flex-col lg:flex-row items-center justify-between">
           <p className="text-sm text-gray-600 dark:text-gray-400">
             © {getCurrentYear()} CicadaVPN. All rights reserved.
           </p>
           <div className="flex gap-4 pt-4 lg:pt-0 text-sm text-gray-600 dark:text-gray-400">
-            <a href="/privacy" className="hover:underline">Privacy Policy</a>
-            <a href="/docs/policies/general_terms" className="hover:underline">Terms of Use</a>
-            <a href="#" className="hover:underline">Sales and Refunds</a>
+            <a href="/privacy" className="hover:underline">
+              Privacy Policy
+            </a>
+            <a href="/docs/policies/general_terms" className="hover:underline">
+              Terms of Use
+            </a>
+            <a href="#" className="hover:underline">
+              Sales and Refunds
+            </a>
           </div>
           <p className="text-sm text-gray-600 dark:text-gray-400">United States</p>
         </div>
 
-        {/* JWT Snippet, Full Name, User Data, Account Data, and Device Data */}
+        {/* JWT Snippet, Full Name, Email, User Data, Account Data, and Device Data */}
         <div className="text-sm text-gray-600 dark:text-gray-400 mt-8 text-center">
           {jwtSnippet ? (
             <>
               <p>JWT Snippet: {jwtSnippet}</p>
               {fullName && <p>Full Name: {fullName}</p>}
+              {email && <p>Email: {email}</p>}
               {authCreatedAt && <p>User Created At: {authCreatedAt}</p>}
               {jwtExpiration && (
                 <>

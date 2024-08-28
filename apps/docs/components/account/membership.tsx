@@ -33,7 +33,7 @@ export default function Membership() {
             className="w-full flex justify-between items-center px-1 py-2 text-lg font-semibold rounded-md text-gray-700 bg-white hover:bg-gray-50 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 transition-colors"
             style={{ boxShadow: 'none', border: 'none' }} // Remove shadow and border
           >
-            <span>Buy an extra member slot</span>
+            <span>Add more time</span>
             <span className="text-sm text-blue-600 dark:text-blue-400 ml-2">New</span>
             <FaChevronRight className="w-5 h-5 text-gray-500" />
           </button>
