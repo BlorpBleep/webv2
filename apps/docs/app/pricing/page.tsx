@@ -43,13 +43,13 @@ export default function PricingPage() {
 
   return (
     <>
-      <main className="relative container mx-auto max-w-7xl z-10 px-6 min-h-[calc(100vh_-_64px_-_108px)] mb-12 flex-grow bg-white dark:bg-black">
-        <section className="w-full flex flex-col items-center lg:px-16 mt-12 gap-6">
+      <main className="relative container mx-auto w-full sm:w-[90%] lg:w-[70%] z-10 px-4 sm:px-6 lg:px-8 min-h-[calc(100vh_-_64px_-_108px)] mb-12 flex-grow bg-white dark:bg-black">
+        <section className="w-full flex flex-col items-center mt-12 gap-6 mx-auto">
           <div className="text-center max-w-2xl">
-            <h1 className="mb-4 font-bold text-[32px] leading-[40px] text-black dark:text-yellow-400">
+            <h1 className="mb-4 font-bold text-[28px] sm:text-[32px] leading-[34px] sm:leading-[40px] text-black dark:text-yellow-400">
               Buy a VPN for Enhanced Privacy: 2 Years for 2.19 €/mo
             </h1>
-            <h5 className="text-gray-700 dark:text-yellow-400 text-lg">
+            <h5 className="text-gray-700 dark:text-yellow-400 text-base sm:text-lg">
               Offer Ends In {`${timeLeft.hours}Hrs:${timeLeft.minutes}Min:${timeLeft.seconds}Sec`}
             </h5>
           </div>
@@ -58,10 +58,8 @@ export default function PricingPage() {
             *All amounts shown are in Euros. Taxes may apply based on your jurisdiction.
           </div>
           <div className="flex justify-center items-center gap-4 mt-4">
-            <div className="text-gray-500 dark:text-gray-400 text-sm">Selected Subscriptions:</div>
-            <div className="text-black dark:text-white font-bold text-sm">Cicada VPN - 2 Years + 2 Months FREE</div>
-            <button className="bg-green-500 text-white font-bold py-2 px-8 rounded-lg text-sm">
-              Continue to Checkout &rarr;
+            <button className="bg-yellow-500 text-white font-bold py-2 px-8 rounded-lg text-sm">
+              Get plan
             </button>
           </div>
         </section>
