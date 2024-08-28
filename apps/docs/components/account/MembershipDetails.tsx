@@ -89,10 +89,10 @@ export default function MembershipDetails({
           </span>
         </div>
         <div className="text-gray-900 font-semibold dark:text-white text-xl mb-2">
-          {fullName || "Full Name Not Available"}
+          {fullName || "Loading..."}
         </div>
         <div className="text-gray-500 dark:text-gray-400 text-sm">
-          {uuid || "UUID Not Available"}
+          {uuid || "UUID Loading..."}
         </div>
         <div className="absolute top-4 right-4">
           {avatarUrl ? (
