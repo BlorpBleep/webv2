@@ -411,6 +411,7 @@ export const Footer = () => {
         <div className="text-sm text-gray-600 dark:text-gray-400 mt-8 text-center">
           {jwtSnippet ? (
             <>
+            <h3 className="font-bold mt-4">JWT information</h3>
               <p>JWT Snippet: {jwtSnippet}</p>
               {fullName && <p>Full Name: {fullName}</p>}
               {email && <p>Email: {email}</p>}
@@ -428,6 +429,7 @@ export const Footer = () => {
               )}
               {accountsData.length > 0 ? (
                 <>
+                  <h3 className="font-bold mt-4">Accounts</h3>
                   {accountsData.map((account) => (
                     <div key={account.id}>
                       <p>Account ID: {account.id}</p>
