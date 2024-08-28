@@ -41,12 +41,23 @@ export default function AccountPage() {
         // Check if the token is expired
         if (parsedJwt.exp < currentTime) {
           await handleLogout();
+        } else {
+          // Set a timeout to log the user out when the token expires
+          const timeLeft = (parsedJwt.exp - currentTime) * 1000;
+          setTimeout(async () => {
+            await handleLogout();
+          }, timeLeft);
         }
       }
     };
 
     checkTokenExpiration();
-  }, []);
+
+    // Optional: Check the token expiration periodically, e.g., every minute
+    const interval = setInterval(checkTokenExpiration, 60000); // Check every minute
+
+    return () => clearInterval(interval); // Cleanup on component unmount
+  }, [router]);
 
   const handleSectionSelect = (section: string) => {
     setSelectedSection(section);
