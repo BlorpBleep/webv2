@@ -14,6 +14,7 @@ import {Support} from "@/components/marketing/support";
 import landingContent from "@/content/landing";
 import {getAllSponsors} from "@/utils/get-all-sponsors";
 import {Sponsors} from "@/components/marketing/sponsors";
+import { Four } from "@/components/marketing/four";
 
 async function getData() {
   try {
@@ -45,6 +46,8 @@ export default async function Home() {
         <Spacer y={24} />
         <InstallBanner />
         <Community />
+        <Spacer y={24} />
+        <Four />
         <Spacer y={24} />
       </section>
     </main>
