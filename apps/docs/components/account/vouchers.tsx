@@ -33,7 +33,7 @@ export default function Vouchers() {
       console.log("Fetching accounts associated with the user...");
       const { data: accountsData, error: accountsError } = await supabase
         .from("accounts")
-        .select("id, account_number, expiry")
+        .select("id, account_number, expiry, created_at")
         .eq("user_id", userId);
 
       if (accountsError || !accountsData) {
@@ -89,7 +89,7 @@ export default function Vouchers() {
     console.log("Fetching voucher details...");
     const { data: voucher, error: redeemError } = await supabase
       .from("vouchers")
-      .select("id, duration_months")
+      .select("id, code, duration_months, associated_account, is_used, created_at, used_at, status")
       .eq("code", cleanedVoucherCode)
       .eq("is_used", false)
       .single();
@@ -104,10 +104,17 @@ export default function Vouchers() {
     const { duration_months } = voucher;
     const currentDate = new Date();
 
+    // Find the most recent account
+    const mostRecentAccount = accounts.reduce((latest, account) =>
+      new Date(account.created_at) > new Date(latest.created_at) ? account : latest
+    );
+
+    console.log("Most recent account selected:", mostRecentAccount.account_number);
+
     console.log("Updating expiry dates for all associated accounts...");
+    const newExpiry = new Date(currentDate.setMonth(currentDate.getMonth() + duration_months));
+
     const updatedAccounts = accounts.map(async account => {
-      const currentExpiry = new Date(account.expiry || currentDate);
-      const newExpiry = new Date(currentExpiry.setMonth(currentExpiry.getMonth() + duration_months));
       console.log(`Updating account ${account.account_number} with new expiry date:`, newExpiry);
 
       const { error: updateError } = await supabase
@@ -124,21 +131,24 @@ export default function Vouchers() {
 
     await Promise.all(updatedAccounts);
 
-    console.log("Marking voucher as redeemed...");
-    const { error: voucherUpdateError } = await supabase
+    console.log("Marking voucher as redeemed and associating with the most recent account...");
+    const { data: updatedVoucher, error: voucherUpdateError } = await supabase
       .from("vouchers")
       .update({
         is_used: true,
-        used_at: new Date().toISOString(),
+        used_at: new Date().toISOString(), // Setting the timestamp of redemption
+        associated_account: mostRecentAccount.account_number,
         status: 'redeemed',
       })
-      .eq("id", voucher.id);
+      .eq("id", voucher.id)
+      .select("*")  // Retrieve the updated voucher data
+      .single();
 
     if (voucherUpdateError) {
       console.error("Error marking voucher as redeemed:", voucherUpdateError.message);
     } else {
       console.log("Voucher marked as redeemed successfully.");
-      setVouchers(vouchers.map(v => v.id === voucher.id ? { ...v, is_used: true, used_at: new Date() } : v));
+      setVouchers([...vouchers, updatedVoucher]); // Add the updated voucher to the state
       setVoucherCode(""); // Clear the input field
     }
 
