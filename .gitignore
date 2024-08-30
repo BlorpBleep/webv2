@@ -5,6 +5,8 @@ out/
 # Node modules
 node_modules/
 
+packages/
+
 # Environment variables
 .env.local
 .env.development.local

@@ -5,6 +5,8 @@ sitemap.xml
 .contentlayer
 .next
 
+/packages/*
+
 # dependencies
 /node_modules
 /.pnp
