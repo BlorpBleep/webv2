@@ -11,7 +11,7 @@ export const Four = () => {
         <div>
           <h1 className="text-5xl font-bold mb-4" style={{ lineHeight: '1' }}>Effortless online privacy with a VPN</h1>
           <p className="text-xl mb-6">
-            Surfshark connects, reconnects, stays alert, and protects you online 24/7 wherever you go.
+            Cicada connects, reconnects, stays alert, and protects you online 24/7 wherever you go.
             With its intuitive design, you will master it in no time.
           </p>
           <a href="#" className="font-bold text-white text-lg">
