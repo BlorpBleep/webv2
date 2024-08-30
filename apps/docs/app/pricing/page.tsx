@@ -75,7 +75,7 @@ export default function PricingPage() {
             Cicada VPN - 2 Years + 2 Months FREE
           </div>
           <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-8 rounded-lg text-sm flex items-center">
-            Continue to Checkout →
+            Checkout →
           </button>
         </div>
 
