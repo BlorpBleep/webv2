@@ -7,6 +7,7 @@ import Membership from "@/components/account/membership";
 import Devices from "@/components/account/devices";
 import Accounts from "@/components/account/accounts";
 import Security from "@/components/account/security";
+import Vouchers from "@/components/account/vouchers";
 import Overview from "@/components/account/accountoverview";
 import MembershipDetails from "@/components/account/MembershipDetails";
 import { supabase } from "@/utils/supabase";
@@ -90,6 +91,8 @@ export default function AccountPage() {
         return <Accounts />;
       case "security":
         return <Security />;
+        case "vouchers":  // Add this case for vouchers
+        return <Vouchers />;
       default:
         return <Overview />;
     }

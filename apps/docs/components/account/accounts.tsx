@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { FaChevronRight, FaUserShield, FaShareAlt, FaPlus } from "react-icons/fa"; // Import icons including FaPlus for adding new account
-import { supabase } from "@/utils/supabase"; // Ensure you have supabase client setup in your project
+import { FaChevronRight, FaUserShield, FaShareAlt, FaPlus, FaTrash } from "react-icons/fa"; 
+import { supabase } from "@/utils/supabase";
 
 export default function Accounts() {
   const parentalControls = [
@@ -16,16 +16,17 @@ export default function Accounts() {
     },
   ];
 
-  // State to store accounts data fetched from Supabase
   const [accounts, setAccounts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [creating, setCreating] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const [selectedAccount, setSelectedAccount] = useState<any>(null);
 
   useEffect(() => {
     const fetchAccounts = async () => {
+      console.log("Fetching accounts...");
       setLoading(true);
 
-      // Get the current user's session
       const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
 
       if (sessionError) {
@@ -42,7 +43,6 @@ export default function Accounts() {
         return;
       }
 
-      // Fetch accounts data from Supabase where user_id matches the logged-in user's ID
       const { data: accountsData, error: accountsError } = await supabase
         .from("accounts")
         .select("id, account_number, status, max_devices, created_at, expiry")
@@ -51,7 +51,8 @@ export default function Accounts() {
       if (accountsError) {
         console.error("Error fetching accounts:", accountsError.message);
       } else {
-        setAccounts(accountsData || []); // Set the accounts data
+        console.log("Accounts fetched:", accountsData);
+        setAccounts(accountsData || []);
       }
 
       setLoading(false);
@@ -61,9 +62,9 @@ export default function Accounts() {
   }, []);
 
   const addNewAccount = async () => {
+    console.log("Adding new account...");
     setCreating(true);
 
-    // Get the current user's session
     const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
 
     if (sessionError) {
@@ -80,10 +81,9 @@ export default function Accounts() {
       return;
     }
 
-    // Generate a unique account number (you can customize this logic)
     const accountNumber = `ACC-${Math.floor(Math.random() * 1000000)}`;
+    console.log("Generated account number:", accountNumber);
 
-    // Create a new account for the user
     const { data: newAccount, error: createError } = await supabase
       .from("accounts")
       .insert([{ user_id: userId, account_number: accountNumber }])
@@ -92,11 +92,41 @@ export default function Accounts() {
     if (createError) {
       console.error("Error creating new account:", createError.message);
     } else {
-      // Update the accounts state to include the new account
+      console.log("New account created:", newAccount);
       setAccounts([...accounts, newAccount]);
     }
 
     setCreating(false);
+  };
+
+  const confirmDeleteAccount = (account: any) => {
+    console.log("Confirm delete account:", account);
+    setSelectedAccount(account);
+  };
+
+  const deleteAccount = async () => {
+    if (!selectedAccount) return;
+
+    console.log("Deleting account:", selectedAccount.account_number);
+    setDeleting(true);
+
+    const { error: deleteError } = await supabase
+      .from("accounts")
+      .update({
+        status: 'inactive',
+        marked_inactive_by_user: new Date().toISOString(),
+      })
+      .eq("id", selectedAccount.id);
+
+    if (deleteError) {
+      console.error("Error marking account as inactive:", deleteError.message);
+    } else {
+      console.log("Account marked as inactive:", selectedAccount.account_number);
+      setAccounts(accounts.map(account => account.id === selectedAccount.id ? { ...account, status: 'inactive', marked_inactive_by_user: new Date().toISOString() } : account));
+    }
+
+    setDeleting(false);
+    setSelectedAccount(null); // Close the modal after deletion
   };
 
   return (
@@ -141,10 +171,10 @@ export default function Accounts() {
           <p>Loading accounts...</p>
         ) : accounts.length > 0 ? (
           accounts.map((account, index) => (
-            account ? ( // Add a null check for account
-              <div key={index} className="mb-4">
+            account ? (
+              <div key={index} className="mb-4 flex items-center justify-between">
                 <button
-                  className="w-full flex justify-between items-center px-1 py-2 text-lg font-semibold rounded-md text-gray-700 bg-white hover:bg-gray-50 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 transition-colors"
+                  className="flex-grow flex justify-between items-center px-1 py-2 text-lg font-semibold rounded-md text-gray-700 bg-white hover:bg-gray-50 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 transition-colors"
                   style={{ boxShadow: "none", border: "none" }}
                   onClick={() => console.log(`Account ${account.account_number || 'Unknown'} clicked`)}
                 >
@@ -159,15 +189,20 @@ export default function Accounts() {
                   </div>
                   <FaChevronRight className="w-5 h-5 text-gray-500" />
                 </button>
+                <button
+                  className="ml-4 px-4 py-2 text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-600"
+                  onClick={() => confirmDeleteAccount(account)}
+                >
+                  <FaTrash className="w-5 h-5" />
+                </button>
               </div>
             ) : (
-              <p key={index} className="text-red-500">Invalid account data</p> // Handle the case where account is null
+              <p key={index} className="text-red-500">Invalid account data</p>
             )
           ))
         ) : (
           <p>No accounts found.</p>
         )}
-        {/* Add New Account Button */}
         <div className="mt-4">
           <button
             className="w-full flex justify-between items-center px-2 py-3 text-lg font-semibold rounded-md text-white bg-primary-600 hover:bg-primary-500 dark:bg-primary-700 dark:hover:bg-primary-600 transition-colors"
@@ -181,6 +216,38 @@ export default function Accounts() {
           </button>
         </div>
       </div>
+
+      {selectedAccount && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-white">Confirm Delete</h2>
+            <p className="mb-4 text-gray-600 dark:text-gray-400">
+              Are you sure you want to mark the following account as inactive?
+            </p>
+            <div className="mb-4">
+              <p><strong>Account:</strong> {selectedAccount.account_number}</p>
+              <p><strong>Status:</strong> {selectedAccount.status}</p>
+              <p><strong>Max Devices:</strong> {selectedAccount.max_devices}</p>
+              <p><strong>Expiry:</strong> {selectedAccount.expiry ? new Date(selectedAccount.expiry).toLocaleString() : 'No expiry date'}</p>
+            </div>
+            <div className="flex justify-end">
+              <button
+                className="mr-4 px-4 py-2 bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 rounded-md"
+                onClick={() => setSelectedAccount(null)}
+              >
+                Cancel
+              </button>
+              <button
+                className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md"
+                onClick={deleteAccount}
+                disabled={deleting}
+              >
+                {deleting ? "Deleting..." : "Confirm"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
