@@ -8,10 +8,13 @@ export const PricingGrid = () => {
 
   const handleCheckboxChange = (plan) => {
     setSelectedPlan(plan);
+    console.log(`Selected Plan: ${plan}`);
   };
 
   const handleDedicatedIPChange = () => {
-    setDedicatedIP((prev) => !prev); // Toggle the dedicated Family Protector state
+    const newState = !dedicatedIP; // Determine the new state
+    setDedicatedIP(newState); // Update the state
+    console.log(`Dedicated Family Protector toggled to: ${newState}`);
   };
 
   return (

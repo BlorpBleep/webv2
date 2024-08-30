@@ -32,7 +32,7 @@ export const Four = () => {
       </div>
 
       {/* Bottom Left Box */}
-      <div className="bg-teal-500 p-8 rounded-bl-[48px] flex items-center justify-center relative overflow-hidden">
+      <div className="bg-teal-500 p-8 rounded-bl-[48px] flex  justify-center relative overflow-hidden">
         <div className="relative z-10 text-black text-left">
           <h2 className="text-3xl font-bold mb-4">
             Experience the web before advertising happened
@@ -45,8 +45,8 @@ export const Four = () => {
           <Image 
             src="/images/vpn-section-experience.svg"
             alt="Experience Icon"
-            width={200}
-            height={200}
+            width={300}
+            height={300}
             className="opacity-80"
           />
         </div>
@@ -56,17 +56,17 @@ export const Four = () => {
       <div className="bg-white rounded-br-[48px] flex flex-col">
         <div className="flex flex-row h-full">
           {/* Left Sub-Box */}
-          <div className="flex-1 bg-gray-200 flex items-center justify-center border-b border-r relative overflow-hidden">
+          <div className="flex-1 bg-gray-200 text-black flex justify-center border-b border-r relative overflow-hidden">
             <div className="relative z-10 text-center">
-              <p className="text-xl">Work, play, and explore without a glitch</p>
+              <p className="text-xl text-black">Work, play, and explore without a glitch</p>
               <p>Connected to high-speed VPN servers.</p>
             </div>
             <div className="absolute inset-0 flex justify-center items-center">
               <Image 
                 src="/images/vpn-section-speed.svg"
                 alt="Speed Icon"
-                width={120}
-                height={120}
+                width={220}
+                height={220}
                 className="opacity-50"
               />
             </div>
@@ -82,8 +82,8 @@ export const Four = () => {
                 <Image 
                   src="/images/vpn-section-countries.svg"
                   alt="Countries Icon"
-                  width={120}
-                  height={120}
+                  width={220}
+                  height={220}
                   className="opacity-50"
                 />
               </div>
