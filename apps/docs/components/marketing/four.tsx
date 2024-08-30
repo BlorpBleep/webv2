@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export const Four = () => {
   return (
-    <section className="grid grid-cols-2 gap-0 w-full h-screen">
+    <section id="vpn-section" className="grid grid-cols-2 gap-0 w-full h-screen">
       {/* Top Left Box */}
       <div className="bg-black text-white p-8 rounded-tl-[48px] flex items-center justify-center">
         <div>
