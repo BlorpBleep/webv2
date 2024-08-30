@@ -1,6 +1,7 @@
 import {Spacer} from "@nextui-org/spacer";
 
 import {Hero} from "@/components/marketing/hero";
+
 import {FeaturesGrid} from "@/components/marketing/features-grid";
 import {CustomThemes} from "@/components/marketing/custom-themes";
 import {A11yOtb} from "@/components/marketing/a11y-otb";
@@ -13,6 +14,7 @@ import {Support} from "@/components/marketing/support";
 import landingContent from "@/content/landing";
 import {getAllSponsors} from "@/utils/get-all-sponsors";
 import {Sponsors} from "@/components/marketing/sponsors";
+import { Four } from "@/components/marketing/four";
 
 async function getData() {
   try {
@@ -44,6 +46,8 @@ export default async function Home() {
         <Spacer y={24} />
         <InstallBanner />
         <Community />
+        <Spacer y={24} />
+        <Four />
         <Spacer y={24} />
       </section>
     </main>

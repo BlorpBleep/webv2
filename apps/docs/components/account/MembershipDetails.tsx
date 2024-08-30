@@ -12,6 +12,7 @@ export default function MembershipDetails({
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
   const [fullName, setFullName] = useState<string | null>(null);
   const [uuid, setUuid] = useState<string | null>(null);
+  const [memberSince, setMemberSince] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -19,14 +20,16 @@ export default function MembershipDetails({
       if (session.error) return; // Handle session error
 
       const userId = session.data.session?.user.id;
-      const { data: user, error } = await supabase
+
+      // Fetch user profile data
+      const { data: user, error: userError } = await supabase
         .from("users")
         .select("full_name, avatar_url, id")
         .eq("id", userId)
         .single();
 
-      if (error) {
-        console.error("Error fetching user profile:", error.message);
+      if (userError) {
+        console.error("Error fetching user profile:", userError.message);
         return;
       }
 
@@ -35,6 +38,20 @@ export default function MembershipDetails({
         setAvatarUrl(user.avatar_url || null);
         setUuid(formatUuid(user.id));
         console.log("Avatar URL: ", user.avatar_url); // Debugging step
+      }
+
+      // Fetch the auth user data, including the created_at field
+      const { data: authData, error: authError } = await supabase.auth.getUser();
+
+      if (authError) {
+        console.error("Error fetching auth user data:", authError.message);
+      } else {
+        const createdAt = new Date(authData.user?.created_at);
+        const formattedDate = createdAt.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+        });
+        setMemberSince(formattedDate);
       }
     };
 
@@ -68,31 +85,37 @@ export default function MembershipDetails({
               borderRadius: "0px 1rem 1rem 0px",
             }}
           >
-            Member since May 2017
+            Member since {memberSince || "Loading..."}
           </span>
         </div>
         <div className="text-gray-900 font-semibold dark:text-white text-xl mb-2">
-          {fullName || "Full Name Not Available"}
+          {fullName || "Loading..."}
         </div>
         <div className="text-gray-500 dark:text-gray-400 text-sm">
-          {uuid || "UUID Not Available"}
+          {uuid || "UUID Loading..."}
         </div>
+        
         <div className="absolute top-4 right-4">
           {avatarUrl ? (
             <img
               src={avatarUrl}
               alt="Avatar"
               className="rounded-full"
-              style={{ width: "60px", height: "60px" }} // Add border to see if image loads
+              style={{ width: "60px", height: "60px" }} 
               onError={(e) => {
-                console.error("Image failed to load"); // Debugging step
-                e.currentTarget.src = ""; // Handle fallback in case of error
+                console.error("Image failed to load"); 
+                e.currentTarget.src = ""; 
               }}
             />
           ) : (
             <FaUser className="w-10 h-10 text-gray-500" />
           )}
         </div>
+
+
+
+
+
         <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mt-6">
           Premium plan
         </h3>
