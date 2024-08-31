@@ -1,21 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { FaChevronRight, FaUserShield, FaShareAlt, FaPlus, FaTrash } from "react-icons/fa"; 
+import { FaChevronRight, FaPlus, FaTrash, FaUser, FaCheckCircle, FaDesktop, FaCalendarAlt } from "react-icons/fa";
 import { supabase } from "@/utils/supabase";
 
 export default function Accounts() {
-  const parentalControls = [
-    {
-      text: "Adjust parental controls",
-      icon: FaUserShield,
-      description: "Set maturity ratings, block titles",
-    },
-    {
-      text: "Transfer a profile",
-      icon: FaShareAlt,
-      description: "Copy a profile to another account",
-    },
-  ];
-
   const [accounts, setAccounts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [creating, setCreating] = useState(false);
@@ -51,7 +38,7 @@ export default function Accounts() {
       .from("accounts")
       .select("id, account_number, status, max_devices, created_at, expiry")
       .eq("user_id", userId)
-      .eq("status", "active");  // Only fetch accounts where status is 'active'
+      .eq("status", "active");
 
     if (accountsError) {
       console.error("Error fetching accounts:", accountsError.message);
@@ -119,6 +106,8 @@ export default function Accounts() {
     } else {
       console.log("New account created:", newAccount);
       await fetchAccounts();  // Reload the accounts after adding a new one
+      setShowAccountDetails(true);
+      setSelectedAccount(newAccount);
     }
 
     setCreating(false);
@@ -168,36 +157,6 @@ export default function Accounts() {
     <div className="max-w-4xl mx-auto text-gray-900 dark:text-white">
       <h1 className="text-3xl font-bold mb-4">Accounts</h1>
       <h2 className="text-l font-medium mb-4 text-gray-700 dark:text-gray-400">
-        Manage account
-      </h2>
-      <div className="p-6 bg-white rounded-lg shadow dark:bg-gray-800 mb-6">
-        <h2 className="text-xl font-medium mb-4">Parental controls and permissions</h2>
-        {parentalControls.map((item, index) => (
-          <div key={index} className="mb-4">
-            {index > 0 && (
-              <hr className="my-1 border-gray-200 dark:border-gray-700" />
-            )}
-            <button
-              className="w-full flex justify-between items-center px-1 py-2 text-lg font-semibold rounded-md text-gray-700 bg-white hover:bg-gray-50 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 transition-colors"
-              style={{ boxShadow: "none", border: "none" }}
-              onClick={() => console.log(`${item.text} clicked`)}
-            >
-              <div className="flex items-center">
-                <item.icon className="w-6 h-6 text-gray-500 mr-4" />
-                <div>
-                  <span>{item.text}</span>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-              <FaChevronRight className="w-5 h-5 text-gray-500" />
-            </button>
-          </div>
-        ))}
-      </div>
-
-      <h2 className="text-l font-medium mb-4 text-gray-700 dark:text-gray-400">
         Account list
       </h2>
       <div className="p-6 bg-white rounded-lg shadow dark:bg-gray-800">
@@ -207,29 +166,32 @@ export default function Accounts() {
         ) : accounts.length > 0 ? (
           accounts.map((account, index) => (
             account ? (
-              <div key={index} className="mb-4 flex items-center justify-between">
+              <div key={index} className="mb-4">
+                <div className="flex items-center mb-4">
+                  <FaUser className="text-gray-500 dark:text-gray-400 w-6 h-6 mr-4" />
+                  <span className="text-lg font-semibold text-gray-700 dark:text-white">{`Account: ${account.account_number || 'Unknown'}`}</span>
+                </div>
+                <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
+                  <FaCheckCircle className="mr-2" />
+                  <span>Status: {account.status || 'Unknown'}</span>
+                </div>
+                <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
+                  <FaDesktop className="mr-2" />
+                  <span>Max Devices: {account.max_devices || 'Unknown'}</span>
+                </div>
+                <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
+                  <FaCalendarAlt className="mr-2" />
+                  <span>Expiry: {account.expiry ? new Date(account.expiry).toLocaleString() : 'No expiry date'}</span>
+                </div>
                 <button
-                  className="flex-grow flex justify-between items-center px-1 py-2 text-lg font-semibold rounded-md text-gray-700 bg-white hover:bg-gray-50 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 transition-colors"
+                  className="w-full flex justify-between items-center px-2 py-2 text-sm font-semibold rounded-md text-gray-700 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 transition-colors"
                   style={{ boxShadow: "none", border: "none" }}
                   onClick={() => viewAccountDetails(account)}
                 >
-                  <div className="flex flex-col items-start">
-                    <span>{`Account: ${account.account_number || 'Unknown'}`}</span>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      Status: {account.status || 'Unknown'}, Max Devices: {account.max_devices || 'Unknown'}
-                    </p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      Expiry: {account.expiry ? new Date(account.expiry).toLocaleString() : 'No expiry date'}
-                    </p>
-                  </div>
-                  <FaChevronRight className="w-5 h-5 text-gray-500" />
+                  View Details
+                  <FaChevronRight className="w-4 h-4 text-gray-500 dark:text-gray-400" />
                 </button>
-                <button
-                  className="ml-4 px-4 py-2 text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-600"
-                  onClick={() => confirmDeleteAccount(account)}
-                >
-                  <FaTrash className="w-5 h-5" />
-                </button>
+                <hr className="my-4 border-gray-200 dark:border-gray-700" />
               </div>
             ) : (
               <p key={index} className="text-red-500">Invalid account data</p>
@@ -238,7 +200,7 @@ export default function Accounts() {
         ) : (
           <p>No accounts found.</p>
         )}
-        <div className="mt-4">
+{/*         <div className="mt-4">
           <button
             className="w-full flex justify-between items-center px-2 py-3 text-lg font-semibold rounded-md text-white bg-primary-600 hover:bg-primary-500 dark:bg-primary-700 dark:hover:bg-primary-600 transition-colors"
             onClick={addNewAccount}
@@ -249,12 +211,12 @@ export default function Accounts() {
               <span>{creating ? "Creating Account..." : "Add New Account"}</span>
             </div>
           </button>
-        </div>
+        </div> */}
       </div>
 
       {selectedAccount && showAccountDetails && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 p-4">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-md w-full">
             <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-white">Account Details</h2>
             <div className="mb-4">
               <p><strong>Account:</strong> {selectedAccount.account_number}</p>
@@ -270,14 +232,20 @@ export default function Accounts() {
               >
                 Close
               </button>
+              <button
+                className="ml-4 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md"
+                onClick={() => confirmDeleteAccount(selectedAccount)}
+              >
+                Delete Account
+              </button>
             </div>
           </div>
         </div>
       )}
 
       {selectedAccount && !showAccountDetails && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 p-4">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-md w-full">
             <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-white">Confirm Delete</h2>
             <p className="mb-4 text-gray-600 dark:text-gray-400">
               Are you sure you want to mark the following account as inactive?
