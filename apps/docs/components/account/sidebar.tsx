@@ -1,5 +1,5 @@
 import React from "react";
-import { FaRegCreditCard, FaLock, FaMobileAlt, FaUserFriends, FaRegUserCircle, FaTicketAlt } from "react-icons/fa"; 
+import { FaRegCreditCard, FaLock, FaMobileAlt, FaUserFriends, FaRegUserCircle } from "react-icons/fa"; 
 
 interface SidebarProps {
   onSelect: (section: string) => void;
@@ -55,15 +55,6 @@ export default function Sidebar({ onSelect, selected, onLogout }: SidebarProps) 
         >
           <FaUserFriends size={20} />
           Accounts
-        </button>
-        <button
-          onClick={() => onSelect("vouchers")}
-          className={`flex items-center gap-2 block w-full text-left px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 ${
-            selected === "vouchers" ? "bg-gray-200 dark:bg-gray-700 font-semibold" : ""
-          }`}
-        >
-          <FaTicketAlt size={20} />
-          Vouchers
         </button>
         <hr className="my-4 border-gray-300 dark:border-gray-700" />
         <button

@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import { PricingGrid } from "@/components/marketing/PricingGrid";
-import { AiOutlineGlobal } from "react-icons/ai";
+import { Checkbox } from "@nextui-org/react";
+import { AiOutlineGlobal } from "react-icons/ai"; // Importing the icon
 
 // Function to calculate time remaining
 const calculateTimeLeft = (expiryTime: Date): { hours: string; minutes: string; seconds: string } => {
