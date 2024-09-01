@@ -1,137 +1,92 @@
 ---
-title: Create theme
-description: NextUI provides a simple way to create new themes.
+title: Install on MacOS
+description: MacOS install
 ---
 
-# Create theme
+# Install CicadaVPN on macOS
 
-You can create a new theme based on the default ones. Let's say you need a `purple-dark` theme. You can
-create it by adding the following code to your `tailwind.config.js` file.
+**Last updated:** May 16, 2024
 
-We recommend adding a palette that ranges from `50` to `900`. You can use tools like [Eva Design System](https://colors.eva.design/),
-[Smart Watch](https://smart-swatch.netlify.app/), [Palette](https://palettte.app/) or [Color Box](https://colorbox.io/) to generate your palette.
+This guide provides step-by-step instructions on how to install and uninstall the CicadaVPN app for macOS.
 
+## What This Guide Covers
+- Installation Requirements
+- Download and Install the CicadaVPN App
+- Troubleshooting Installation
+- Start the CicadaVPN App
+- Troubleshooting CicadaVPN
+- Prevent Other Apps from Setting the DNS
+- Connecting to CicadaVPN System Service (macOS 13 Ventura)
+- The CicadaVPN Padlock Icon Disappears
+- Unable to Use the Internet After Disconnecting CicadaVPN
+- Disable Location Services in macOS
+- Uninstalling the CicadaVPN App
 
+## Installation Requirements
+- **macOS 12 (Monterey)** or newer.
+- For older versions of macOS (10.10-10.15), you can use Tunnelblick instead.
+- The CicadaVPN app has been Apple Silicon native since version 2021.4 and works on both Intel Macs and M1/M2 Macs.
 
-### Add the new theme to the plugin
+## Download and Install the CicadaVPN App
+1. Download the latest version of the CicadaVPN app from the [Apps page on our website](#).
+2. Open the folder where you downloaded the installer and double-click on `CicadaVPN-xxxx.x.pkg` (where "xxxx.x" is the version number).
+3. If prompted with "Installer would like to access files in your Downloads folder," click **OK**.
+4. After the installation is complete, a message will appear: "Background Items Added - 'CicadaVPN' added items that can run in the background. You can manage this in Login Items Settings."
 
-```js {9-43}
-// tailwind.config.js
-const {nextui} = require("@nextui-org/react");
+## Troubleshooting Installation
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  plugins: [
-    nextui({
-      themes: {
-        "purple-dark": {
-          extend: "dark", // <- inherit default values from dark theme
-          colors: {
-            background: "#0D001A",
-            foreground: "#ffffff",
-            primary: {
-              50: "#3B096C",
-              100: "#520F83",
-              200: "#7318A2",
-              300: "#9823C2",
-              400: "#c031e2",
-              500: "#DD62ED",
-              600: "#F182F6",
-              700: "#FCADF9",
-              800: "#FDD5F9",
-              900: "#FEECFE",
-              DEFAULT: "#DD62ED",
-              foreground: "#ffffff",
-            },
-            focus: "#F182F6",
-          },
-          layout: {
-            disabledOpacity: "0.3",
-            radius: {
-              small: "4px",
-              medium: "6px",
-              large: "8px",
-            },
-            borderWidth: {
-              small: "1px",
-              medium: "2px",
-              large: "3px",
-            },
-          },
-        },
-      },
-    }),
-  ],
-};
-```
+### Error: "The installation failed"
+This error may occur if the installer does not have access to the folder where you downloaded CicadaVPN. It can also happen if you are using Dropbox or Avast Security. To resolve this:
 
-### Apply the new theme
+1. Open the **System Settings** app and click on **Privacy & Security** on the left side.
+2. Click on **Full Disk Access**.
+3. Find **Installer** in the list and click the button to enable full disk access. 
+   - If **Installer** is not listed, click the **+** icon at the bottom left. 
+   - Select **Applications** in the left column, then choose **Macintosh HD** in the location drop-down menu. Navigate to **System > Library > CoreServices > Installer**.
+4. Restart the CicadaVPN installer. It should work now.
+5. Once the installation is complete, return to the **System Settings** app and disable full disk access for the Installer.
 
-Now, applying the new theme is as simple as adding the theme name `purple-dark` to the `className` of the
-`html` / `body` or `main` element.
+## Start the CicadaVPN App
+1. Launch the CicadaVPN app from **Launchpad** or the **Applications** folder.
+2. The first time you start the app, a window may pop up. Click **Open** to continue.
+3. Once the app starts, you will see a red padlock icon in the menu bar. Click on the padlock to display the app's login screen. Enter your CicadaVPN account number and click **Secure my connection**.
 
-```jsx {11}
-// main.tsx or main.jsx
-import React from "react";
-import ReactDOM from "react-dom/client";
-import {NextUIProvider} from "@nextui-org/react";
-import App from "./App";
-import "./index.css";
+For more details on how to use the CicadaVPN app, refer to our guide [Using the CicadaVPN App](#).
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <NextUIProvider>
-      <main className="purple-dark text-foreground bg-background">
-        <App />
-      </main>
-    </NextUIProvider>
-  </React.StrictMode>,
-);
-```
+## Troubleshooting CicadaVPN
 
-### Use the new theme
+### The CicadaVPN Padlock Icon Disappears
+- If you're using a MacBook with a camera notch, menu bar icons might be hidden if there are too many. You can fix this by quitting other apps with menu bar icons or disabling some system icons. Keep in mind that menu bar icons can only occupy the space from the right corner to the notch.
 
-All components that use the `primary` color will be affected by this change.
+### Unable to Use the Internet After Disconnecting CicadaVPN
+- Ensure that **Lockdown mode** is not enabled in CicadaVPN's settings.
+- Try toggling your Wi-Fi off and on or unplugging and plugging back in your network cable.
+- For macOS Ventura:
+  1. Open the **System Settings** app, click on **Network**, then select the connected network.
+  2. Click on **Details...**, then **DNS**.
+  3. Click the **+** button and add a new DNS server, such as `1.1.1.1`. Click **OK**.
 
-```jsx
-import {Button} from "@nextui-org/react";
+## Disable Location Services in macOS
+To prevent apps from accessing your location using Wi-Fi or GPS:
+1. Open the **System Settings** app.
+2. Click on **Privacy & Security** in the left column.
+3. Click on **Location Services**.
+4. Toggle **Location Services** off.
 
-export default function App() {
-  return (
-    <div className="flex flex-wrap gap-4 items-center">
-      <Button color="primary" variant="solid">
-        Solid
-      </Button>
-      <Button color="primary" variant="faded">
-        Faded
-      </Button>
-      <Button color="primary" variant="bordered">
-        Bordered
-      </Button>
-      <Button color="primary" variant="light">
-        Light
-      </Button>
-      <Button color="primary" variant="flat">
-        Flat
-      </Button>
-      <Button color="primary" variant="ghost">
-        Ghost
-      </Button>
-      <Button color="primary" variant="shadow">
-        Shadow
-      </Button>
-    </div>
-  );
-}
-```
+## Uninstalling the CicadaVPN App
 
-<Spacer y={4} />
+### Uninstall Option 1
+This method removes the app, including local log files, cache, and settings:
+1. Note down your CicadaVPN account number.
+2. Open the **Terminal** app and run the following command:
+    ```bash
+    /Applications/Cicada\ VPN.app/Contents/Resources/uninstall.sh
+    ```
+3. If prompted, enter your login password (note that the password will not be visible as you type).
+4. Restart your Mac.
 
-import customTheme from "@/content/customization/create-theme/custom-theme";
-
-<CodeDemo
-  title="Custom theme example"
-  showEditor={false}
-  files={customTheme}
-  className="bg-[#0D001A] text-[#FFFFFF]"
-/>
+### Uninstall Option 2
+This method only uninstalls the app; local log files, cache, and settings remain on your device:
+1. Open the **Applications** folder.
+2. Find the CicadaVPN app and drag it to the trash.
+3. Choose **Finder > Empty Trash**.
