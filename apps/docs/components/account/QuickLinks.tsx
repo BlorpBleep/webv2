@@ -9,14 +9,22 @@ import {
   FaLock,
   FaCogs,
   FaChevronRight,
+  FaUserFriends,
+  FaTicketAlt,
 } from "react-icons/fa"; // Import icons from react-icons
 
-export default function QuickLinks() {
+interface QuickLinksProps {
+  onSelectSection: (section: string) => void;
+}
+
+export default function QuickLinks({ onSelectSection }: QuickLinksProps) {
   const links = [
+    { text: "Devices", icon: FaMobileAlt, section: "devices" },
+    { text: "Accounts", icon: FaUserFriends, section: "accounts" },
+    { text: "Vouchers", icon: FaTicketAlt, section: "vouchers" },
     { text: "Change plan", icon: FaExchangeAlt },
     { text: "Payment method", icon: FaCreditCard },
     { text: "Buy extra", icon: FaUserPlus, new: true },
-    { text: "Devices", icon: FaMobileAlt },
     { text: "Password", icon: FaKey },
     { text: "Transfer", icon: FaShareAlt },
     { text: "Controls", icon: FaLock },
@@ -37,7 +45,13 @@ export default function QuickLinks() {
             <button
               className="w-full flex justify-between items-center px-2 py-3 text-lg font-semibold rounded-md text-gray-700 bg-white hover:bg-gray-50 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 transition-colors"
               style={{ boxShadow: 'none', border: 'none' }} // Remove shadow and border
-              onClick={() => console.log(`${link.text} clicked`)}
+              onClick={() => {
+                if (link.section) {
+                  onSelectSection(link.section);
+                } else {
+                  console.log(`${link.text} clicked`);
+                }
+              }}
             >
               <div className="flex items-center">
                 <link.icon className="w-5 h-5 text-gray-500 mr-2" />

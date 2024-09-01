@@ -7,7 +7,10 @@ import Membership from "@/components/account/membership";
 import Devices from "@/components/account/devices";
 import Accounts from "@/components/account/accounts";
 import Security from "@/components/account/security";
+import Vouchers from "@/components/account/vouchers";
 import Overview from "@/components/account/accountoverview";
+import QuickLinks from "@/components/account/QuickLinks"; // Import QuickLinks
+
 import MembershipDetails from "@/components/account/MembershipDetails";
 import { supabase } from "@/utils/supabase";
 import { FaChevronRight } from "react-icons/fa";
@@ -20,34 +23,39 @@ export default function AccountPage() {
   useEffect(() => {
     const checkTokenExpiration = async () => {
       const { data } = await supabase.auth.getSession();
-      if (data.session) {
-        const token = data.session.access_token;
 
-        // Decode the JWT to check for expiration
-        const base64Url = token.split(".")[1];
-        const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-        const jsonPayload = decodeURIComponent(
-          atob(base64)
-            .split("")
-            .map(function (c) {
-              return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-            })
-            .join("")
-        );
+      // Redirect to /auth if there's no session (i.e., no valid JWT)
+      if (!data.session) {
+        router.push("/auth");
+        return;
+      }
 
-        const parsedJwt = JSON.parse(jsonPayload);
-        const currentTime = Math.floor(Date.now() / 1000);
+      const token = data.session.access_token;
 
-        // Check if the token is expired
-        if (parsedJwt.exp < currentTime) {
+      // Decode the JWT to check for expiration
+      const base64Url = token.split(".")[1];
+      const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+      const jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split("")
+          .map(function (c) {
+            return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+          })
+          .join("")
+      );
+
+      const parsedJwt = JSON.parse(jsonPayload);
+      const currentTime = Math.floor(Date.now() / 1000);
+
+      // Check if the token is expired
+      if (parsedJwt.exp < currentTime) {
+        await handleLogout();
+      } else {
+        // Set a timeout to log the user out when the token expires
+        const timeLeft = (parsedJwt.exp - currentTime) * 1000;
+        setTimeout(async () => {
           await handleLogout();
-        } else {
-          // Set a timeout to log the user out when the token expires
-          const timeLeft = (parsedJwt.exp - currentTime) * 1000;
-          setTimeout(async () => {
-            await handleLogout();
-          }, timeLeft);
-        }
+        }, timeLeft);
       }
     };
 
@@ -79,6 +87,7 @@ export default function AccountPage() {
         return (
           <>
             <MembershipDetails onSelectSection={handleSectionSelect} />
+            <QuickLinks onSelectSection={handleSectionSelect} /> {/* Show QuickLinks only in overview */}
             <Overview />
           </>
         );
@@ -90,6 +99,8 @@ export default function AccountPage() {
         return <Accounts />;
       case "security":
         return <Security />;
+      case "vouchers":
+        return <Vouchers />;
       default:
         return <Overview />;
     }
@@ -97,23 +108,24 @@ export default function AccountPage() {
 
   return (
     <div className="flex min-h-screen bg-gray-100 dark:bg-gray-900">
+      {/* Sidebar - Always on the left */}
+      <div
+        className={`lg:block lg:relative fixed z-30 top-0 left-0 h-full transform transition-transform ${
+          isSidebarVisible ? "translate-x-0" : "-translate-x-full"
+        } lg:translate-x-0 lg:w-64`}
+      >
+        <Sidebar onSelect={handleSectionSelect} selected={selectedSection} onLogout={handleLogout} />
+      </div>
+
+      {/* Sidebar toggle button for mobile */}
       <div className="lg:hidden fixed top-[5rem] left-4 z-50">
         <div onClick={toggleSidebar} className="tab" aria-label="Toggle sidebar">
           <FaChevronRight />
         </div>
       </div>
 
-      <div
-        className={`sidebar ${isSidebarVisible ? "active" : ""} lg:relative lg:translate-x-0 lg:w-64`}
-      >
-        <Sidebar onSelect={handleSectionSelect} selected={selectedSection} onLogout={handleLogout} />
-      </div>
-
-      <main
-        className={`flex-1 p-8 transition-transform transform ${
-          isSidebarVisible ? "lg:translate-x-0" : ""
-        }`}
-      >
+      {/* Main content */}
+      <main className="flex-1 p-8 transition-all duration-300">
         {renderContent()}
       </main>
     </div>

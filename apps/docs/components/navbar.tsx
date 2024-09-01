@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, FC, ReactNode, Key } from "react";
+import { useRef, useState, FC, ReactNode, Key, useEffect } from "react";
 import {
   link,
   Navbar as NextUINavbar,
@@ -26,7 +26,6 @@ import NextLink from "next/link";
 import { usePathname } from "next/navigation";
 import { includes } from "lodash";
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect } from "react";
 import { usePress } from "@react-aria/interactions";
 import { useFocusRing } from "@react-aria/focus";
 
@@ -34,7 +33,7 @@ import { currentVersion } from "@/utils/version";
 import { siteConfig } from "@/config/site";
 import { Route } from "@/libs/docs/page";
 import { LargeLogo, SmallLogo, ThemeSwitch } from "@/components";
-import { TwitterIcon, GithubIcon, HelpIcon, SearchLinearIcon, BugIcon } from "@/components/icons";
+import { TwitterIcon, GithubIcon, SearchLinearIcon } from "@/components/icons";
 import { useIsMounted } from "@/hooks/use-is-mounted";
 import { DocsSidebar } from "@/components/docs/sidebar";
 import { useCmdkStore } from "@/components/cmdk";
@@ -42,6 +41,7 @@ import { FbRoadmapLink } from "@/components/featurebase/fb-roadmap-link";
 import { trackEvent } from "@/utils/va";
 import arrowRightUpIcon from "@iconify/icons-solar/arrow-right-up-linear";
 import { Icon } from "@iconify/react/dist/offline";
+import { ArrowRightIcon } from "@nextui-org/shared-icons";
 
 export interface NavbarProps {
   routes: Route[];
@@ -86,12 +86,6 @@ export const Navbar: FC<NavbarProps> = ({ children, routes, mobileRoutes = [], s
   });
   const { focusProps, isFocusVisible } = useFocusRing();
 
-  const docsPaths = [
-    "/docs/guide/introduction",
-    "/docs/guide/installation",
-    "/docs/guide/upgrade-to-v2",
-  ];
-
   const searchButton = (
     <Button
       aria-label="Quick search"
@@ -123,8 +117,7 @@ export const Navbar: FC<NavbarProps> = ({ children, routes, mobileRoutes = [], s
   const handleVersionChange = (key: Key) => {
     if (key === "v1") {
       const newWindow = window.open("https://v1.nextui.org", "_blank", "noopener,noreferrer");
-
-      if (newWindow) newWindow.opener = null;
+      if (newWindow) newWindow.opener = null; // Fixed syntax error
     }
   };
 
@@ -142,18 +135,16 @@ export const Navbar: FC<NavbarProps> = ({ children, routes, mobileRoutes = [], s
       ref={ref}
       className={clsx({
         "z-[100001]": isMenuOpen,
-        "bg-transparent": true, // Ensure the navbar is transparent
+        "bg-transparent": true,
       })}
       isMenuOpen={isMenuOpen}
-      maxWidth="full" 
-      
-      
+      maxWidth="full"
       position="sticky"
       onMenuOpenChange={setIsMenuOpen}
     >
       {/* Left section: Logo */}
-      <NavbarContent className="basis-1/5 sm:basis-full bg-transparent" justify="start">
-        <NavbarBrand as="li" className="gap-3 ">
+      <NavbarContent className="basis-1/4 sm:basis-1/4 bg-transparent" justify="start">
+        <NavbarBrand as="li" className="gap-3">
           <NextLink
             aria-label="Home"
             className="flex justify-start items-center gap-2 tap-highlight-transparent transition-opacity active:opacity-50"
@@ -167,8 +158,8 @@ export const Navbar: FC<NavbarProps> = ({ children, routes, mobileRoutes = [], s
       </NavbarContent>
 
       {/* Middle section: Navigation Links */}
-      <NavbarContent className="basis-full justify-center bg-transparent" justify="center">
-        <ul className="hidden lg:flex gap-4 justify-start items-center">
+      <NavbarContent className="basis-1/2 justify-center bg-transparent items-center" justify="center">
+        <ul className="flex gap-4 justify-center items-center">
           <NavbarItem>
             <NextLink
               className={navLinkClasses}
@@ -213,101 +204,75 @@ export const Navbar: FC<NavbarProps> = ({ children, routes, mobileRoutes = [], s
               Teams
             </NextLink>
           </NavbarItem>
+          
           <NavbarItem>
             <NextLink
               className={navLinkClasses}
               color="foreground"
-              data-active={includes(pathname, "figma")}
-              href="/figma"
-              onClick={() => handlePressNavbarItem("Figma", "/figma")}
+              data-active={includes(pathname, "help")}
+              href="/docs/faq/plans_orders"
+              onClick={() => handlePressNavbarItem("Help", "/docs/faq/plans_orders")}
             >
-              <div className={clsx("relative")}>
-                Roadmap
-                <Icon
-                  className="absolute right-[-10px] top-0 outline-none transition-transform group-data-[hover=true]:translate-y-0.5 [&>path]:stroke-[2.5px]"
-                  icon={arrowRightUpIcon}
-                  width={10}
-                />
-              </div>
+              Help
             </NextLink>
           </NavbarItem>
         </ul>
       </NavbarContent>
 
-
-
-
-      {/* Right section: Theme Switch and Search */}
-      <NavbarContent className="flex w-full gap-2 sm:hidden bg-transparent" justify="end">
+      {/* Right section: My Account Link, Get CicadaVPN Button, and Theme Switch */}
+      <NavbarContent className="basis-1/4 flex gap-4 bg-transparent items-center justify-end">
         <NavbarItem className="flex h-full items-center">
-          <ThemeSwitch />
+          <ThemeSwitch className="flex items-center" />
         </NavbarItem>
 
-
         <NavbarItem className="flex h-full items-center">
-          <button
-            className={clsx(
-              "transition-opacity hover:opacity-80 rounded-full cursor-pointer outline-none",
-              // focus ring
-              ...dataFocusVisibleClasses,
-            )}
-            data-focus-visible={isFocusVisible}
-            {...focusProps}
-            {...pressProps}
-          >
-          <Link
-            color="foreground"
-            aria-label="account"
-            className="p-2"
-            href="/account"
-            onPress={() => handlePressNavbarItem("Account", "/account")}
-          >
-            <BugIcon className="text-default-600 dark:text-default-500" />
-          </Link>
-          </button>
+          <NextLink href="/account" passHref legacyBehavior>
+            <Link
+              className={clsx(navLinkClasses, "flex items-center")}
+              color="foreground"
+              href="/account"
+              onClick={() => handlePressNavbarItem("Account", "/account")}
+            >
+              My Account
+            </Link>
+          </NextLink>
         </NavbarItem>
 
+        <NavbarItem className="flex h-full items-center">
+          <NextLink href="/pricing" passHref legacyBehavior>
+            <Button
+              as={NextLink}
+              className="w-full md:h-11 md:w-auto font-bold flex items-center"
+              color="primary"
+              endContent={
+                <ArrowRightIcon
+                  className="group-data-[hover=true]:translate-x-0.5 outline-none transition-transform"
+                  strokeWidth={2}
+                />
+              }
+              href="/pricing"
+              radius="full"
+              size="lg"
+              onPress={() => {
+                trackEvent("Navbar - Get CicadaVPN", {
+                  name: "Get CicadaVPN",
+                  action: "click",
+                  category: "navbar",
+                  data: "/pricing",
+                });
+              }}
+            >
+              Get 82% Off
+            </Button>
+          </NextLink>
+        </NavbarItem>
 
-
-        <NavbarItem className="w-10 h-full">
+        <NavbarItem className="w-10 h-full lg:hidden">
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             className="w-full h-full pt-1"
           />
         </NavbarItem>
-      </NavbarContent>
-
-
-
-
-      {/* Responsive Menu */}
-      <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full justify-end bg-transparent">
-        <NavbarItem className="hidden sm:flex">
-          <Link
-            className="p-1"
-            aria-label="Help"
-            color="foreground"
-            data-active={includes(pathname, "components")}
-            href="docs/faq/plans_orders"
-            onPress={() => handlePressNavbarItem("Components", "docs/faq/plans_orders")}
-          >
-            <HelpIcon className="text-default-600 dark:text-default-500" />
-          </Link>
-          <Link
-            color="foreground"
-            aria-label="account"
-            className="p-1"
-            href="/account"
-            onPress={() => handlePressNavbarItem("Account", "/account")}
-          >
-            <BugIcon className="text-default-600 dark:text-default-500" />
-          </Link>
-          <ThemeSwitch />
-        </NavbarItem>
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="hidden sm:flex lg:hidden ml-4"
-        />
       </NavbarContent>
 
       <NavbarMenu>
