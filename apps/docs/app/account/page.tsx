@@ -23,34 +23,39 @@ export default function AccountPage() {
   useEffect(() => {
     const checkTokenExpiration = async () => {
       const { data } = await supabase.auth.getSession();
-      if (data.session) {
-        const token = data.session.access_token;
 
-        // Decode the JWT to check for expiration
-        const base64Url = token.split(".")[1];
-        const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-        const jsonPayload = decodeURIComponent(
-          atob(base64)
-            .split("")
-            .map(function (c) {
-              return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-            })
-            .join("")
-        );
+      // Redirect to /auth if there's no session (i.e., no valid JWT)
+      if (!data.session) {
+        router.push("/auth");
+        return;
+      }
 
-        const parsedJwt = JSON.parse(jsonPayload);
-        const currentTime = Math.floor(Date.now() / 1000);
+      const token = data.session.access_token;
 
-        // Check if the token is expired
-        if (parsedJwt.exp < currentTime) {
+      // Decode the JWT to check for expiration
+      const base64Url = token.split(".")[1];
+      const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+      const jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split("")
+          .map(function (c) {
+            return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+          })
+          .join("")
+      );
+
+      const parsedJwt = JSON.parse(jsonPayload);
+      const currentTime = Math.floor(Date.now() / 1000);
+
+      // Check if the token is expired
+      if (parsedJwt.exp < currentTime) {
+        await handleLogout();
+      } else {
+        // Set a timeout to log the user out when the token expires
+        const timeLeft = (parsedJwt.exp - currentTime) * 1000;
+        setTimeout(async () => {
           await handleLogout();
-        } else {
-          // Set a timeout to log the user out when the token expires
-          const timeLeft = (parsedJwt.exp - currentTime) * 1000;
-          setTimeout(async () => {
-            await handleLogout();
-          }, timeLeft);
-        }
+        }, timeLeft);
       }
     };
 
@@ -82,8 +87,7 @@ export default function AccountPage() {
         return (
           <>
             <MembershipDetails onSelectSection={handleSectionSelect} />
-                        <QuickLinks onSelectSection={handleSectionSelect} /> {/* Show QuickLinks only in overview */}
-
+            <QuickLinks onSelectSection={handleSectionSelect} /> {/* Show QuickLinks only in overview */}
             <Overview />
           </>
         );
@@ -121,7 +125,7 @@ export default function AccountPage() {
       </div>
 
       {/* Main content */}
-      <main className="flex-1 p-8  transition-all duration-300">
+      <main className="flex-1 p-8 transition-all duration-300">
         {renderContent()}
       </main>
     </div>
