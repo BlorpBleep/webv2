@@ -1,70 +1,82 @@
 "use client";
 
 /* eslint-disable react/display-name */
-import {useMemo, useState} from "react";
-import {Tabs, Tab, Card, CardBody, Image, Button, RadioGroup, Radio} from "@nextui-org/react";
-import get from "lodash/get";
-import NextLink from "next/link";
+import { useMemo, useState } from "react";
+import { Tabs, Tab, Card, CardBody, Image } from "@nextui-org/react";
 import NextImage from "next/image";
 
-import {shopCartStyles} from "./styles";
+// Importing icons from react-icons
+import { FaShieldAlt, FaUserSecret, FaMobileAlt, FaLock } from "react-icons/fa";
 
-import {title, subtitle, titleWrapper, sectionWrapper} from "@/components/primitives";
-import {PaletteIcon, MagicIcon, GamingConsoleIcon, StarIcon} from "@/components/icons";
-import {NextUILogo, CodeWindow} from "@/components";
-import landingContent from "@/content/landing";
-import {useIsMobile} from "@/hooks/use-media-query";
+import { shopCartStyles } from "./styles";
+import { title, subtitle, sectionWrapper, titleWrapper } from "@/components/primitives";
+import { useIsMobile } from "@/hooks/use-media-query";
 
-const themesTabs = (isMobile: boolean) => [
+const themesTabs = (isMobile) => [
   {
-    id: "nextui",
-    title: () => <p className="group-data-[selected=true]:text-primary">NextUI</p>,
+    id: "privacy",
+    title: () => <p className="group-data-[selected=true]:text-primary">Privacy</p>,
     icon: () => (
-      <NextUILogo
-        small
+      <FaShieldAlt
         className="text-default-400 group-data-[selected=true]:text-primary"
         size={isMobile ? 34 : 44}
       />
     ),
+    content: {
+      description: [
+        "Keep your browsing history & data private from prying eyes.",
+      ],
+    },
   },
   {
-    id: "modern",
-    title: () => <p className="group-data-[selected=true]:text-secondary">Modern</p>,
+    id: "anonymity",
+    title: () => <p className="group-data-[selected=true]:text-secondary">Anonymity</p>,
     icon: () => (
-      <PaletteIcon
-        className="group-data-[selected=true]:text-secondary"
+      <FaUserSecret
+        className="text-default-400 group-data-[selected=true]:text-secondary"
         size={isMobile ? 34 : 44}
       />
     ),
+    content: {
+      description: [
+        "Hide your IP address to stay anonymous online.",
+      ],
+    },
   },
   {
-    id: "elegant",
-    title: () => <p className="group-data-[selected=true]:text-foreground">Elegant</p>,
-    icon: () => <MagicIcon size={isMobile ? 34 : 44} />,
-  },
-  {
-    id: "retro",
-    title: () => <p className="group-data-[selected=true]:text-warning">Retro</p>,
+    id: "devices",
+    title: () => <p className="group-data-[selected=true]:text-foreground">Devices</p>,
     icon: () => (
-      <GamingConsoleIcon
-        className="group-data-[selected=true]:text-warning"
+      <FaMobileAlt
+        className="text-default-400 group-data-[selected=true]:text-foreground"
         size={isMobile ? 34 : 44}
       />
     ),
+    content: {
+      description: [
+        "Protect all devices with one CicadaVPN account.",
+      ],
+    },
+  },
+  {
+    id: "encryption",
+    title: () => <p className="group-data-[selected=true]:text-warning">Encryption</p>,
+    icon: () => (
+      <FaLock
+        className="text-default-400 group-data-[selected=true]:text-warning"
+        size={isMobile ? 34 : 44}
+      />
+    ),
+    content: {
+      description: [
+        "Secure data with military-grade encryption.",
+      ],
+    },
   },
 ];
 
-type Theme = "nextui" | "modern" | "elegant" | "retro";
-type Tab = {id: string; title: () => JSX.Element; icon: () => JSX.Element};
-
-const itemSizes = ["xs", "s", "m", "l", "xl"];
-
-const codeHighlights = {
-  nextui: "6-19",
-  modern: "26-39",
-  elegant: "46-59",
-  retro: "66-84",
-};
+type Theme = "privacy" | "anonymity" | "devices" | "encryption";
+type Tab = { id: string; title: () => JSX.Element; icon: () => JSX.Element; content: any };
 
 const CustomThemesExample = ({
   tabs,
@@ -75,8 +87,6 @@ const CustomThemesExample = ({
   selectedTheme: Theme;
   onChangeTheme: (theme: Theme) => void;
 }) => {
-  const [liked, setLiked] = useState(false);
-
   const slots = useMemo(
     () =>
       shopCartStyles({
@@ -90,7 +100,7 @@ const CustomThemesExample = ({
   };
 
   return (
-    <div className="flex flex-col gap-6 ">
+    <div className="flex flex-col gap-6">
       <Tabs
         disableAnimation
         disableCursorAnimation
@@ -123,136 +133,66 @@ const CustomThemesExample = ({
             <Image
               fill
               removeWrapper
-              alt="Shoes theme example"
+              alt="VPN Service Image"
               as={NextImage}
               className={slots.img()}
               sizes="100vw"
-              src="/images/shoes-1.png"
+              src="/images/vpn-privacy.png"
             />
           </div>
-          <div className={slots.contentWrapper()}>
-            <div className="relative flex flex-wrap items-baseline">
-              <h1 className={slots.title()}>Nike Adapt BB 2.0</h1>
-              <p className={slots.description()}>Consistent, customized fit, game-changing.</p>
-              <p className={slots.price()}>$279.97</p>
-              <p className={slots.previousPrice()}>$350</p>
-              <p className={slots.percentOff()}>20% off</p>
-            </div>
-            <RadioGroup
-              aria-label="select size"
-              classNames={{
-                base: "my-4",
-              }}
-              defaultValue="xs"
-              orientation="horizontal"
-            >
-              {itemSizes.map((itemSize) => (
-                <Radio
-                  key={itemSize}
-                  classNames={{
-                    wrapper: "hidden",
-                    labelWrapper: slots.sizeOption(),
-                    label: slots.sizeOptionLabel(),
-                  }}
-                  value={itemSize}
-                >
-                  {itemSize.toUpperCase()}
-                </Radio>
-              ))}
-            </RadioGroup>
-            <div className="flex space-x-4">
-              <Button
-                className={slots.buyButton()}
-                color="primary"
-                variant={selectedTheme === "nextui" ? "shadow" : "solid"}
-              >
-                Buy now
-              </Button>
-              <Button
-                className={slots.addToBagButton()}
-                color="primary"
-                radius="full"
-                variant="bordered"
-              >
-                Add to bag
-              </Button>
-            </div>
-          </div>
-          <Button
-            isIconOnly
-            aria-label="like"
-            className={slots.starButton()}
-            data-liked={liked}
-            radius="full"
-            variant="light"
-            onPress={() => setLiked((v) => !v)}
-          >
-            <StarIcon fill={liked ? "currentColor" : "none"} size={20} />
-          </Button>
         </CardBody>
       </Card>
-      <Button
-        aria-label="Learn more about theme customization"
-        as={NextLink}
-        className={slots.learnMoreButton()}
-        color="primary"
-        href="/docs/customization/customize-theme"
-        radius="full"
-        size="sm"
-        variant="flat"
-      >
-        Learn more
-      </Button>
     </div>
   );
 };
 
 export const CustomThemes = () => {
   const isMobile = useIsMobile();
-
   const tabs = themesTabs(isMobile);
   const [selectedTheme, setSelectedTheme] = useState<Theme>(tabs[0].id as Theme);
 
+  // Safeguard against undefined content by providing a fallback
+  const selectedContent = tabs.find((tab) => tab.id === selectedTheme)?.content || {
+    description: ["Default description."],
+  };
+
   return (
-    <section className={sectionWrapper({class: "mt-24 lg:mt-56"})}>
-      <div className="flex flex-col gap-8">
-        <div>
-          <div className={titleWrapper()}>
-            <h1 className={title({size: "lg"})}>Apply your own</h1>
-            <div>
-              <h1 className={title({color: "blue", size: "lg"})}>theming&nbsp;</h1>
-              <h1 className={title({size: "lg"})}>decisions.</h1>
-            </div>
+    <section className={sectionWrapper({ class: "mt-24 lg:mt-56" })}>
+      {/* Main Title moved to the right and aligned right with flex-start */}
+      <div className="flex justify-end">
+        <div className="w-full lg:w-1/2 text-right flex flex-col items-end">
+          <div className={`${titleWrapper()} flex items-start`}>
+            <h1 className={title({ size: "lg", class: "text-right" })}>Best VPN Service</h1>
+            <h1 className={title({ color: "blue", size: "lg", class: "text-right" })}>for Privacy&nbsp;</h1>
+            <h1 className={title({ size: "lg", class: "text-right" })}>& Anonymity</h1>
           </div>
-          <p className={subtitle()}>
-            NextUI provides a custom TailwindCSS plugin that allows you to customize the default
-            themes or create your own.
+          <p className={subtitle({ class: "text-right" })}>
+            Keep your internet activity hidden from anyone watching. This includes your ISP, hackers, advertisers, & the government.
           </p>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      </div>
+      
+      {/* Two-column layout below the title */}
+      <div className="flex flex-col gap-8 lg:flex-row">
+        {/* Left-hand side with dynamic content */}
+        <div className="w-full lg:w-1/2 p-6 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg shadow-md">
+          <div className="flex flex-col gap-4 text-gray-800">
+            {selectedContent.description.map((desc, index) => (
+              <p key={index} className={title({ size: "lg", class: "text-gray-800" })}>
+                {desc}
+              </p>
+            ))}
+          </div>
+        </div>
+
+        {/* Right-hand side with tabs and image */}
+        <div className="w-full lg:w-1/2">
           <CustomThemesExample
             selectedTheme={selectedTheme}
             tabs={tabs}
             onChangeTheme={setSelectedTheme}
           />
-          <CodeWindow
-            showWindowIcons
-            className="max-h-[440px] min-h-[390px]"
-            highlightLines={get(codeHighlights, selectedTheme)}
-            isScrollable={false}
-            language="jsx"
-            title="tailwind.config.js"
-            value={landingContent.themingCode}
-          />
         </div>
-      </div>
-      <div className="h-full dark:md:block absolute hidden -bottom-[10%] -left-[15%] -z-[1]">
-        <Image
-          removeWrapper
-          alt="custom themes background"
-          className="h-full"
-          src="/gradients/blue-purple-1.svg"
-        />
       </div>
     </section>
   );
