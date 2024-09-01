@@ -44,3 +44,8 @@ Thumbs.db
 !.yarn/plugins
 !.yarn/sdks
 !.yarn/versions
+/packages
+/packages/core
+/packages/core/theme
+/packages
+/packages
