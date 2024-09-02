@@ -4,12 +4,12 @@ import { FaRegCreditCard, FaLock, FaMobileAlt, FaUserFriends, FaRegUserCircle, F
 interface SidebarProps {
   onSelect: (section: string) => void;
   selected: string;
-  onLogout: () => void;  // Add this to handle logout
+  onLogout: () => void;
 }
 
 export default function Sidebar({ onSelect, selected, onLogout }: SidebarProps) {
   return (
-    <div className="w-64 bg-gray-100 dark:bg-gray-800 shadow-md min-h-screen">
+    <div className="w-64 bg-gray-100 dark:bg-gray-800 min-h-screen" style={{ boxShadow: 'none' }}> {/* Explicitly setting box-shadow to none */}
       <nav className="space-y-1 mt-4">
         <button
           onClick={() => onSelect("overview")}
