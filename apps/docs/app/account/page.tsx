@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Sidebar from "@/components/account/sidebar";
 import Membership from "@/components/account/membership";
@@ -16,6 +16,45 @@ export default function AccountPage() {
   const [selectedSection, setSelectedSection] = useState<string>("overview");
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    const checkJwtAndRedirect = async () => {
+      const { data: sessionData } = await supabase.auth.getSession();
+
+      if (!sessionData?.session) {
+        console.log("No session found, redirecting to login...");
+        router.push("/auth");
+        return;
+      }
+
+      const token = sessionData.session.access_token;
+
+      // Decode the JWT to check for expiration
+      const base64Url = token.split(".")[1];
+      const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+      const jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split("")
+          .map(function (c) {
+            return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+          })
+          .join("")
+      );
+
+      const parsedJwt = JSON.parse(jsonPayload);
+      const currentTime = Math.floor(Date.now() / 1000);
+
+      if (parsedJwt.exp < currentTime) {
+        console.log("Token expired, logging out...");
+        await supabase.auth.signOut();
+        router.push("/auth");
+      } else {
+        console.log("Token is valid.");
+      }
+    };
+
+    checkJwtAndRedirect();
+  }, [router]);
 
   const handleSectionSelect = (section: string) => {
     console.log("Section selected:", section);
