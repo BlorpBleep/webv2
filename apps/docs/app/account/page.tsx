@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Sidebar from "@/components/account/sidebar";
 import Membership from "@/components/account/membership";
 import Devices from "@/components/account/devices";
 import Accounts from "@/components/account/accounts";
 import Security from "@/components/account/security";
-import Overview from "@/components/account/accountoverview";
-import MembershipDetails from "@/components/account/MembershipDetails";
+import Vouchers from "@/components/account/vouchers";
+import AccountOverview from "@/components/account/accountoverview";
 import { supabase } from "@/utils/supabase";
 import { FaChevronRight } from "react-icons/fa";
 
@@ -17,49 +17,8 @@ export default function AccountPage() {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    const checkTokenExpiration = async () => {
-      const { data } = await supabase.auth.getSession();
-      if (data.session) {
-        const token = data.session.access_token;
-
-        // Decode the JWT to check for expiration
-        const base64Url = token.split(".")[1];
-        const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-        const jsonPayload = decodeURIComponent(
-          atob(base64)
-            .split("")
-            .map(function (c) {
-              return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-            })
-            .join("")
-        );
-
-        const parsedJwt = JSON.parse(jsonPayload);
-        const currentTime = Math.floor(Date.now() / 1000);
-
-        // Check if the token is expired
-        if (parsedJwt.exp < currentTime) {
-          await handleLogout();
-        } else {
-          // Set a timeout to log the user out when the token expires
-          const timeLeft = (parsedJwt.exp - currentTime) * 1000;
-          setTimeout(async () => {
-            await handleLogout();
-          }, timeLeft);
-        }
-      }
-    };
-
-    checkTokenExpiration();
-
-    // Optional: Check the token expiration periodically, e.g., every minute
-    const interval = setInterval(checkTokenExpiration, 60000); // Check every minute
-
-    return () => clearInterval(interval); // Cleanup on component unmount
-  }, [router]);
-
   const handleSectionSelect = (section: string) => {
+    console.log("Section selected:", section);
     setSelectedSection(section);
     setIsSidebarVisible(false);
   };
@@ -76,12 +35,7 @@ export default function AccountPage() {
   const renderContent = () => {
     switch (selectedSection) {
       case "overview":
-        return (
-          <>
-            <MembershipDetails onSelectSection={handleSectionSelect} />
-            <Overview />
-          </>
-        );
+        return <AccountOverview onSelectSection={handleSectionSelect} />;
       case "membership":
         return <Membership />;
       case "devices":
@@ -90,8 +44,10 @@ export default function AccountPage() {
         return <Accounts />;
       case "security":
         return <Security />;
+      case "vouchers":
+        return <Vouchers />;
       default:
-        return <Overview />;
+        return <AccountOverview onSelectSection={handleSectionSelect} />;
     }
   };
 
