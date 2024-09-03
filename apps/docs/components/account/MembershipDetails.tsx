@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaChevronRight, FaUser } from "react-icons/fa";
-import { supabase } from "@/utils/supabase"; // Ensure you have supabase client setup in your project
+import { supabase } from "@/utils/supabase";
 
 interface MembershipDetailsProps {
   onSelectSection: (section: string) => void;
@@ -16,42 +16,50 @@ export default function MembershipDetails({
 
   useEffect(() => {
     const fetchUserProfile = async () => {
-      const session = await supabase.auth.getSession();
-      if (session.error) return; // Handle session error
+      try {
+        const session = await supabase.auth.getSession();
+        if (session.error) {
+          console.error("Session error:", session.error);
+          return;
+        }
 
-      const userId = session.data.session?.user.id;
+        const userId = session.data.session?.user.id;
+        console.log("User ID: ", userId);
 
-      // Fetch user profile data
-      const { data: user, error: userError } = await supabase
-        .from("users")
-        .select("full_name, avatar_url, id")
-        .eq("id", userId)
-        .single();
+        // Fetch user profile data
+        const { data: user, error: userError } = await supabase
+          .from("users")
+          .select("full_name, avatar_url, id")
+          .eq("id", userId)
+          .single();
 
-      if (userError) {
-        console.error("Error fetching user profile:", userError.message);
-        return;
-      }
+        if (userError) {
+          console.error("Error fetching user profile:", userError.message);
+          return;
+        }
 
-      if (user) {
-        setFullName(user.full_name);
-        setAvatarUrl(user.avatar_url || null);
-        setUuid(formatUuid(user.id));
-        console.log("Avatar URL: ", user.avatar_url); // Debugging step
-      }
+        if (user) {
+          setFullName(user.full_name);
+          setAvatarUrl(user.avatar_url || null);
+          setUuid(formatUuid(user.id));
+          console.log("Avatar URL: ", user.avatar_url); // Debugging step
+        }
 
-      // Fetch the auth user data, including the created_at field
-      const { data: authData, error: authError } = await supabase.auth.getUser();
+        // Fetch the auth user data, including the created_at field
+        const { data: authData, error: authError } = await supabase.auth.getUser();
 
-      if (authError) {
-        console.error("Error fetching auth user data:", authError.message);
-      } else {
-        const createdAt = new Date(authData.user?.created_at);
-        const formattedDate = createdAt.toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-        });
-        setMemberSince(formattedDate);
+        if (authError) {
+          console.error("Error fetching auth user data:", authError.message);
+        } else {
+          const createdAt = new Date(authData.user?.created_at);
+          const formattedDate = createdAt.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+          });
+          setMemberSince(formattedDate);
+        }
+      } catch (error) {
+        console.error("Unexpected error:", error);
       }
     };
 
@@ -111,10 +119,6 @@ export default function MembershipDetails({
             <FaUser className="w-10 h-10 text-gray-500" />
           )}
         </div>
-
-
-
-
 
         <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mt-6">
           Premium plan

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FC, ReactNode, useEffect } from "react";
+import { useState, FC, useEffect } from "react";
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -10,14 +10,12 @@ import {
   Link,
   Button,
 } from "@nextui-org/react";
-import { clsx } from "@nextui-org/shared-utils";
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
-import { includes } from "lodash";
+import { clsx } from "@nextui-org/shared-utils";
 import { LargeLogo, SmallLogo, ThemeSwitch } from "@/components";
 import { MobileDrawer } from "@/components/MobileDrawer";
-import { FaBars } from "react-icons/fa"; // Import the icon for the hamburger
-import { FaArrowRight } from "react-icons/fa";
+import { FaBars, FaArrowRight } from "react-icons/fa";
 import { trackEvent } from "@/utils/va";
 
 export const Navbar: FC = () => {
@@ -58,9 +56,7 @@ export const Navbar: FC = () => {
         </NavbarContent>
 
         {/* Middle section: Navigation Links */}
-        <NavbarContent
-          className="basis-1/2 justify-center bg-transparent items-center hidden md:flex !justify-center"
-        >
+        <NavbarContent className="basis-1/2 justify-center bg-transparent items-center hidden md:flex !justify-center">
           <ul className="flex gap-4 justify-center items-center">
             <NavbarItem>
               <NextLink href="/pricing" passHref legacyBehavior>

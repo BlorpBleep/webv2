@@ -47,6 +47,11 @@ async function redirect() {
       permanent: true,
     },
     {
+      source: "/terms",
+      destination: "/docs/policies/subscription_terms",
+      permanent: true,
+    },
+    {
       source: "/v2",
       destination: "/blog/nextui-v2",
       permanent: true,

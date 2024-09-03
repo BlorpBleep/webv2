@@ -10,11 +10,10 @@ import Security from "@/components/account/security";
 import Vouchers from "@/components/account/vouchers";
 import AccountOverview from "@/components/account/accountoverview";
 import { supabase } from "@/utils/supabase";
-import { FaChevronRight } from "react-icons/fa";
+import { FaChevronLeft } from "react-icons/fa";
 
 export default function AccountPage() {
   const [selectedSection, setSelectedSection] = useState<string>("overview");
-  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -29,7 +28,6 @@ export default function AccountPage() {
 
       const token = sessionData.session.access_token;
 
-      // Decode the JWT to check for expiration
       const base64Url = token.split(".")[1];
       const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
       const jsonPayload = decodeURIComponent(
@@ -59,16 +57,11 @@ export default function AccountPage() {
   const handleSectionSelect = (section: string) => {
     console.log("Section selected:", section);
     setSelectedSection(section);
-    setIsSidebarVisible(false);
   };
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
     router.push("/auth");
-  };
-
-  const toggleSidebar = () => {
-    setIsSidebarVisible(!isSidebarVisible);
   };
 
   const renderContent = () => {
@@ -92,23 +85,24 @@ export default function AccountPage() {
 
   return (
     <div className="flex min-h-screen bg-gray-100 dark:bg-gray-900">
-      <div className="lg:hidden fixed top-[5rem] left-4 z-50">
-        <div onClick={toggleSidebar} className="tab" aria-label="Toggle sidebar">
-          <FaChevronRight />
-        </div>
-      </div>
-
-      <div
-        className={`sidebar ${isSidebarVisible ? "active" : ""} lg:relative lg:translate-x-0 lg:w-64`}
-      >
+      {/* Sidebar only on large screens */}
+      <div className="hidden lg:block lg:w-64">
         <Sidebar onSelect={handleSectionSelect} selected={selectedSection} onLogout={handleLogout} />
       </div>
 
-      <main
-        className={`flex-1 p-8 transition-transform transform ${
-          isSidebarVisible ? "lg:translate-x-0" : ""
-        }`}
-      >
+      {/* Main Content */}
+      <main className="flex-1 p-8 transition-transform transform">
+        {/* Back Link */}
+        {selectedSection !== "overview" && (
+          <button
+            onClick={() => setSelectedSection("overview")}
+            className="flex items-center mb-4 text-gray-700 dark:text-gray-300 hover:text-primary"
+          >
+            <FaChevronLeft className="mr-2" />
+            Back to Account Overview
+          </button>
+        )}
+
         {renderContent()}
       </main>
     </div>
