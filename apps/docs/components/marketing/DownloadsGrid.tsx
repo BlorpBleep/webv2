@@ -71,7 +71,7 @@ export const DownloadsGrid = () => {
         {/* Right-hand side image */}
         <div className="relative z-10 w-full lg:w-1/2 flex justify-center items-center hidden md:flex">
           <Image
-          isZoomed
+          
             src="/images/cicada-downloader.png" // Updated image source
             alt="CicadaVPN Downloader"
             width={400}
