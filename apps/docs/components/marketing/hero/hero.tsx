@@ -3,7 +3,7 @@
 import NextLink from "next/link";
 import { Button } from "@nextui-org/react";
 import { ArrowRightIcon } from "@nextui-org/shared-icons";
-import {Image} from "@nextui-org/image";
+import Image from "next/image"; // Import Next.js Image
 import { FaWindows, FaAmazon, FaAndroid, FaApple, FaGamepad, FaChrome, FaFirefox, FaLinux, FaTv, FaShieldAlt } from 'react-icons/fa';
 import { SiAppletv, SiAndroid } from 'react-icons/si';
 import { MdOutlineDesktopMac } from 'react-icons/md';
