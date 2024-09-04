@@ -47,19 +47,39 @@ export default function PricingPage() {
               Buy a VPN <span className="text-blue-600">to Unblock the Web</span>:{" "}
               <span className="text-green-600">2 Years for 2.19 €/mo</span>
             </h1>
-            <h2 className="text-white text-xl sm:text-2xl">
-  Offer Ends In{" "}
-  <span className="text-red-600">
-    {`${timeLeft.minutes}Min:${timeLeft.seconds}Sec`}
-  </span>
-</h2>
 
+            {/* Countdown Timer */}
+            <h2 className="text-xl sm:text-2xl">
+              <span className="text-black dark:text-white">Offer Ends In </span>
+              <span className="text-red-600 dark:text-red-400">
+                {`${timeLeft.minutes}Min:${timeLeft.seconds}Sec`}
+              </span>
+            </h2>
           </div>
 
           {/* Offer Boxes */}
-          <div className="flex flex-wrap justify-center gap-6 items-start">
-            {/* Best Value Offer - Displayed first on small screens */}
-            <div className="order-1 sm:order-2 border border-green-600 p-6 rounded-lg bg-gradient-to-br from-green-500 to-green-700 max-w-md flex flex-col justify-between shadow-lg relative sm:min-h-[400px] min-h-[300px] sm:self-center">
+          <div className="flex flex-wrap md:flex-nowrap justify-center gap-6 items-start w-full">
+            {/* Standard Offer */}
+            <div className="order-2 md:order-1 border border-gray-300 dark:border-gray-600 p-6 rounded-lg bg-gray-50 dark:bg-gray-900 flex-grow flex-shrink flex-basis-[30%] flex flex-col justify-between shadow-md sm:min-h-[300px] min-h-[300px] sm:self-center">
+              <AiOutlineGlobal size={40} className="text-gray-600 dark:text-gray-400 mb-4" />
+              <h3 className="text-lg font-bold text-black dark:text-white">
+                Cicada VPN - 1 Year Plan
+              </h3>
+              <p className="text-gray-700 dark:text-gray-400 mt-2 flex-grow">
+                3.49 €/mo for 1 year of secure VPN access.
+              </p>
+              <a
+                href="https://buy.stripe.com/28oaFgeuafU1acwbIM"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-8 rounded-lg text-sm flex items-center mt-4 w-[60%] mx-auto justify-center"
+              >
+                Checkout →
+              </a>
+            </div>
+
+            {/* Best Value Offer - First on small screens, middle on larger */}
+            <div className="order-1 md:order-2 border border-green-600 p-6 rounded-lg bg-gradient-to-br from-green-500 to-green-700 flex-grow flex-shrink flex-basis-[30%] flex flex-col justify-between shadow-lg relative sm:min-h-[400px] min-h-[300px] sm:self-center">
               <div className="absolute top-0 left-0 bg-green-700 text-white px-4 py-1 text-xs font-bold rounded-tl-lg rounded-br-lg">
                 Best Value
               </div>
@@ -80,28 +100,9 @@ export default function PricingPage() {
               </a>
             </div>
 
-            {/* Standard Offer */}
-            <div className="order-2 sm:order-1 border border-gray-300 dark:border-gray-600 p-6 rounded-lg bg-gray-50 dark:bg-gray-900 max-w-sm flex flex-col justify-between shadow-md sm:min-h-[300px] min-h-[300px] sm:self-center">
-              <AiOutlineGlobal size={40} className="text-gray-600 mb-4" />
-              <h3 className="text-lg font-bold text-black dark:text-white">
-                Cicada VPN - 1 Year Plan
-              </h3>
-              <p className="text-gray-700 dark:text-gray-400 mt-2 flex-grow">
-                3.49 €/mo for 1 year of secure VPN access.
-              </p>
-              <a
-                href="https://buy.stripe.com/28oaFgeuafU1acwbIM"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-8 rounded-lg text-sm flex items-center mt-4 w-[60%] mx-auto justify-center"
-              >
-                Checkout →
-              </a>
-            </div>
-
             {/* Basic Offer */}
-            <div className="order-3 border border-gray-300 dark:border-gray-600 p-6 rounded-lg bg-gray-50 dark:bg-gray-900 max-w-sm flex flex-col justify-between shadow-md sm:min-h-[300px] min-h-[300px] sm:self-center">
-              <AiOutlineGlobal size={40} className="text-gray-600 mb-4" />
+            <div className="order-3 md:order-3 border border-gray-300 dark:border-gray-600 p-6 rounded-lg bg-gray-50 dark:bg-gray-900 flex-grow flex-shrink flex-basis-[30%] flex flex-col justify-between shadow-md sm:min-h-[300px] min-h-[300px] sm:self-center">
+              <AiOutlineGlobal size={40} className="text-gray-600 dark:text-gray-400 mb-4" />
               <h3 className="text-lg font-bold text-black dark:text-white">
                 Cicada VPN - 6 Months Plan
               </h3>
@@ -124,8 +125,6 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* Full-width separator line */}
-        {/* Separator line removed as per request */}
         <div className="text-center text-black dark:text-white mt-12 text-2xl font-bold">
           See What’s Included in All Plans
         </div>
