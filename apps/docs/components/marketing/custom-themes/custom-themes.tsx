@@ -158,16 +158,17 @@ export const CustomThemes = () => {
 
   return (
     <section className={sectionWrapper({ class: "mt-24 lg:mt-56" })}>
-      {/* Main Title moved to the right and aligned right with flex-start */}
-      <div className="flex justify-end">
-        <div className="w-full lg:w-1/2 text-right flex flex-col items-end">
-          <div className={`${titleWrapper()} flex items-start`}>
-            <h1 className={title({ size: "lg", class: "text-right" })}>Best VPN Service</h1>
-            <h1 className={title({ color: "blue", size: "lg", class: "text-right" })}>for Privacy&nbsp;</h1>
-            <h1 className={title({ size: "lg", class: "text-right" })}>& Anonymity</h1>
+      {/* Main Title moved to the right and aligned right */}
+      <div className="flex justify-end !flex-end">
+        <div className="w-full lg:w-1/2 text-right">
+          <div className={titleWrapper()}>
+              <h1 className={title({ size: "lg", class: "text-right" })}>Best VPN Service</h1>
+              <h1 className={title({ color: "blue", size: "lg", class: "text-right" })}>for Privacy&nbsp;</h1>
+              <h1 className={title({ size: "lg", class: "text-right" })}>& Anonymity</h1>
           </div>
-          <p className={subtitle({ class: "text-right" })}>
-            Keep your internet activity hidden from anyone watching. This includes your ISP, hackers, advertisers, & the government.
+          
+          <p className={subtitle({ class: "text-right" })} style={{ width: 'auto' }}>
+          Keep your internet activity hidden from anyone watching. This includes your ISP, hackers, advertisers, & the government.
           </p>
         </div>
       </div>
