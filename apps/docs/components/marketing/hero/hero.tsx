@@ -3,7 +3,7 @@
 import NextLink from "next/link";
 import { Button } from "@nextui-org/react";
 import { ArrowRightIcon } from "@nextui-org/shared-icons";
-import Image from "next/image";
+import {Image} from "@nextui-org/image";
 import { FaWindows, FaAmazon, FaAndroid, FaApple, FaGamepad, FaChrome, FaFirefox, FaLinux, FaTv, FaShieldAlt } from 'react-icons/fa';
 import { SiAppletv, SiAndroid } from 'react-icons/si';
 import { MdOutlineDesktopMac } from 'react-icons/md';
@@ -69,6 +69,7 @@ export const Hero = () => {
         {/* Right-hand side image */}
         <div className="relative z-10 w-full lg:w-1/2 flex justify-center items-center hidden md:flex">
           <Image
+          isZoomed
             src="/images/cicada.png"
             alt="CicadaVPN"
             width={400}

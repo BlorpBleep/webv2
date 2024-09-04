@@ -2,15 +2,14 @@
 
 import NextLink from "next/link";
 import { ArrowRightIcon } from "@nextui-org/shared-icons";
-import Image from "next/image";
+import {Image} from "@nextui-org/image";
 import { FaWindows, FaAmazon, FaAndroid, FaApple, FaGamepad, FaChrome, FaFirefox, FaLinux, FaTv, FaShieldAlt } from 'react-icons/fa';
 import { SiAppletv, SiAndroid } from 'react-icons/si';
 import { MdOutlineDesktopMac } from 'react-icons/md';
 import { title, subtitle } from "@/components/primitives";
 import { trackEvent } from "@/utils/va";
 import { DownloadButton } from "@/components/marketing/downloads/download-button";
-import { Tooltip, Button } from "@nextui-org/react";
-
+import { Button } from "@nextui-org/react";
 
 // Array of paths for different platforms
 const downloadPaths = {
@@ -26,33 +25,7 @@ const downloadPaths = {
   firefox: "https://addons.mozilla.org/en-US/firefox/addon/vpn-addon",
 };
 
-// Function to detect OS and return the corresponding download link
-const detectOS = () => {
-  const userAgent = window.navigator.userAgent;
-
-  if (userAgent.indexOf("Windows") !== -1) {
-    return downloadPaths.windows;
-  } else if (userAgent.indexOf("Mac OS") !== -1) {
-    return downloadPaths.macos;
-  } else if (userAgent.indexOf("Linux") !== -1) {
-    return downloadPaths.linux;
-  } else if (/iPhone|iPad|iPod/i.test(userAgent)) {
-    return downloadPaths.ios;
-  } else if (/Android/i.test(userAgent)) {
-    return downloadPaths.android;
-  } else if (userAgent.indexOf("Amazon") !== -1) {
-    return downloadPaths.amazon;
-  }
-
-  // Default fallback to Windows
-  return downloadPaths.windows;
-};
-
 export const DownloadsGrid = () => {
-  const handleDownloadClick = () => {
-    const downloadLink = detectOS();
-    window.open(downloadLink, "_blank");
-  };
 
   return (
     <>
@@ -84,9 +57,9 @@ export const DownloadsGrid = () => {
             >
               Get the Deal | 82% Off
             </Button>
-            <Tooltip content={"Developers love Next.js"}>
-            <DownloadButton detectOS={detectOS} /> 
-            </Tooltip>
+            
+            <DownloadButton /> 
+            
           </div>
 
           <div className="flex items-center justify-center md:justify-start text-lg mt-2">
@@ -98,6 +71,7 @@ export const DownloadsGrid = () => {
         {/* Right-hand side image */}
         <div className="relative z-10 w-full lg:w-1/2 flex justify-center items-center hidden md:flex">
           <Image
+          isZoomed
             src="/images/cicada-downloader.png" // Updated image source
             alt="CicadaVPN Downloader"
             width={400}
@@ -134,6 +108,8 @@ export const DownloadsGrid = () => {
           ))}
         </div>
       </section>
+
+      
     </>
   );
 };
