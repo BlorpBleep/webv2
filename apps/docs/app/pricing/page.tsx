@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { AiOutlineGlobal } from "react-icons/ai";
+import { title, subtitle } from "@/components/primitives";
 
 // Function to calculate time remaining
 const calculateTimeLeft = (expiryTime: Date) => {
@@ -43,10 +44,13 @@ export default function PricingPage() {
       <main className="relative container mx-auto w-full sm:w-[90%] lg:w-[70%] z-10 px-4 sm:px-6 lg:px-8 min-h-[calc(100vh_-_64px_-_108px)] mb-12 flex-grow bg-white dark:bg-black pt-8">
         <section className="w-full flex flex-col items-center mt-4 sm:mt-6 gap-6 sm:gap-8 mx-auto">
           <div className="text-center w-full mb-4 sm:mb-8">
-            <h1 className="mb-4 font-bold text-[28px] sm:text-[36px] leading-[34px] sm:leading-[40px] text-black dark:text-white">
-              Buy a VPN <span className="text-blue-600">to Unblock the Web</span>:{" "}
-              <span className="text-green-600">2 Years for 2.19 €/mo</span>
-            </h1>
+            <div className="text-center leading-8 md:leading-10 ">
+              <h1 className={title({ color: "violet", size: "lg" })}>Get 82% off</h1>
+              <div>
+                <h1 className={title({ size: "lg" })}>CicadaVPN&nbsp;</h1>
+                <h1 className={title({ color: "green", size: "lg" })}>+ 3 months free for a friend</h1>
+              </div>
+            </div>
 
             {/* Countdown Timer */}
             <h2 className="text-xl sm:text-2xl">
@@ -59,20 +63,20 @@ export default function PricingPage() {
 
           {/* Offer Boxes */}
           <div className="flex flex-wrap md:flex-nowrap justify-center gap-6 items-start w-full">
-            {/* Standard Offer */}
-            <div className="order-2 md:order-1 border border-gray-300 dark:border-gray-600 p-6 rounded-lg bg-gray-50 dark:bg-gray-900 flex-grow flex-shrink flex-basis-[30%] flex flex-col justify-between shadow-md sm:min-h-[300px] min-h-[300px] sm:self-center">
+            {/* Standard Offer - Left with gradient */}
+            <div className="order-2 md:order-1 border border-gray-300 dark:border-gray-600 p-6 rounded-lg bg-gradient-to-br from-blue-200 to-blue-400 dark:from-blue-700 dark:to-blue-900 flex-grow flex-shrink flex-basis-[30%] flex flex-col justify-between shadow-md sm:min-h-[300px] min-h-[300px] sm:self-center">
               <AiOutlineGlobal size={40} className="text-gray-600 dark:text-gray-400 mb-4" />
-              <h3 className="text-lg font-bold text-black dark:text-white">
+              <h3 className="text-2xl font-bold text-black dark:text-white">
                 Cicada VPN - 1 Year Plan
               </h3>
-              <p className="text-gray-700 dark:text-gray-400 mt-2 flex-grow">
+              <p className="text-xl text-gray-700 dark:text-gray-400 mt-4 flex-grow">
                 3.49 €/mo for 1 year of secure VPN access.
               </p>
               <a
                 href="https://buy.stripe.com/28oaFgeuafU1acwbIM"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-8 rounded-lg text-sm flex items-center mt-4 w-[60%] mx-auto justify-center"
+                className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-4 rounded-lg text-lg flex items-center mt-6 w-[60%] mx-auto justify-center"
               >
                 Checkout →
               </a>
@@ -84,36 +88,36 @@ export default function PricingPage() {
                 Best Value
               </div>
               <AiOutlineGlobal size={50} className="text-white mb-6" />
-              <h3 className="text-xl font-bold text-white">
+              <h3 className="text-3xl font-bold text-white">
                 Cicada VPN - 2 Years + 2 Months FREE
               </h3>
-              <p className="text-gray-200 mt-2 flex-grow">
+              <p className="text-2xl text-gray-200 mt-4 flex-grow">
                 2.19 €/mo for enhanced privacy and global access.
               </p>
               <a
                 href="https://buy.stripe.com/28oaFgeuafU1acwbIM"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white hover:bg-gray-100 text-green-700 font-bold py-3 px-8 rounded-lg text-sm flex items-center mt-4 w-[60%] mx-auto justify-center"
+                className="bg-white hover:bg-gray-100 text-green-700 font-bold py-4 rounded-lg text-lg flex items-center mt-6 w-[60%] mx-auto justify-center"
               >
                 Checkout →
               </a>
             </div>
 
-            {/* Basic Offer */}
-            <div className="order-3 md:order-3 border border-gray-300 dark:border-gray-600 p-6 rounded-lg bg-gray-50 dark:bg-gray-900 flex-grow flex-shrink flex-basis-[30%] flex flex-col justify-between shadow-md sm:min-h-[300px] min-h-[300px] sm:self-center">
+            {/* Basic Offer - Right with gradient */}
+            <div className="order-3 md:order-3 border border-gray-300 dark:border-gray-600 p-6 rounded-lg bg-gradient-to-bl from-blue-200 to-blue-400 dark:from-blue-700 dark:to-blue-900 flex-grow flex-shrink flex-basis-[30%] flex flex-col justify-between shadow-md sm:min-h-[300px] min-h-[300px] sm:self-center">
               <AiOutlineGlobal size={40} className="text-gray-600 dark:text-gray-400 mb-4" />
-              <h3 className="text-lg font-bold text-black dark:text-white">
+              <h3 className="text-2xl font-bold text-black dark:text-white">
                 Cicada VPN - 6 Months Plan
               </h3>
-              <p className="text-gray-700 dark:text-gray-400 mt-2 flex-grow">
+              <p className="text-xl text-gray-700 dark:text-gray-400 mt-4 flex-grow">
                 5.99 €/mo for 6 months of VPN protection.
               </p>
               <a
                 href="https://buy.stripe.com/28oaFgeuafU1acwbIM"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-8 rounded-lg text-sm flex items-center mt-4 w-[60%] mx-auto justify-center"
+                className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-4 rounded-lg text-lg flex items-center mt-6 w-[60%] mx-auto justify-center"
               >
                 Checkout →
               </a>

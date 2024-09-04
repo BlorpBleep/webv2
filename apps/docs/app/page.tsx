@@ -47,8 +47,7 @@ export default async function Home() {
         <InstallBanner />
         <Community />
         <Spacer y={24} />
-        <Four />
-        <Spacer y={24} />
+        
       </section>
     </main>
   );
