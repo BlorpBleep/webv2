@@ -32,7 +32,7 @@ export const Hero = () => {
             </div>
           </div>
           <h2 className={subtitle({ fullWidth: true, class: "text-center md:text-left" })}>
-            Choose a 2-year plan, get 4 months CicadaVPN protection for free.
+            Choose a 2-year plan, get an extra 4 months CicadaVPN protection for free.
           </h2>
           <div className="flex flex-col md:flex-row items-center gap-4 md:mb-0">
             <Button
