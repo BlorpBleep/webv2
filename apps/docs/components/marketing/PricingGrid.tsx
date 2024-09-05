@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Card } from "@nextui-org/react";
 import { AiOutlineGlobal } from "react-icons/ai";
 
-export const PricingGrid = () => {
+const PricingGrid = () => {
   const [selectedPlan, setSelectedPlan] = useState("2-years");
   const [dedicatedIP, setDedicatedIP] = useState(false); // State for the dedicated Family Protector checkbox
 
@@ -60,7 +60,7 @@ export const PricingGrid = () => {
           <Card className="flex-1 md:flex-none bg-[#242538] overflow-visible rounded-lg flex flex-col justify-between h-[30vh] relative w-full md:w-3/5 border-2 border-[#fc0]">
             {/* Offer Badge */}
             <div className="absolute left-1/2 top-[-15px] transform -translate-x-1/2 bg-[#fc0] text-[#242538] font-bold px-4 py-1 rounded-full text-center w-auto min-w-[150px]" style={{ zIndex: 100 }}>
-              <span className="text-xs uppercase whitespace-nowrap">Best Value Save 82%</span>
+              <span className="text-xs uppercase whitespace-nowrap">Best Value Save 83%</span>
             </div>
             <div className="absolute top-4 right-4">
               <input
@@ -176,3 +176,5 @@ export const PricingGrid = () => {
     </div>
   );
 };
+
+export default PricingGrid;

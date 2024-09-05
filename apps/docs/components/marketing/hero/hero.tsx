@@ -25,14 +25,14 @@ export const Hero = () => {
       <section className="flex relative overflow-hidden lg:overflow-visible w-full flex-nowrap translate-y-[-5%] justify-between items-center h-[calc(80vh_-_64px)] 2xl:h-[calc(64vh_-_44px)]">
         <div className="flex relative z-20 flex-col gap-4 w-full lg:w-1/2 xl:mt-10">
           <div className="text-center leading-8 md:leading-10 md:text-left">
-            <h1 className={title({ color: "violet", size: "lg" })}>Get 82% off</h1>
+            <h1 className={title({ color: "violet", size: "lg" })}>Get 83% Off</h1>
             <div>
               <h1 className={title({  size: "lg" })}>CicadaVPN&nbsp;</h1>
-              <h1 className={title({ color: "green", size: "lg" })}>+ 3 months free for a friend</h1>
+              <h1 className={title({ color: "green", size: "lg" })}>+ 4 Months Free</h1>
             </div>
           </div>
           <h2 className={subtitle({ fullWidth: true, class: "text-center md:text-left" })}>
-            Choose a 2-year plan, gift your friend 3 months CicadaVPN protection for free.
+            Choose a 2-year plan, get 4 months CicadaVPN protection for free.
           </h2>
           <div className="flex flex-col md:flex-row items-center gap-4 md:mb-0">
             <Button
@@ -57,7 +57,7 @@ export const Hero = () => {
                 });
               }}
             >
-              Get the Deal | 82% Off
+              Get The Deal | 2.03€/mo
             </Button>
           </div>
           <div className="flex items-center justify-center md:justify-start text-lg mt-2">

@@ -127,7 +127,7 @@ export const Navbar: FC = () => {
                 radius="full"
                 size="lg"
               >
-                Get 82% Off
+                Get 83% Off
               </Button>
             </NextLink>
           </NavbarItem>

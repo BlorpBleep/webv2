@@ -55,7 +55,7 @@ export const DownloadsGrid = () => {
               radius="full"
               size="lg"
             >
-              Get the Deal | 82% Off
+              Get the Deal | 83% Off
             </Button>
             
             <DownloadButton /> 
