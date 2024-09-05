@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, CardFooter, CardBody, CardHeader, Avatar, Image } from "@nextui-org/react";
-import { format, parseISO } from "date-fns";
+import { format } from "date-fns";
 import NextLink from "next/link";
 import { motion } from "framer-motion";
 
@@ -21,9 +21,10 @@ const BlogPostCard = ({ title, url, date, description, author, image }: BlogPost
   let formattedDate = "Unknown date";
 
   try {
-    formattedDate = format(parseISO(date), "LLLL d, yyyy");
+    const parsedDate = new Date(date); // Use new Date() to handle Substack date format
+    formattedDate = format(parsedDate, "LLLL d, yyyy"); // Format the date correctly
   } catch (error) {
-    console.error("Invalid date format:", error);
+    console.error("Error parsing or formatting date:", error);
   }
 
   return (
@@ -70,12 +71,19 @@ const BlogPostCard = ({ title, url, date, description, author, image }: BlogPost
                 />
               </CardBody>
 
-              <CardFooter className="flex justify-between items-center">
-                {/* Display the formatted date */}
-                <time className="block text-small text-white" dateTime={date}>
+              <CardFooter className="flex justify-between items-end">
+                {/* Display the formatted date in the bottom left corner */}
+                <time className="block text-small text-white absolute bottom-2 left-2" dateTime={date}>
                   {formattedDate}
                 </time>
-                {author?.avatar && <Avatar size="sm" src={author.avatar} />}
+                {/* Display the avatar in the bottom right corner */}
+                {author?.avatar && (
+                  <Avatar
+                    size="sm"
+                    src={author.avatar}
+                    className="absolute bottom-2 right-2"
+                  />
+                )}
               </CardFooter>
             </div>
           </Card>
@@ -112,12 +120,19 @@ const BlogPostCard = ({ title, url, date, description, author, image }: BlogPost
               />
             </CardBody>
 
-            <CardFooter className="flex justify-between items-center">
-              {/* Display the formatted date */}
-              <time className="block text-small text-white" dateTime={date}>
+            <CardFooter className="flex justify-between items-end">
+              {/* Display the formatted date in the bottom left corner */}
+              <time className="block text-small text-white absolute bottom-2 left-2" dateTime={date}>
                 {formattedDate}
               </time>
-              {author?.avatar && <Avatar size="sm" src={author.avatar} />}
+              {/* Display the avatar in the bottom right corner */}
+              {author?.avatar && (
+                <Avatar
+                  size="sm"
+                  src={author.avatar}
+                  className="absolute bottom-2 right-2"
+                />
+              )}
             </CardFooter>
           </div>
         </Card>

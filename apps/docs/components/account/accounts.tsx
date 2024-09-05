@@ -203,18 +203,6 @@ export default function Accounts() {
         ) : (
           <p>No accounts found.</p>
         )}
-        <div className="mt-4">
-          <button
-            className="w-full flex justify-between items-center px-2 py-3 text-lg font-semibold rounded-md text-white bg-primary-600 hover:bg-primary-500 dark:bg-primary-700 dark:hover:bg-primary-600 transition-colors"
-            onClick={addNewAccount}
-            disabled={creating}
-          >
-            <div className="flex items-center">
-              <FaPlus className="w-5 h-5 text-white mr-2" />
-              <span>{creating ? "Creating Account..." : "Add New Account"}</span>
-            </div>
-          </button>
-        </div>
       </div>
 
       {selectedAccount && (
