@@ -1,5 +1,5 @@
 // File: app/api/webhooks/stripe/route.ts
-// Use this command to run local and listen to webhooks for 90 days:
+// Use this command to run locally and listen to webhooks for 90 days:
 // stripe listen --forward-to localhost:3000/api/webhooks/stripe
 
 import { buffer } from 'micro';
@@ -12,11 +12,9 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2024-06-20',
 });
 
-export const config = {
-  api: {
-    bodyParser: false, // Stripe requires the raw body for signature verification
-  },
-};
+// New Next.js 13 segment config to disable body parsing
+export const runtime = 'nodejs'; // You must add this
+export const bodyParser = false;  // Disable Next.js' built-in body parser
 
 // Webhook handler
 export async function POST(req: Request) {
