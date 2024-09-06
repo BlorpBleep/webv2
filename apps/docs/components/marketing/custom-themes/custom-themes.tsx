@@ -177,9 +177,9 @@ export const CustomThemes = () => {
       <div className="flex flex-col gap-8 lg:flex-row">
         {/* Left-hand side with dynamic content */}
         <div className="w-full lg:w-1/2 p-6 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg shadow-md">
-          <div className="flex flex-col gap-4 text-gray-800">
+          <div className="flex flex-col gap-4 text-white">
             {selectedContent.description.map((desc, index) => (
-              <p key={index} className={title({ size: "lg", class: "text-gray-800" })}>
+              <p key={index} className={title({ size: "lg", class: "text-white" })}>
                 {desc}
               </p>
             ))}
