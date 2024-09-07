@@ -53,13 +53,7 @@ export default function PricingPage() {
           className="py-4 shadow-lg bg-white dark:bg-gray-800 rounded-lg w-full lg:w-[33%] lg:h-[500px] border-2 border-gradient-to-r from-[#F54180] to-[#338EF7] cursor-pointer relative order-1 lg:order-2"
           as="a" href="https://buy.stripe.com/3cs3cOgCi0Z784obIN"
         >
-          {/* Badge */}
-          <Badge 
-            className="absolute top-3 right-3 z-50 bg-blue-600 text-white rounded-full px-4 py-2"
-            style={{ fontSize: '1rem', zIndex: 10 }}
-          >
-            Most Popular
-          </Badge>
+
 
           <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
             <p className="text-tiny uppercase font-bold text-gray-900 dark:text-gray-200">Best Value</p>
