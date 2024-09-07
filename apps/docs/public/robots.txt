@@ -2,8 +2,13 @@
 User-agent: *
 Allow: /
 
+# *
+User-agent: *
+Disallow: /admin
+Disallow: /private
+
 # Host
-Host: https://nextui.org
+Host: https://cicadavpn.com
 
 # Sitemaps
-Sitemap: https://nextui.org/sitemap.xml
+Sitemap: https://cicadavpn.com/sitemap.xml
