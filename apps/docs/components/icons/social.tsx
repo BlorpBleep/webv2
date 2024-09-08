@@ -69,6 +69,8 @@ const TwitterIcon: React.FC<IconSvgProps> = ({size = 24, width, height, ...props
   );
 };
 
+
+
 const GithubIcon: React.FC<IconSvgProps> = ({size = 24, width, height, ...props}) => {
   return (
     <svg height={size || height} viewBox="0 0 24 24" width={size || width} {...props}>
@@ -453,7 +455,46 @@ const TypescriptIcon: React.FC<IconSvgProps> = ({width = "1em", height = "1em", 
   );
 };
 
+const SubstackIcon: React.FC<IconSvgProps> = ({size = 24, width, height, ...props}) => {
+  return (
+    <svg height={size || height} viewBox="0 0 24 24" width={size || width} {...props}>
+
+      <path d="M22.539 8.242H1.46V5.406h21.08zM1.46 10.812V24L12 18.11L22.54 24V10.812zM22.54 0H1.46v2.836h21.08z"
+      fill="currentColor"
+      />
+    </svg>
+  );
+};
+
+const YouTubeIcon: React.FC<IconSvgProps> = ({ size = 24, width, height, ...props }) => {
+  return (
+    <svg height={size || height} viewBox="0 0 24 24" width={size || width} {...props}>
+      <path
+        d="M23.498 6.186c-.26-1.5-1.5-2.675-2.998-2.91C17.992 3 12 3 12 3s-5.993 0-8.502.276C2 3.511.76 4.686.5 6.185 0 8.125 0 12 0 12s0 3.875.5 5.815c.26 1.5 1.5 2.675 2.998 2.91C6.007 21 12 21 12 21s5.993 0 8.502-.276c1.498-.236 2.737-1.41 2.998-2.91C24 15.875 24 12 24 12s0-3.875-.502-5.814zM9.545 15.568V8.432l6.36 3.568-6.36 3.568z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+};
+const InstagramIcon: React.FC<IconSvgProps> = ({ size = 24, width, height, ...props }) => {
+  return (
+    <svg height={size || height} viewBox="0 0 24 24" width={size || width} {...props}>
+      <path
+        d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.34 3.608 1.316.975.975 1.254 2.243 1.316 3.608.058 1.267.07 1.647.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.34 2.633-1.316 3.608-.975.975-2.243 1.254-3.608 1.316-1.267.058-1.647.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.34-3.608-1.316-.975-.975-1.254-2.243-1.316-3.608-.058-1.267-.07-1.647-.07-4.85s.012-3.584.07-4.85c.062-1.366.34-2.633 1.316-3.608.975-.975 2.243-1.254 3.608-1.316C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.75 0 8.332.015 7.053.072 5.746.13 4.622.37 3.68 1.31c-.94.94-1.18 2.064-1.237 3.373C2.015 5.667 2 6.084 2 12s.015 6.332.072 7.61c.057 1.309.297 2.433 1.237 3.373.94.94 2.064 1.18 3.373 1.237 1.279.057 1.697.072 5.318.072s4.039-.015 5.318-.072c1.309-.057 2.433-.297 3.373-1.237.94-.94 1.18-2.064 1.237-3.373.057-1.279.072-1.697.072-5.318s-.015-4.039-.072-5.318c-.057-1.309-.297-2.433-1.237-3.373-.94-.94-2.064-1.18-3.373-1.237C15.668.015 15.25 0 12 0z"
+        fill="currentColor"
+      />
+      <path
+        d="M12 5.838A6.162 6.162 0 0 0 5.838 12 6.162 6.162 0 0 0 12 18.162 6.162 6.162 0 0 0 18.162 12 6.162 6.162 0 0 0 12 5.838zm0 10.124A3.962 3.962 0 0 1 8.038 12 3.962 3.962 0 0 1 12 8.038 3.962 3.962 0 0 1 15.962 12 3.962 3.962 0 0 1 12 15.962zM18.406 4.594a1.44 1.44 0 1 0-2.88 0 1.44 1.44 0 0 0 2.88 0z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+};
+
+
 export {
+  InstagramIcon,
+  YouTubeIcon,
   TwitterIcon,
   DiscordIcon,
   GithubIcon,
@@ -473,4 +514,5 @@ export {
   JavascriptIcon,
   TypescriptIcon,
   BunIcon,
+  SubstackIcon,
 };

@@ -1,4 +1,4 @@
-import {DiscordIcon, GithubIcon, TwitterIcon} from "@/components/icons";
+import {DiscordIcon, GithubIcon, SubstackIcon, TwitterIcon, YouTubeIcon, InstagramIcon} from "@/components/icons";
 
 export const TWITTER_USER_NAME = "getnextui";
 export const SITE_URL = "https://nextui.org";
@@ -22,7 +22,28 @@ export const communityAccounts = [
     title: "Github",
     description: "To report bugs, request features and contribute to the project.",
     icon: <GithubIcon className="text-[#333] dark:text-[#E7E7E7]" size={32} />,
-    href: "https://github.com/nextui-org/nextui",
+    href: "https://github.com/muchchirp",
+    isExternal: true,
+  },
+  {
+    title: "Substack",
+    description: "To check out news and articles from the industry and the project.",
+    icon: <SubstackIcon className="text-[#FF6719]" size={32} />,
+    href: "https://cicadavpn.substack.com/",
+    isExternal: true,
+  },
+  {
+    title: "YouTube",
+    description: "For video updates, tutorials, and behind-the-scenes content.",
+    icon: <YouTubeIcon className="text-[#FF0000]" size={32} />,
+    href: "https://www.youtube.com/yourchannel",
+    isExternal: true,
+  },
+  {
+    title: "Instagram",
+    description: "Follow us for photos, stories, and more visual updates.",
+    icon: <InstagramIcon className="text-[#E4405F]" size={32} />,
+    href: "https://www.instagram.com/youraccount",
     isExternal: true,
   },
 ];

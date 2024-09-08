@@ -407,6 +407,19 @@ export const Footer = () => {
           <p className="text-sm text-gray-600 dark:text-gray-400">United States</p>
         </div>
 
+        {/* Trademark Acknowledgments */}
+          <div className="text-sm text-gray-600 dark:text-gray-400 mt-4 text-center">
+            WireGuard® is a registered trademark of Jason A. Donenfeld.<br />
+            Apple®, iOS®, and macOS® are trademarks of Apple Inc., registered in the U.S. and other countries.<br />
+            Android™ and Google Play™ are trademarks of Google LLC.<br />
+            Windows® is a registered trademark of Microsoft Corporation.<br />
+            Linux® is a registered trademark of Linus Torvalds.<br />
+            Firefox® is a registered trademark of the Mozilla Foundation.<br />
+            Visa® is a registered trademark of Visa International Service Association.<br />
+            Mastercard® is a registered trademark of Mastercard International.<br />
+            PayPal® is a registered trademark of PayPal, Inc.
+          </div>
+
         {/* JWT Snippet, Full Name, Email, User Data, Account Data, and Device Data */}
         <div className="text-sm text-gray-600 dark:text-gray-400 mt-8 text-center">
           {jwtSnippet ? (
