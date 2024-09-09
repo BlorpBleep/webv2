@@ -80,7 +80,7 @@ export const Hero = () => {
       </section>
 
       {/* Supported Platforms Section */}
-      <section className="flex flex-col items-center pb-8 -mt-16">
+      <section className="flex flex-col items-center pb-8 -mt-16 mb-12">
         <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300">Supported on:</h3>
         <div className="grid grid-cols-4 gap-6 mt-4 md:grid-cols-6 lg:flex lg:flex-wrap lg:justify-center lg:gap-6">
           {[ 

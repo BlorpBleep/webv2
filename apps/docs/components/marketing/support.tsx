@@ -147,7 +147,7 @@ export const Support: FC<SupportProps> = ({sponsors = []}) => {
         <div>
           <div className={titleWrapper({class: "text-center items-center"})}>
             <div className="flex md:inline-flex flex-col md:flex-row items-center">
-              <h1 className={title({size: "lg"})}>Support NextUI&nbsp;</h1>
+              <h1 className={title({size: "lg"})}>Come work at CicadaVPN&nbsp;</h1>
               <HeartBoldIcon
                 className="text-pink-500 animate-heartbeat"
                 size={50}
@@ -160,16 +160,10 @@ export const Support: FC<SupportProps> = ({sponsors = []}) => {
           <p
             className={subtitle({class: "md:w-full text-center flex justify-center items-center"})}
           >
-            Using NextUI in a profit-making product, as a freelancer, or for fun projects? Your
-            contributions will help to make NextUI better.
+            Develop safe, beneficial AI based global virtual private network systems. We’re looking for curious minds from a wide range of disciplines and backgrounds.
           </p>
-          <Spacer y={12} />
-          <FeaturesGrid
-            classNames={{
-              base: "lg:grid-cols-2",
-            }}
-            features={supportAccounts}
-          />
+          
+
           <div
             ref={sonarRef}
             className="relative mt-32 md:mt-60 w-full flex items-center justify-center"
@@ -181,13 +175,13 @@ export const Support: FC<SupportProps> = ({sponsors = []}) => {
                 <Tooltip
                   showArrow
                   color="secondary"
-                  content={"Become a sponsor"}
+                  content={"Come join us"}
                   offset={10}
                   radius="full"
                 >
                   <Button
                     isIconOnly
-                    aria-label="Become a sponsor"
+                    aria-label="Come join us"
                     className="z-50 w-auto h-auto bg-gradient-to-b from-[#FF1CF7] to-[#7928CA]"
                     radius="full"
                     onPress={handleBecomeSponsor}

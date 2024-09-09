@@ -4,10 +4,7 @@
 import { useMemo, useState } from "react";
 import { Tabs, Tab, Card, CardBody, Image } from "@nextui-org/react";
 import NextImage from "next/image";
-
-// Importing icons from react-icons
 import { FaShieldAlt, FaUserSecret, FaMobileAlt, FaLock } from "react-icons/fa";
-
 import { shopCartStyles } from "./styles";
 import { title, subtitle, sectionWrapper, titleWrapper } from "@/components/primitives";
 import { useIsMobile } from "@/hooks/use-media-query";
@@ -23,9 +20,7 @@ const themesTabs = (isMobile) => [
       />
     ),
     content: {
-      description: [
-        "Keep your browsing history & data private from prying eyes.",
-      ],
+      description: ["Keep your browsing history & data private from prying eyes."],
     },
   },
   {
@@ -38,9 +33,7 @@ const themesTabs = (isMobile) => [
       />
     ),
     content: {
-      description: [
-        "Hide your IP address to stay anonymous online.",
-      ],
+      description: ["Hide your IP address to stay anonymous online."],
     },
   },
   {
@@ -53,9 +46,7 @@ const themesTabs = (isMobile) => [
       />
     ),
     content: {
-      description: [
-        "Protect all devices with one CicadaVPN account.",
-      ],
+      description: ["Protect all devices with one CicadaVPN account."],
     },
   },
   {
@@ -68,9 +59,7 @@ const themesTabs = (isMobile) => [
       />
     ),
     content: {
-      description: [
-        "Secure data with military-grade encryption.",
-      ],
+      description: ["Secure data with military-grade encryption."],
     },
   },
 ];
@@ -151,29 +140,30 @@ export const CustomThemes = () => {
   const tabs = themesTabs(isMobile);
   const [selectedTheme, setSelectedTheme] = useState<Theme>(tabs[0].id as Theme);
 
-  // Safeguard against undefined content by providing a fallback
   const selectedContent = tabs.find((tab) => tab.id === selectedTheme)?.content || {
     description: ["Default description."],
   };
 
   return (
-    <section className={sectionWrapper({ class: "mt-24 lg:mt-56" })}>
-      {/* Main Title moved to the right and aligned right */}
-      <div className="flex justify-end !flex-end">
-        <div className="w-full lg:w-1/2 text-right">
+    <section className={sectionWrapper({ class: "mt-24 lg:mt-22" })}>
+      {/* Main Title aligned to the left */}
+      <div className="flex justify-start">
+        <div className="w-full lg:w-full text-left">
           <div className={titleWrapper()}>
-              <h1 className={title({ size: "lg", class: "text-right" })}>Best VPN Service</h1>
-              <h1 className={title({ color: "blue", size: "lg", class: "text-right" })}>for Privacy&nbsp;</h1>
-              <h1 className={title({ size: "lg", class: "text-right" })}>& Anonymity</h1>
+            <h1 className={title({ size: "lg", class: "text-left" })}>Best VPN for</h1>
+            <h1 className={title({ color: "blue", size: "lg", class: "text-left" })}>
+              Privacy & Anonymity
+            </h1>
           </div>
-          
-          <p className={subtitle({ class: "text-right" })} style={{ width: 'auto' }}>
-          Keep your internet activity hidden from anyone watching. This includes your ISP, hackers, advertisers, & the government.
+          {/* Updated text to span full width */}
+          <p className={subtitle({ class: "w-full text-left" })}>
+            Keep your internet activity hidden from anyone watching. This includes your ISP,
+            hackers, advertisers, & the government.
           </p>
         </div>
       </div>
-      
-      {/* Two-column layout below the title */}
+
+      {/* Two-column layout */}
       <div className="flex flex-col gap-8 lg:flex-row">
         {/* Left-hand side with dynamic content */}
         <div className="w-full lg:w-1/2 p-6 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg shadow-md">

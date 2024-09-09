@@ -343,6 +343,12 @@ importers:
       '@radix-ui/react-scroll-area':
         specifier: ^1.0.5
         version: 1.0.5(@types/react-dom@18.2.4)(@types/react@18.2.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@react-aria/calendar':
+        specifier: 3.5.8
+        version: 3.5.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@react-aria/combobox':
+        specifier: 3.9.1
+        version: 3.9.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@react-aria/focus':
         specifier: 3.17.1
         version: 3.17.1(react@18.2.0)
@@ -352,6 +358,9 @@ importers:
       '@react-aria/interactions':
         specifier: 3.21.3
         version: 3.21.3(react@18.2.0)
+      '@react-aria/overlays':
+        specifier: 3.22.1
+        version: 3.22.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@react-aria/selection':
         specifier: 3.18.1
         version: 3.18.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)

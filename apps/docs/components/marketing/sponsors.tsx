@@ -42,18 +42,19 @@ export const Sponsors = () => {
         {sponsors.map((sponsor) => (
           <SponsorItem key={sponsor.name} {...sponsor} />
         ))}
-        <Button
-          isExternal
-          as={Link}
-          className="group text-sm border-dashed font-normal text-default-600 data-[hover=true]:bg-default-100/50"
-          href={siteConfig.links.sponsor}
-          startContent={
-            <HeartFilledIcon className="text-danger group-data-[hover=true]:animate-heartbeat" />
-          }
-          variant="bordered"
-        >
-          Your Company
-        </Button>
+<Button
+  isExternal
+  as={Link}
+  className="group text-sm border-dashed font-normal text-default-600 data-[hover=true]:bg-default-100/50"
+  href="https://www.servicesgroup.network"  // Updated link
+  startContent={
+    <HeartFilledIcon className="text-danger group-data-[hover=true]:animate-heartbeat" />
+  }
+  variant="bordered"
+>
+  Network Services Group
+</Button>
+
       </div>
     </section>
   );

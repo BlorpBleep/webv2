@@ -41,59 +41,66 @@ export default {
       icon: <FlashIcon className="text-pink-500" />,
     },
   ],
+  
+  
+  
   fullFeatures: [
     {
-      title: "React server components",
+      title: "AI-Powered Monitoring",
       description: (
         <>
-          All NextUI components already include the <Code>&quot;use client&quot;</Code> directive,
-          which means you can import and use them directly in your RSC.
+          CicadaVPN includes an AI-driven monitoring system that ensures uninterrupted access to streaming services and geoblocked content, with automatic performance adjustments.
         </>
       ),
       icon: <ServerLinearIcon className="text-pink-500" />,
     },
     {
-      title: "Accessible components",
+      title: "Privacy Protection",
       description:
-        "NextUI components follow the WAI-ARIA guidelines, provide keyboard support and sensible focus management.",
+        "CicadaVPN follows a strict no-logs policy, meaning your data is never tracked or stored. We prioritize your privacy with state-of-the-art encryption.",
       icon: <TagUserLinearIcon className="text-pink-500" />,
     },
     {
-      title: "Focus interactions",
+      title: "Multi-Device Support",
       description:
-        "Focus ring will appear only when user navigates with keyboard or screen reader.",
+        "Connect multiple devices simultaneously with CicadaVPN, including desktop, mobile, and even routers, ensuring security and convenience wherever you go.",
       icon: <MouseCircleLinearIcon className="text-pink-500" />,
     },
     {
-      title: "Multiple packages",
+      title: "Global Server Network",
       description:
-        "NextUI is divided into multiple packages, so you can install only the components you need.",
+        "Access high-speed servers in multiple countries worldwide. Our servers are optimized for streaming, social media, and secure browsing, without compromising speed.",
       icon: <CubesLinearIcon className="text-pink-500" />,
     },
     {
-      title: "TypeScript based",
+      title: "Secure and Fast",
       description:
-        "Build type safe applications, NextUI has a fully-typed API to minimize the learning curve, and help you build applications.",
+        "Built on the WireGuard® protocol, CicadaVPN delivers top-notch security with minimal impact on speed, giving you a fast and secure connection every time.",
       icon: <CodeDocumentLinearIcon className="text-pink-500" />,
     },
     {
-      title: "Override components tags",
-      description: "A polymorphic `as` prop is included in all NextUI components.",
+      title: "Family-Friendly Filtering",
+      description: "Enable built-in family filters to block inappropriate content, ensuring a safe online experience for households.",
       icon: <HtmlLogoLinearIcon className="text-pink-500" />,
     },
     {
-      title: "No runtime styles",
+      title: "No Unnecessary Bloat",
       description:
-        "NextUI is based on Tailwind CSS, it means that there are no runtime styles, and no unnecessary classes in your bundle.",
+        "CicadaVPN is designed with performance in mind—there are no unnecessary features or components, ensuring lightweight and fast connections.",
       icon: <FlashIcon className="text-pink-500" />,
     },
     {
-      title: "Beautifully designed",
+      title: "Unique and Beautiful Design",
       description:
-        "NextUI components are unique and are not tied to any visual trend or design rule, which makes us unique and of course your projects as well.",
+        "CicadaVPN’s user interface is designed with simplicity and elegance, offering an intuitive experience across all platforms.",
       icon: <MagicIcon className="text-pink-500" />,
     },
   ],
+  
+
+
+
+
   themingCode: `const { nextui } = require("@nextui-org/react");
 
 module.exports = {

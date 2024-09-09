@@ -15,7 +15,7 @@ export const LastButNotLeast = () => {
               <h1 className={title({color: "yellow", size: "lg"})}>but</h1>
             </div>
             <div>
-              <h1 className={title({size: "lg"})}>not&nbsp;</h1>
+              <h1 className={title({size: "lg"})}>by no means&nbsp;</h1>
               <h1 className={title({size: "lg", color: "pink"})}>least.</h1>
             </div>
           </div>
@@ -24,7 +24,7 @@ export const LastButNotLeast = () => {
               class: "mt-4 md:w-full text-center flex justify-center items-center",
             })}
           >
-            A fully-featured React UI library.
+            A fully-featured VPN service:
           </p>
         </div>
         <FeaturesGrid features={landingContent.fullFeatures} />
