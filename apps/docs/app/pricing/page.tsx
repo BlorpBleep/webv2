@@ -54,7 +54,7 @@ export default function PricingPage() {
   {/* Best Value Offer (Order: First on mobile, middle on desktop screens, 10% bigger, with badge and border) */}
   <Card 
     className="py-4 shadow-lg bg-white dark:bg-gray-800 rounded-lg w-full lg:w-[33%] lg:min-h-[350px] lg:max-h-[620px] border-2 border-gradient-to-r from-[#F54180] to-[#338EF7] cursor-pointer relative sm:order-1 md:order-1 lg:order-2"
-    as="a" href="https://buy.stripe.com/3cs3cOgCi0Z784obIN"
+    as="a" href="---https://buy.stripe.com/3cs3cOgCi0Z784obIN"
   >
     <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
       <p className="text-tiny uppercase font-bold text-gray-900 dark:text-gray-200">Best Value</p>
@@ -81,7 +81,7 @@ export default function PricingPage() {
   {/* First Card (Standard Offer) */}
   <Card 
     className="py-4 shadow-lg bg-white dark:bg-gray-800 rounded-lg w-full lg:w-[30%] lg:min-h-[300px] lg:max-h-[600px] cursor-pointer md:order-3  lg:order-1"
-    as="a" href="https://buy.stripe.com/5kA28K1HobDL5WgbIP"
+    as="a" href="---https://buy.stripe.com/5kA28K1HobDL5WgbIP"
   >
     <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
       <p className="text-tiny uppercase font-bold text-gray-900 dark:text-gray-200">Special Offer</p>
@@ -108,7 +108,7 @@ export default function PricingPage() {
   {/* Third Card (Basic Offer) */}
   <Card 
     className="py-4 shadow-lg bg-white dark:bg-gray-800 rounded-lg w-full lg:w-[30%] lg:min-h-[400px] lg:max-h-[600px] cursor-pointer md:order-2 lg:order-3"
-    as="a" href="https://buy.stripe.com/6oE7t485MgY5doI3ci"
+    as="a" href="---https://buy.stripe.com/6oE7t485MgY5doI3ci"
   >
     <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
       <p className="text-tiny uppercase font-bold text-gray-900 dark:text-gray-200">Basic Offer</p>
