@@ -114,8 +114,7 @@ export default function PricingOffer() {
       <div className="mt-8 p-4 border-t border-gray-300 dark:border-gray-600 text-center sm:text-left">
         <h3 className="font-bold text-lg dark:text-white">Activation Key</h3>
         <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-          Did you buy Cicada VPN from a store? Or were you part of one of our campaigns? Put your activation key to good use here.
-        </p>
+        Bought Cicada VPN or part of a promotion? Enter your activation key here.        </p>
         <div className="mt-4 sm:text-right">
           <button
             className="bg-gray-800 dark:bg-gray-700 text-white py-2 px-6 rounded-md hover:bg-gray-700 dark:hover:bg-gray-600"
