@@ -106,8 +106,8 @@ export default function PricingOffer() {
 
       {/* Money-back Guarantee */}
       <div className="bg-blue-50 dark:bg-blue-900 text-center text-blue-900 dark:text-blue-100 p-4 rounded-md mt-6">
-        <p className="font-bold">Covered By Our 45-Day Money-Back Guarantee</p>
-        <p className="text-sm mt-1">You have 45 full days to try Cicada VPN risk-free. Love it or get your money back, no-questions-asked.</p>
+        <p className="font-bold">2 Years + 4 Months plan Covered By Our 45-Day Money-Back Guarantee</p>
+        <p className="text-sm mt-1">Buy our 2 Years + 4 Months plan and you have 45 full days to try Cicada VPN risk-free. Love it or get your money back, no-questions-asked.</p>
       </div>
 
       {/* Activation Key */}
