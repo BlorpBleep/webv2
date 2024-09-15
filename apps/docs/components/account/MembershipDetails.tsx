@@ -84,7 +84,7 @@ export default function MembershipDetails({
           <span
             className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium"
             style={{
-              background: "linear-gradient(to right, rgb(229, 9, 20), rgb(141, 34, 88))",
+              background: "linear-gradient(to right, rgb(9, 22, 229), rgb(141, 34, 88))",
               color: "#fff",
               fontWeight: "500",
               lineHeight: "2.5",
