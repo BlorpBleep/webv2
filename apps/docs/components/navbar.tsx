@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FC, useEffect } from "react";
+import { supabase } from "@/utils/supabase";
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -15,18 +16,46 @@ import { usePathname } from "next/navigation";
 import { clsx } from "@nextui-org/shared-utils";
 import { LargeLogo, SmallLogo, ThemeSwitch } from "@/components";
 import { MobileDrawer } from "@/components/MobileDrawer";
-import { FaBars, FaArrowRight } from "react-icons/fa";
+import { FaBars, FaArrowRight, FaUserCircle, FaRegCreditCard, FaLock, FaMobileAlt, FaUserFriends, FaTicketAlt } from "react-icons/fa";
 import { trackEvent } from "@/utils/va";
 
 export const Navbar: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const pathname = usePathname();
 
+  // Close the menu when the pathname changes
   useEffect(() => {
     if (isMenuOpen) {
       setIsMenuOpen(false);
     }
   }, [pathname]);
+
+  // Handle logout logic with Supabase
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error("Error logging out:", error.message);
+      return;
+    }
+
+    // Redirect to the login page after successful logout
+    window.location.href = '/auth';
+  };
+
+  // Handle section selection
+  const handleSelect = (section: string) => {
+    console.log(`Selected section: ${section}`);
+  };
+
+  // Define the account links
+  const accountLinks = [
+    { href: "/account", label: "Account", icon: <FaUserCircle /> },
+    { href: "/membership", label: "Membership", icon: <FaRegCreditCard /> },
+    { href: "/security", label: "Security", icon: <FaLock /> },
+    { href: "/devices", label: "Devices", icon: <FaMobileAlt /> },
+    { href: "/accounts", label: "Accounts", icon: <FaUserFriends /> },
+    { href: "/vouchers", label: "Vouchers", icon: <FaTicketAlt /> },
+  ];
 
   const navLinkClasses = clsx("text-foreground", "data-[active=true]:text-primary");
 
@@ -144,7 +173,13 @@ export const Navbar: FC = () => {
         </NavbarContent>
 
         {/* Mobile Drawer */}
-        <MobileDrawer isMenuOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+        <MobileDrawer
+          isMenuOpen={isMenuOpen}
+          onClose={() => setIsMenuOpen(false)}
+          onLogout={handleLogout} // Pass the handleLogout function to MobileDrawer
+          accountLinks={accountLinks}
+          onSelect={handleSelect}
+        />
       </NextUINavbar>
     </>
   );

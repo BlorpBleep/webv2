@@ -1,5 +1,3 @@
-"use client";
-
 import React, { FC, useState, useEffect } from "react";
 import { FaUserCircle, FaTimes } from "react-icons/fa";
 import { NavbarItem, Link } from "@nextui-org/react";
@@ -9,8 +7,9 @@ import { ThemeSwitch } from "@/components";
 interface MobileDrawerProps {
   isMenuOpen: boolean;
   onClose: () => void;
-  accountLinks: { href: string; label: string; icon: React.ReactNode }[]; // Adjusted to reflect the structure
-  onSelect: (section: string) => void; // Function to handle section selection
+  accountLinks: { href: string; label: string; icon: React.ReactNode }[];
+  onSelect: (section: string) => void;
+  onLogout: () => void; // Add onLogout prop here
 }
 
 export const MobileDrawer: FC<MobileDrawerProps> = ({
@@ -18,15 +17,12 @@ export const MobileDrawer: FC<MobileDrawerProps> = ({
   onClose,
   accountLinks,
   onSelect,
+  onLogout, // Destructure onLogout from props
 }) => {
   const [user, setUser] = useState<{ email?: string; avatarUrl?: string } | null>(null);
 
-  // Log the props to check if they are being passed correctly
   useEffect(() => {
-    console.log("MobileDrawer Props:");
-    console.log("isMenuOpen:", isMenuOpen);
-    console.log("accountLinks:", accountLinks);
-    console.log("onSelect:", onSelect);
+    console.log("MobileDrawer Props:", { isMenuOpen, accountLinks, onSelect });
   }, [isMenuOpen, accountLinks, onSelect]);
 
   return (
@@ -125,20 +121,27 @@ export const MobileDrawer: FC<MobileDrawerProps> = ({
                 </NextLink>
               </NavbarItem>
 
-              
+              {/* Logout Link */}
+              <NavbarItem>
+                <Link
+                  className="text-sm font-semibold text-red-600 dark:text-red-400 cursor-pointer"
+                  onClick={onLogout} // Call onLogout when clicked
+                >
+                  Logout
+                </Link>
+              </NavbarItem>
             </div>
           </div>
 
           {/* Footer */}
-                    <div className="p-4 border-t bg-gray-100 dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-xs text-gray-600 dark:text-gray-400">
+          <div className="p-4 border-t bg-gray-100 dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-xs text-gray-600 dark:text-gray-400">
             <NextLink href="/privacy" passHref legacyBehavior>
-                <Link className="mr-4 text-gray-600 dark:text-gray-400">Privacy Policy</Link>
+              <Link className="mr-4 text-gray-600 dark:text-gray-400">Privacy Policy</Link>
             </NextLink>
             <NextLink href="/terms" passHref legacyBehavior>
-                <Link className="text-gray-600 dark:text-gray-400">Terms of Service</Link>
+              <Link className="text-gray-600 dark:text-gray-400">Terms of Service</Link>
             </NextLink>
-            </div>
-
+          </div>
         </div>
       </div>
     </div>
