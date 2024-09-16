@@ -78,8 +78,8 @@ export const Navbar: FC = () => {
               href="/"
               onClick={() => trackEvent("NavbarItem", { name: "Home", action: "press", category: "navbar" })}
             >
-              <SmallLogo className="w-6 h-6 md:hidden" />
-              <LargeLogo className="h-5 md:h-6" />
+              {/* <SmallLogo className="w-6 h-6 md:hidden" /> */}
+              <LargeLogo className="h-8 md:h-10" />
             </NextLink>
           </NavbarBrand>
         </NavbarContent>
