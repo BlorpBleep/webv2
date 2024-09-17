@@ -212,21 +212,21 @@ z-index: 0;
 }
 
 
-/* By default, show the light logo */
-.light-logo {
-  display: block;
-}
-.dark-logo {
-  display: none;
+
+
+/* In your global CSS */
+.logo-container .dark-logo {
+  display: none; /* Default: Hide the dark logo */
 }
 
-/* When in dark mode, switch to dark logo */
-@media (prefers-color-scheme: dark) {
-  .light-logo {
-    display: none;
-  }
-  .dark-logo {
-    display: block;
-  }
+.logo-container .light-logo {
+  display: block; /* Default: Show the light logo */
 }
 
+.dark .logo-container .dark-logo {
+  display: block; /* Show dark logo in dark mode */
+}
+
+.dark .logo-container .light-logo {
+  display: none; /* Hide light logo in dark mode */
+}
