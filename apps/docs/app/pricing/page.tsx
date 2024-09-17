@@ -28,9 +28,9 @@ export default function PricingPage() {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
 
   return (
-    <main className="relative container mx-auto w-full sm:w-[90%] lg:w-[90%] z-10 px-4 sm:px-6 lg:px-8 min-h-[calc(100vh_-_64px_-_108px)] mb-12 flex-grow bg-white dark:bg-black pt-8">
+    <main className="relative container mx-auto w-full sm:w-[90%] lg:w-[90%] z-10 px-4 sm:px-6  sm:pt-6 lg:px-8 min-h-[calc(100vh_-_64px_-_108px)] mb-12 flex-grow bg-white dark:bg-black pt-12">
       {/* Promotional Section */}
-      <div className="flex flex-col justify-center items-center text-center leading-8 md:leading-10 mb-8 h-40">
+      <div className="flex flex-col justify-center items-center text-center md:leading-8 xs:mt-14 sm:mt-16 md:leading-10 mb-8 h-40">
         <h1 className={title({ color: "violet", size: "lg" })}>Get 83% Off CicadaVPN</h1>
         <h1 className={title({ color: "violet", size: "lg" })}></h1>
         <div>
@@ -39,7 +39,7 @@ export default function PricingPage() {
         </div>
 
         {/* Countdown Timer */}
-        <h1 className="text-xl sm:text-2xl mt-2 mb-2">
+        <h1 className="text-xl sm:text-2xl mt-2 mb-4">
           <span className={title({ color: "pink", size: "sm" })}>Offer Ends In </span>
           <span className={title({ color: "blue", size: "sm" })}>
             {`${timeLeft.minutes}Min:${timeLeft.seconds}Sec`}
@@ -50,7 +50,7 @@ export default function PricingPage() {
 
 
 
-      <section className="w-full flex flex-col lg:flex-row lg:justify-between mt-4 xs:mt-4 sm:mt-6 gap-6 sm:gap-4 mx-auto overflow-hidden">
+      <section className="w-full flex flex-col lg:flex-row lg:justify-between mt-4 md:mt-12 xs:mt-4 sm:mt-6 gap-6 sm:gap-4 mx-auto overflow-hidden">
   {/* Best Value Offer (Order: First on mobile, middle on desktop screens, 10% bigger, with badge and border) */}
   <Card 
     className="py-4 shadow-lg bg-white dark:bg-gray-800 rounded-lg w-full lg:w-[33%] lg:min-h-[350px] lg:max-h-[620px] border-2 border-gradient-to-r from-[#F54180] to-[#338EF7] cursor-pointer relative sm:order-1 md:order-1 lg:order-2"
