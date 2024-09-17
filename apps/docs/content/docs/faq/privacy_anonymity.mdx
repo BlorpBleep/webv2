@@ -1,118 +1,46 @@
 ---
-title: Introduction
-description: NextUI is a UI library for React that helps you build beautiful and accessible user interfaces. Created on top of Tailwind CSS and React Aria.
+title: Privacy
+description: Learn about CicadaVPN's commitment to your privacy, including our no-logs policy and how we protect your data.
 ---
 
-# privacy_anonymity
+# CicadaVPN Privacy FAQ
 
-Welcome to the NextUI documentation!
+## 1. Does CicadaVPN keep logs of my activity?
+No, CicadaVPN is a **no-logs VPN**. We do not store or track any of your online activity while you are connected to our servers. This means we do not log your browsing history, connection timestamps, IP addresses, or bandwidth usage.
 
-<NextImage
-  priority
-  src="https://nextui.org/nextui-banner.png"
-  quality={100}
-  width={700}
-  height={350}
-  alt="NextUI banner"
-  className="w-full border border-transparent dark:border-default-200/50 object-fit rounded-xl shadow-lg"
-/>
+## 2. What personal information does CicadaVPN collect?
+CicadaVPN collects minimal information necessary to manage your account and provide our services. This includes:
+- **Email Address**: Used to create and manage your account.
+- **Payment Information**: Processed securely via Stripe, we do not store credit card details.
 
-## What is NextUI?
+We do not collect any data related to your online activity, browsing habits, or connection logs.
 
-NextUI is a UI library for React that helps you build beautiful and accessible user interfaces. Created on top of
-[Tailwind CSS](https://tailwindcss.com/) and [React Aria](https://react-spectrum.adobe.com/react-aria/index.html).
+## 3. How does CicadaVPN protect my data?
+CicadaVPN uses industry-standard encryption protocols such as **WireGuard** to secure your connection and protect your data. All traffic between your device and our servers is encrypted, ensuring that third parties cannot intercept or access your information.
 
-NextUI's primary goal is to streamline the development process, offering a beautiful and adaptable system design for an enhanced user experience.
+We also regularly update and monitor our infrastructure to protect against security threats and vulnerabilities.
 
----
+## 4. Will CicadaVPN ever share my information with third parties?
+CicadaVPN does not share, sell, or rent your personal information to third parties. We are committed to your privacy and will only disclose information if legally required by authorities in compliance with applicable laws.
 
-## FAQ
+However, because we do not log any usage data, there is no information available to share about your online activity.
 
-### Is NextUI a Vercel related project?
+## 5. What happens if the government requests my data?
+CicadaVPN has been designed with privacy in mind. Since we do not keep any logs of your online activity, there is no identifiable data to provide, even if requested by government agencies. In the unlikely event that we are required to comply with such requests, we would first notify you (unless prohibited by law).
 
-<div className="text-default-500">
-  No, NextUI is an independent community project and is not related to Vercel.
-</div>
+Our priority is to ensure that your privacy is protected at all times. We are also willing to relocate our operations if laws in our jurisdiction change to enforce data logging or surveillance.
 
-### How is NextUI different from TailwindCSS?
+## 6. Does CicadaVPN use cookies or tracking technologies?
+CicadaVPN uses a minimal set of cookies on our website, primarily for essential functionality and account management. We do not use invasive tracking technologies or third-party analytics services that could compromise your privacy. You can adjust your cookie settings in your browser at any time.
 
-- **TailwindCSS**:
+## 7. Can I delete my CicadaVPN account and personal data?
+Yes, you can request the deletion of your account and any associated personal data at any time. Simply contact our support team at [support@cicadavpn.com](mailto:support@cicadavpn.com), and we will process your request.
 
-  <div className="text-default-500">
-    Tailwind CSS is a CSS Framework that provides atomic CSS classes to help you style components,
-    leaving you to handle lots of other things like accessibility, component composition, keyboard
-    navigation, style overrides, etc.
-  </div>
+## 8. Does CicadaVPN comply with GDPR and other privacy regulations?
+Yes, CicadaVPN complies with the **General Data Protection Regulation (GDPR)** and other applicable privacy regulations. We respect your rights to access, modify, and delete your personal data. For any data-related requests, contact us at [support@cicadavpn.com](mailto:support@cicadavpn.com).
 
-- **NextUI**:
-  <div className="text-default-500">
-    NextUI is a UI library for React that combines the power of TailwindCSS with React Aria to
-    provide complete components (logic and styles) for building accessible and customizable user
-    interfaces. Since NextUI uses TailwindCSS as its style engine, you can use all TailwindCSS
-    classes within your NextUI components, ensuring optimal compiled CSS size.
-  </div>
+## 9. How does CicadaVPN handle DNS queries?
+CicadaVPN routes your DNS queries through our secure servers to prevent DNS leaks and ensure your online activity remains private. We do not log or monitor your DNS requests, ensuring that your browsing history remains confidential.
 
-### How is NextUI different from TailwindCSS components libraries?
-
-<div className="text-default-500">
-  TailwindCSS components libraries such as{" "}
-  <Link isExternal showAnchorIcon href="https://tailwindui.com/">TailwindUI</Link>,{" "}
-  <Link isExternal showAnchorIcon href="https://flowbite.com/">Flowbite</Link>, or{" "}
-  <Link isExternal showAnchorIcon href="https://preline.co/">Preline</Link>, just to name a few, only offer a curated selection of TailwindCSS classes to style your components.
-  They don't provide any React specific components, logic, props, composition, or accessibility features.<br/>
-  <Spacer y={2}/>
-  In contrast to these libraries, NextUI is a complete UI library that provides a set of accessible and
-  customizable components, hooks, and utilities.
-</div>
-
-### How NextUI deals with TailwindCSS classes conflicts?
-
-<div className="text-default-500">
-  We created a TailwindCSS utility library called{" "}
-  <Link isExternal showAnchorIcon href="https://www.tailwind-variants.org/">tailwind-variants</Link>{" "}
-  that automatically handles TailwindCSS class conflicts. This ensures your custom classes will
-  consistently override the default ones, eliminating any duplication.
-</div>
-
-### Does NextUI use runtime CSS?
-
-<div className="text-default-500">
-  No. As NextUI uses TailwindCSS as its style engine, it generates CSS at build time, eliminating
-  the need for runtime CSS. This means that NextUI is fully compatible with the latest React and
-  Next.js versions.
-</div>
-
-### Does NextUI support TypeScript?
-
-<div className="text-default-500">
-  Yes, NextUI is written in TypeScript and has full support for it.
-</div>
-
-### Can I use NextUI with other front-end frameworks or libraries, such as Vue or Angular?
-
-<div className="text-default-500">
-  No, NextUI is specifically designed for React as it is built on top of React Aria. However, you
-  can still use the NextUI components styling part with other frameworks or libraries.
-</div>
-
-### Why does NextUI use Framer Motion?
-
-<div className="text-default-500">
-  We use <Link href="https://www.framer.com/motion" isExternal showAnchorIcon>Framer Motion</Link> to animate some components due to
-  the complexity of the animations and their physics-based nature. Framer Motion allows us to
-  handle these animations in a more straightforward and performant way. In addition, it is
-  well tested and production ready.
-</div>
-
----
-
-## Community
-
-We're excited to see the community adopt NextUI, raise issues, and provide feedback.
-Whether it's a feature request, bug report, or a project to showcase, please get involved!
-
-<Community />
-
-## Contributing
-
-PRs on NextUI are always welcome, please see our [contribution guidelines](https://github.com/nextui-org/nextui/blob/main/CONTRIBUTING.md) to learn how you can contribute to this project.
+## 10. How can I learn more about CicadaVPN’s privacy practices?
+For more details on our privacy practices, please review our [Privacy Policy](#). If you have further questions, feel free to contact us at [support@cicadavpn.com](mailto:support@cicadavpn.com).

@@ -1,261 +1,88 @@
 ---
-title: Dark mode
-description: NextUI comes with two palette modes light (the default) and dark.
+title: CicadaVPN Linux Installation Guide
+description: How to use CicadaVPN with Linux
 ---
 
-# Dark mode
 
-As we mentioned before in the [Theme](/docs/customization/theme) section NextUI comes with two default
-themes `light`and `dark`. So using the `dark` theme is as simple as adding it to the `className` of the
-`html` / `body` or `main` element.
+# CicadaVPN Linux Installation Guide
 
-```jsx {11}
-// main.tsx or main.jsx
-import React from "react";
-import ReactDOM from "react-dom/client";
-import {NextUIProvider} from "@nextui-org/react";
-import App from "./App";
-import "./index.css";
+## Step 1: Download the CicadaVPN App
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <NextUIProvider>
-      <main className="dark text-foreground bg-background">
-        <App />
-      </main>
-    </NextUIProvider>
-  </React.StrictMode>,
-);
-```
+1. Open your browser and go to the **CicadaVPN Downloads** page at [cicadavpn.com/downloads](https://www.cicadavpn.com/downloads).
+2. Scroll down to the **Linux** section and download the package appropriate for your distribution (e.g., **Debian/Ubuntu** or **Fedora**).
+3. Once the download is complete, open a terminal and navigate to the directory where the package is located.
 
-This will enable the dark mode for the whole application. However, many applications require 
-the capability to switch between different themes. For this purpose, we recommend using a 
-theme switch library or creating your own implementation.
+## Step 2: Install the CicadaVPN App
 
+### For Debian/Ubuntu:
+1. Use the following command to install the package:
 
+   ```bash
+   sudo dpkg -i cicadavpn_*.deb
+   ```
 
-## Using next-themes
+2. If there are dependency issues, run:
 
-For applications using [Next.js](/docs/frameworks/nextjs), the [next-themes](https://github.com/pacocoursey/next-themes)
-library is an excellent choice. It comes packed with features that enhance the user experience
-when transitioning between themes.
+   ```bash
+   sudo apt-get install -f
+   ```
 
-> For more information, refer to the [next-themes](https://github.com/pacocoursey/next-themes) documentation.
+### For Fedora:
+1. Use the following command to install the package:
 
-### Next.js App Directory Setup
+   ```bash
+   sudo dnf install cicadavpn_*.rpm
+   ```
 
-<Steps>
+## Step 3: Open the CicadaVPN App
 
-### Install next-themes
+1. Once installed, launch the CicadaVPN app by typing the following command in your terminal:
 
-Install `next-themes` in your project.
+   ```bash
+   cicadavpn
+   ```
 
-<PackageManagers
-  commands={{
-    npm: 'npm install next-themes',
-    yarn: 'yarn add next-themes',
-    pnpm: 'pnpm add next-themes',
-  }}
-/>
+2. You will be prompted to either **Log In** or **Sign Up**.
+   - If you purchased your subscription directly from **cicadavpn.com**, your account is already activated, and you’re good to go. Simply log in with your email and password.
+   - If you purchased a **physical activation code** from a store, follow the steps in **Step 4** to redeem your activation code.
 
+## Step 4: Activate Your VPN Service (For Physical Activation Codes)
 
-### Add next-themes provider
+- **If you purchased a physical activation code from a store**:
+  1. In the CicadaVPN app, navigate to the **Redeem Code** section.
+  2. Enter your activation code and click **Redeem**.
+  3. The app will activate your service, and your subscription time will be added to your account.
 
-Wrap your app with the `ThemeProvider` component from `next-themes`.
+## Step 5: Choose a Server Location
 
-Go to your `app/providers.tsx` or `app/providers.jsx` (create it if it doesn't exist) and wrap the 
-Component with the `NextUIProvider` and the `next-themes` provider components.
+1. In the CicadaVPN app, go to the **Server Location** section.
+2. Browse the available server locations and choose the one you want to connect to. You can select the server that provides the best speed or location preference.
+3. Click the server name to connect.
 
+## Step 6: Connect to CicadaVPN
 
-```jsx
-// app/providers.tsx
-"use client";
+1. After selecting a server, click the **Connect** button in the app.
+2. The app will establish a secure connection to the VPN server.
+3. Once connected, the status will update to **Connected**, and your internet traffic will be securely routed through CicadaVPN.
 
-import {NextUIProvider} from '@nextui-org/react'
-import {ThemeProvider as NextThemesProvider} from "next-themes";
+## Step 7: Customize Settings (Optional)
 
-export function Providers({children}: { children: React.ReactNode }) {
-  return (
-    <NextUIProvider>
-      <NextThemesProvider attribute="class" defaultTheme="dark">
-        {children}
-      </NextThemesProvider>
-    </NextUIProvider>
-  )
-}
-```
+1. You can adjust the app's settings as needed:
+   - **Auto Connect**: Enable this to automatically connect to the VPN when you start your Linux device.
+   - **Split Tunneling**: Configure specific apps to bypass the VPN.
 
-> Note: We're using the `class` attribute to switch between themes, this is because NextUI uses the `className` attribute.
+## Step 8: Disconnecting from the VPN
 
-### Add the theme switcher
+1. When you're finished using the VPN, click the **Disconnect** button in the app.
+2. The app will disconnect from the server, and your internet traffic will return to its normal state.
 
-Add the theme switcher to your app.
+## Troubleshooting
 
-```jsx
-// app/components/ThemeSwitcher.tsx
-"use client";
+- **Connection Issues**: If you are unable to connect, try switching to a different server or ensure your internet connection is stable.
+- **Activation Code Problems**: Double-check that you’ve entered the correct code. If issues persist, contact [support@cicadavpn.com](mailto:support@cicadavpn.com) for assistance.
 
-import {useTheme} from "next-themes";
-import { useEffect, useState } from "react";
+## Step 9: Enjoy Private and Secure Browsing
 
-export function ThemeSwitcher() {
-  const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
+That’s it! You’re now set up with CicadaVPN on your Linux device. Enjoy safe, private browsing and access to content worldwide.
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if(!mounted) return null
-
-  return (
-    <div>
-      The current theme is: {theme}
-      <button onClick={() => setTheme('light')}>Light Mode</button>
-      <button onClick={() => setTheme('dark')}>Dark Mode</button>
-    </div>
-  )
-};
-```
-
-> **Note**: You can use any theme name you want, but make sure it exits in your 
-`tailwind.config.js` file. See [Create Theme](/docs/customization/create-theme) for more details.
-
-</Steps>
-
-### Next.js Pages Directory Setup
-
-<Steps>
-
-### Install next-themes
-
-Install `next-themes` in your project.
-
-<PackageManagers
-  commands={{
-    npm: 'npm install next-themes',
-    yarn: 'yarn add next-themes',
-    pnpm: 'pnpm add next-themes',
-  }}
-/>
-
-### Add next-themes provider
-
-Go to pages`/_app.js` or `pages/_app.tsx` (create it if it doesn't exist) and  wrap the
-Component with the `NextUIProvider` and the `next-themes` provider components.
-
-```jsx
-// pages/_app.js
-import {NextUIProvider} from "@nextui-org/react";
-import {ThemeProvider as NextThemesProvider} from "next-themes";
-
-function MyApp({ Component, pageProps }) {
-  return (
-    <NextUIProvider>
-      <NextThemesProvider attribute="class" defaultTheme="dark">
-        <Component {...pageProps} />
-      </NextThemesProvider>
-    </NextUIProvider>
-  )
-}
-
-export default MyApp;
-```
-
-> Note: We're using the `class` attribute to switch between themes, this is because NextUI uses the `className` attribute.
-
-### Add the theme switcher
-
-Add the theme switcher to your app.
-
-```jsx
-// components/ThemeSwitcher.tsx
-import {useTheme} from "next-themes";
-
-export const ThemeSwitcher = () => {
-  const { theme, setTheme } = useTheme()
-
-  return (
-    <div>
-      The current theme is: {theme}
-      <button onClick={() => setTheme('light')}>Light Mode</button>
-      <button onClick={() => setTheme('dark')}>Dark Mode</button>
-    </div>
-  )
-};
-```
-
-> **Note**: You can use any theme name you want, but make sure it exits in your
-`tailwind.config.js` file. See [Create Theme](/docs/customization/create-theme) for more details.
-
-</Steps>
-
-
-## Using use-dark-mode hook
-
-In case you're using plain React with [Vite](/docs/frameworks/vite) or [Create React App](https://create-react-app.dev/) 
-you can use the [use-dark-mode](https://github.com/donavon/use-dark-mode) hook to switch between themes.
-
-> See the [use-dark-mode](https://github.com/donavon/use-dark-mode) documentation for more details.
-
-<Steps>
-
-### Install use-dark-mode
-
-Install `use-dark-mode` in your project.
-
-<PackageManagers
-  commands={{
-    npm: 'npm install use-dark-mode',
-    yarn: 'yarn add use-dark-mode',
-    pnpm: 'pnpm add use-dark-mode',
-  }}
-/> 
-
-### Add the current theme to the main element
-
-```jsx
-// App.tsx or App.jsx
-import React from "react";
-import useDarkMode from "use-dark-mode";
-
-export default function App() {
-  const darkMode = useDarkMode(false);
-
-  return (
-    <main className={`${darkMode.value ? 'dark' : ''} text-foreground bg-background`}>
-      <App />
-    </main>
-  )
-}
-```
-
-### Add the theme switcher
-
-Add the theme switcher to your app.
-
-```jsx
-// 'use client'; // uncomment this line if you're using Next.js App Directory Setup
-
-// components/ThemeSwitcher.tsx
-import useDarkMode from "use-dark-mode";
-
-export const ThemeSwitcher = () => {
-  const darkMode = useDarkMode(false);
-
-  return (
-    <div>
-      <button onClick={darkMode.disable}>Light Mode</button>
-      <button onClick={darkMode.enable}>Dark Mode</button>
-    </div>
-  )
-};
-```
-
-
-
-> **Note**: You can use any theme name you want, but make sure it exits in your
-`tailwind.config.js` file. See [Create Theme](/docs/customization/create-theme) for more details.
-
-
-</Steps>
+For any additional questions or support, feel free to contact us at [support@cicadavpn.com](mailto:support@cicadavpn.com).

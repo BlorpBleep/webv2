@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   keywords: [
-    "React",
-    "Next.js",
+    "Cicada",
+    "VPN",
     "Tailwind CSS",
     "NextUI",
     "React Aria",
@@ -47,15 +47,15 @@ export const metadata: Metadata = {
   openGraph: siteConfig.openGraph,
   authors: [
     {
-      name: "jrgarciadev",
-      url: "https://jrgarciadev.com",
+      name: "dawatere",
+      url: "https://cicadavpn.com",
     },
   ],
-  creator: "jrgarciadev",
+  creator: "dawatere",
   alternates: {
-    canonical: "https://nextui.org",
+    canonical: "https://cicadavpn.com",
     types: {
-      "application/rss+xml": [{ url: "https://nextui.org/feed.xml", title: "NextUI RSS Feed" }],
+      "application/rss+xml": [{ url: "https://cicadavpn.com/feed.xml", title: "cicadavpn RSS Feed" }],
     },
   },
   viewport:
@@ -68,7 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html suppressHydrationWarning dir="ltr" lang="en">
       <head />
       <body className={clsx("min-h-screen bg-background font-sans antialiased", fontSans.variable)}>
-        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+        <Providers themeProps={{ attribute: "class", defaultTheme: "system" }}>
           <div className="relative flex flex-col min-h-screen">
             <ProBanner />
             <Navbar mobileRoutes={manifest.mobileRoutes} routes={manifest.routes} />

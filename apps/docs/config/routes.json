@@ -78,6 +78,40 @@
           "path": "/docs/guides/android.mdx"
         },
         {
+          "key": "androidtv",
+          "title": "Android TV",
+          "keywords": "getting started, installation, start, nextui",
+          "path": "/docs/guides/androidtv.mdx"
+        },
+        {
+          "key": "appletv",
+          "title": "Apple TV",
+          "keywords": "getting started, installation, start, nextui",
+          "path": "/docs/guides/appletv.mdx"
+        },
+        {
+          "key": "smarttv",
+          "title": "Smart TV's",
+          "keywords": "getting started, installation, start, nextui",
+          "path": "/docs/guides/smarttv.mdx"
+        },        {
+          "key": "Firefox",
+          "title": "Firefox",
+          "keywords": "getting started, installation, start, nextui",
+          "path": "/docs/guides/firefox.mdx"
+        },        {
+          "key": "firetv",
+          "title": "Amazon FireTV",
+          "keywords": "getting started, installation, start, nextui",
+          "path": "/docs/guides/firetv.mdx"
+        },
+        {
+          "key": "consoles",
+          "title": "Consoles",
+          "keywords": "getting started, installation, start, nextui",
+          "path": "/docs/guides/consoles.mdx"
+        },
+        {
           "key": "macos",
           "title": "macOS",
           "keywords": "cli, command line interface",

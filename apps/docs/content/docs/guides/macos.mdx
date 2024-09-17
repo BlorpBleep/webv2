@@ -1,92 +1,72 @@
 ---
-title: Install on MacOS
-description: MacOS install
+title: Install Guide for macOS
+description: Step-by-step instructions for installing and setting up CicadaVPN on macOS devices.
 ---
 
-# Install CicadaVPN on macOS
+# CicadaVPN macOS Installation Guide
 
-**Last updated:** May 16, 2024
+## Step 1: Download the CicadaVPN App
 
-This guide provides step-by-step instructions on how to install and uninstall the CicadaVPN app for macOS.
+1. Open your browser and go to the **CicadaVPN Downloads** page at [cicadavpn.com/downloads](https://www.cicadavpn.com/downloads).
+2. Scroll down to the **macOS** section and click the **Download for macOS** button.
+3. The download for the CicadaVPN installer (.dmg file) will begin automatically.
+4. Once the download is complete, open the file to start the installation process.
 
-## What This Guide Covers
-- Installation Requirements
-- Download and Install the CicadaVPN App
-- Troubleshooting Installation
-- Start the CicadaVPN App
-- Troubleshooting CicadaVPN
-- Prevent Other Apps from Setting the DNS
-- Connecting to CicadaVPN System Service (macOS 13 Ventura)
-- The CicadaVPN Padlock Icon Disappears
-- Unable to Use the Internet After Disconnecting CicadaVPN
-- Disable Location Services in macOS
-- Uninstalling the CicadaVPN App
+## Step 2: Install the CicadaVPN App
 
-## Installation Requirements
-- **macOS 12 (Monterey)** or newer.
-- For older versions of macOS (10.10-10.15), you can use Tunnelblick instead.
-- The CicadaVPN app has been Apple Silicon native since version 2021.4 and works on both Intel Macs and M1/M2 Macs.
+1. Open the downloaded **.dmg** file and drag the CicadaVPN app into the **Applications** folder.
+2. Once installed, go to your **Applications** folder and launch the CicadaVPN app.
 
-## Download and Install the CicadaVPN App
-1. Download the latest version of the CicadaVPN app from the [Apps page on our website](#).
-2. Open the folder where you downloaded the installer and double-click on `CicadaVPN-xxxx.x.pkg` (where "xxxx.x" is the version number).
-3. If prompted with "Installer would like to access files in your Downloads folder," click **OK**.
-4. After the installation is complete, a message will appear: "Background Items Added - 'CicadaVPN' added items that can run in the background. You can manage this in Login Items Settings."
+## Step 3: Open the CicadaVPN App
 
-## Troubleshooting Installation
+1. After launching the app, you will be prompted to either **Log In** or **Sign Up**.
+   - If you purchased your subscription directly from **cicadavpn.com**, your account is already activated, and you’re good to go. Simply log in with your email and password.
+   - If you purchased a **physical activation code** from a store, follow the steps in **Step 4** to redeem your activation code.
 
-### Error: "The installation failed"
-This error may occur if the installer does not have access to the folder where you downloaded CicadaVPN. It can also happen if you are using Dropbox or Avast Security. To resolve this:
+## Step 4: Activate Your VPN Service (For Physical Activation Codes)
 
-1. Open the **System Settings** app and click on **Privacy & Security** on the left side.
-2. Click on **Full Disk Access**.
-3. Find **Installer** in the list and click the button to enable full disk access. 
-   - If **Installer** is not listed, click the **+** icon at the bottom left. 
-   - Select **Applications** in the left column, then choose **Macintosh HD** in the location drop-down menu. Navigate to **System > Library > CoreServices > Installer**.
-4. Restart the CicadaVPN installer. It should work now.
-5. Once the installation is complete, return to the **System Settings** app and disable full disk access for the Installer.
+- **If you purchased a physical activation code from a store**:
+  1. Open the CicadaVPN app and click the **Redeem Code** option.
+  2. Enter the activation code from your purchase and click **Redeem**.
+  3. The app will activate your service, and your subscription time will be added to your account.
 
-## Start the CicadaVPN App
-1. Launch the CicadaVPN app from **Launchpad** or the **Applications** folder.
-2. The first time you start the app, a window may pop up. Click **Open** to continue.
-3. Once the app starts, you will see a red padlock icon in the menu bar. Click on the padlock to display the app's login screen. Enter your CicadaVPN account number and click **Secure my connection**.
+## Step 5: Grant VPN Permissions
 
-For more details on how to use the CicadaVPN app, refer to our guide [Using the CicadaVPN App](#).
+1. Once logged in and activated, the app will request permission to set up a VPN connection on your macOS device.
+2. You may be prompted to enter your Mac's **admin password** to grant the necessary permissions.
+3. Once permissions are granted, the VPN configuration will be added, and you are ready to connect.
 
-## Troubleshooting CicadaVPN
+## Step 6: Choose a Server Location
 
-### The CicadaVPN Padlock Icon Disappears
-- If you're using a MacBook with a camera notch, menu bar icons might be hidden if there are too many. You can fix this by quitting other apps with menu bar icons or disabling some system icons. Keep in mind that menu bar icons can only occupy the space from the right corner to the notch.
+1. On the main screen, click the **Server Location** button to open the server list.
+2. Browse the available locations and choose the one you want to connect to. You can choose the best server based on speed or location preference.
+3. Click on the server name to connect.
 
-### Unable to Use the Internet After Disconnecting CicadaVPN
-- Ensure that **Lockdown mode** is not enabled in CicadaVPN's settings.
-- Try toggling your Wi-Fi off and on or unplugging and plugging back in your network cable.
-- For macOS Ventura:
-  1. Open the **System Settings** app, click on **Network**, then select the connected network.
-  2. Click on **Details...**, then **DNS**.
-  3. Click the **+** button and add a new DNS server, such as `1.1.1.1`. Click **OK**.
+## Step 7: Connect to CicadaVPN
 
-## Disable Location Services in macOS
-To prevent apps from accessing your location using Wi-Fi or GPS:
-1. Open the **System Settings** app.
-2. Click on **Privacy & Security** in the left column.
-3. Click on **Location Services**.
-4. Toggle **Location Services** off.
+1. After selecting a server, click the **Connect** button on the main screen.
+2. The app will establish a connection to the VPN server.
+3. Once connected, the status will update to **Connected** and your traffic will be securely routed through CicadaVPN.
 
-## Uninstalling the CicadaVPN App
+## Step 8: Customize Settings (Optional)
 
-### Uninstall Option 1
-This method removes the app, including local log files, cache, and settings:
-1. Note down your CicadaVPN account number.
-2. Open the **Terminal** app and run the following command:
-    ```bash
-    /Applications/Cicada\ VPN.app/Contents/Resources/uninstall.sh
-    ```
-3. If prompted, enter your login password (note that the password will not be visible as you type).
-4. Restart your Mac.
+1. You can customize various settings in the app to suit your needs:
+   - Go to the **Settings** section in the app.
+   - Enable **Auto Connect** to automatically connect to the VPN when you start your device.
+   - Configure **Split Tunneling** to allow specific apps to bypass the VPN.
 
-### Uninstall Option 2
-This method only uninstalls the app; local log files, cache, and settings remain on your device:
-1. Open the **Applications** folder.
-2. Find the CicadaVPN app and drag it to the trash.
-3. Choose **Finder > Empty Trash**.
+## Step 9: Disconnecting from the VPN
+
+1. When you’re done using the VPN, click the **Disconnect** button on the main screen.
+2. The app will disconnect from the server, and your internet traffic will return to its normal state.
+
+## Troubleshooting
+
+- **Connection Issues**: If you are unable to connect, try switching to a different server or ensure that your internet connection is stable.
+- **Activation Code Problems**: Double-check that you’ve entered the correct code. If issues persist, contact [support@cicadavpn.com](mailto:support@cicadavpn.com) for assistance.
+
+## Step 10: Enjoy Private and Secure Browsing
+
+That’s it! You’re now set up with CicadaVPN on your macOS device. Enjoy safe, private browsing and access to content worldwide.
+
+For any additional questions or support, feel free to contact us at [support@cicadavpn.com](mailto:support@cicadavpn.com).

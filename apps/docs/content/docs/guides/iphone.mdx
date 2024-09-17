@@ -1,176 +1,69 @@
 ---
-title: Installation guide for IOS
-description: iPhone & iPad
+title: Install Guide for iPhone and iPad
+description: Step-by-step instructions for installing and setting up CicadaVPN on iPhone and iPad devices.
 ---
 
-# Using CicadaVPN App on iOS (iPhone/iPad)
+# CicadaVPN iPhone and iPad Installation Guide
 
-**Last updated:** August 8, 2024
+## Step 1: Download the CicadaVPN App
 
-This guide explains how to install and use the CicadaVPN app on iOS devices (iPhone/iPad).
+1. Open your browser on your iPhone or iPad and go to the **CicadaVPN Downloads** page at [cicadavpn.com/downloads](https://www.cicadavpn.com/downloads).
+2. Scroll down to the **iOS** section and tap the **Download for iOS** button.
+3. This will redirect you to the **App Store**.
+4. In the App Store, tap **Get** to download and install the CicadaVPN app on your device.
+5. Wait for the installation to complete.
 
-## What This Guide Covers
-- [Installation Requirements](#installation-requirements)
-- [Download and Install](#download-and-install)
-- [Vulnerabilities](#vulnerabilities)
-- [Quick-Start User’s Guide](#quick-start-user-s-guide)
-  - [Log In](#log-in)
-  - [Using WireGuard](#using-wireguard)
-  - [Redeeming a Voucher Code](#redeeming-a-voucher-code)
-  - [Add Time to Your Account](#add-time-to-your-account)
-  - [Connect](#connect)
-  - [Switch Location](#switch-location)
-- [CicadaVPN App Settings](#cicadavpn-app-settings)
-  - [Account](#account)
-  - [Settings](#settings)
-  - [Report a Problem](#report-a-problem)
-- [Uninstall the App](#uninstall-the-app)
-- [FAQ](#faq)
-- [Troubleshooting](#troubleshooting)
-- [Feature Requests](#feature-requests)
+## Step 2: Open the CicadaVPN App
 
-## Installation Requirements
-The CicadaVPN app works on **iOS 14.2** and newer iOS versions. If you encounter any issues with the CicadaVPN connection, please check the [Troubleshooting](#troubleshooting) section.
+1. Once the app is installed, tap **Open** to launch it.
+2. You will be prompted to either **Log In** or **Sign Up**.
+   - If you purchased your subscription directly from **cicadavpn.com**, your account is already activated, and you’re good to go. Just log in with your email and password.
+   - If you purchased a **physical activation code** from a store, follow the steps in **Step 4** to redeem your activation code.
 
-## Download and Install
-1. On your iOS device, open the **App Store**.
-2. Search for **CicadaVPN**.
-3. Tap **GET** to download the app.
-4. Once the app has finished downloading and installing, tap **OPEN** to launch it.
+## Step 3: Grant VPN Permissions
 
-**Can’t find CicadaVPN in the App Store?**  
-Try the link to the App Store on our [Download page](#). Note that some country restrictions prevent the app from being available in all countries.
+1. Once you are logged in, the app will ask permission to set up a VPN connection.
+2. Tap **Allow** when prompted. This is required for CicadaVPN to route your traffic securely through our servers.
+3. You may be asked to **install a VPN profile**. Follow the on-screen instructions to do so.
 
-## Vulnerabilities
-The following potential privacy issues exist in Apple's iOS and iPadOS:
+## Step 4: Activate Your VPN Service (For Physical Activation Codes)
 
-- **Traffic to Apple services can bypass the VPN tunnel.** This includes iCloud, Maps, Siri, and notifications.
-  - **Solution:** None. Apple does not make it possible to send this traffic through a VPN.
-- **Connections established before you connect to CicadaVPN can bypass the VPN tunnel.**
-  - **Solution:** Connect to CicadaVPN, enable Airplane mode, turn off Wi-Fi if it’s on, then disable Airplane Mode.
-- **Apps on the device can bypass the VPN tunnel by routing traffic over cellular/mobile data.**
-  - **Solution:** Disable cellular/mobile data when using Wi-Fi.
-- **A malicious Wi-Fi network can instruct the device to send Internet traffic outside of the VPN tunnel (TunnelCrack LocalNet attack).**
-  - **Solution:** None.
+- **If you purchased a physical activation code from a store**:
+  1. Open the CicadaVPN app and tap the **Redeem Code** option on the main screen.
+  2. Enter the activation code from your purchase and tap **Redeem**.
+  3. The app will activate your service, and your subscription time will be added to your account.
 
-## Quick-Start User’s Guide
+## Step 5: Choose a Server Location
 
-### Log In
-1. Enter your CicadaVPN account number, then tap the green button with an arrow or the blue Return key on the keyboard.  
-   **Note:** See the [FAQ](#faq) if you encounter an error.
-2. If you’ve logged in before, the last account number you used will be displayed. To remove it, click the delete icon on the right side of the number.
-3. If you log in with the wrong account number, tap the settings icon (gear) in the top right corner and go to **Account > Log out**.
+1. On the main screen, tap the **Server Location** button to open the server list.
+2. Browse the available locations and choose the one you want to connect to. You can choose the best server based on speed or location preference.
+3. Tap on the server name to connect.
 
-### Using WireGuard
-- Each device is associated with a WireGuard key. This is important if you use WireGuard outside of the CicadaVPN app.  
-- To find the key:
-  - On a router, use the `wg` command with SSH to show the key.
-  - In the WireGuard app, find the key in the app (Windows/macOS) or use the `wg` command (Linux).
-- The device name and its WireGuard key can be viewed by logging in with your account number on the CicadaVPN website.
+## Step 6: Connect to CicadaVPN
 
-**Note:** The CicadaVPN app no longer shows the WireGuard key in the app; you can see the device name in the Account settings instead.
+1. After selecting a server, tap the **Connect** button on the main screen.
+2. The app will establish a connection to the VPN server.
+3. Once connected, the status will update to **Connected** and your traffic will be securely routed through CicadaVPN.
 
-### Redeeming a Voucher Code
-Please refer to this [guide](#) for instructions on redeeming a voucher code.
+## Step 7: Customize Settings (Optional)
 
-### Add Time to Your Account
-You must purchase time for your account to connect to CicadaVPN. You can do this in two ways:
+1. You can customize various settings in the app:
+   - Go to the **Settings** section from the main menu.
+   - Enable **Auto Connect** to automatically connect to the VPN when you start your device.
+   - Configure **Split Tunneling** (if supported) to allow specific apps to bypass the VPN.
 
-1. **Log in on our website** using your account number and purchase time for your account. Various payment methods are available.
-2. **Make an in-app purchase:**
-   - Tap the gear icon in the top right corner of the app and go to **Account**.
-   - Tap the green **Add 30 days time** button and then tap **Subscribe**.
-   - **Note:** In-app purchases are non-recurring one-time payments.
-   
-   Ensure you write down your CicadaVPN account number for safekeeping.
+## Step 8: Disconnecting from the VPN
 
-### Connect
-1. You will see the connection status on the app's connection screen. If disconnected, the top bar of the app will be red, displaying "Unsecure connection".
-2. To connect to CicadaVPN for the first time:
-   - Tap **Select location**.
-   - The app will ask for permission to add VPN configurations to your device. Tap **Allow**.
-   - Enter your passcode or use your Touch/Face ID to add the VPN configurations.
-   - Once connected, the top bar of the app will turn green, displaying "Secure connection", and a VPN icon will appear at the top when you open Control Center.
-
-**Note:** By default, the app connects to a server in Sweden. If you choose a different location, the app will remember your latest selection the next time you start the app.
-
-3. You can also verify your connection with our [Connection check](#).
-
-### Switch Location
-- **On iPad:** Select your location in the right sidebar.
-- **On iPhone:** Tap the **Select location** button, scroll and tap the country you prefer, and the app will reconnect automatically.
-
-Tapping the drop-down icon (∨) to the right of a location will reveal cities and specific servers to connect to.
-
-## CicadaVPN App Settings
-
-### Account
-- Access the account page by clicking the account icon in the top right corner.
-- View your account number, device name, and when your paid time runs out. Tap the account number to copy it to your clipboard.
-- Add time to your account via an in-app purchase by tapping **Add 30 days time**.
-- **Note:** If you tap **Restore purchases**, nothing will happen as Apple does not have your CicadaVPN account number.
-- **Log out** if you have logged in with the wrong account number. Ensure you write down the current account number first if it has time on it.
-- Use **Delete account** to delete an account. This action is irreversible, and a deleted account cannot be recovered.
-
-### Settings
-Access the Settings menu by tapping the gear icon in the top right corner of the connection screen.
-
-#### VPN Settings
-- Here, you can adjust options that affect which DNS the app uses.
-- Enabling any options will use our filtered DNS server to prevent certain content from loading in your web browser and other apps. If you encounter issues loading a website, try disabling these options. Our filter lists are published on [GitHub](#).
-
-#### Use Custom DNS
-This setting allows you to use an external DNS server instead of ours. Follow these instructions:
-
-1. Turn off all the "Block" options.
-2. Tap on **Edit** in the top right corner.
-3. Tap on **Add a server**.
-4. Enter the IP address of an external DNS server.
-5. Tap **Done** in the top right corner.
-6. Enable the **Use custom DNS** option.
-
-### Report a Problem
-If you experience issues, you can send a problem report with the app's anonymized log. Enter your email address if you want a reply. Describe your problem in English or Swedish. You can also tap **View app logs** to see the log yourself.
-
-## Uninstall the App
-1. On the home screen, tap and hold the CicadaVPN icon until a menu pops up.
-2. Tap **Remove App**.
-3. Tap **Delete App** to remove the app from your device. This will also remove the local log files, cache, and settings.
-
-## FAQ
-
-**Q: How do I enable or disable local network sharing?**  
-The CicadaVPN iOS/iPadOS app allows local network connections by default, and you cannot disable it. Note that it does not work to use a local DNS, and it may not locate other devices using mDNS broadcasts.
+1. When you’re done using the VPN, tap the **Disconnect** button on the main screen.
+2. The app will disconnect from the server, and your internet traffic will return to normal.
 
 ## Troubleshooting
 
-**Q: The CicadaVPN app cannot connect to any server. It is unable to establish a secure connection, and the circle just spins. I am not in Russia.**  
-Try the following solutions:
-1. Tap **Cancel** or **Disconnect** and wait five seconds, then tap **Secure connection**.
-2. Tap the account button in the top right corner of the CicadaVPN app (next to the settings icon). Write down your account number, then tap **Log out** and log in again.
-3. Go to **CicadaVPN app settings > VPN settings > WireGuard Obfuscation** and set it to "On (UDP-over-TCP)".
-4. Delete the CicadaVPN app and install it again from the App Store.
-5. Restart the iPhone/iPad.
+- **Connection Issues**: If you are unable to connect, try switching to a different server or check that your internet connection is stable.
+- **Activation Code Problems**: Double-check that you’ve entered the correct code. If issues persist, contact [support@cicadavpn.com](mailto:support@cicadavpn.com) for assistance.
 
-**Q: The VPN seems to disconnect when I unlock the phone.**  
-This can happen when the phone goes to sleep or transitions between using Wi-Fi and mobile data. When you start using it again, it should reconnect automatically. It does not leak any traffic when this happens.  
-**Note:** If you are using another app that functions like a VPN (e.g., Lockdown or Blokada), CicadaVPN will disconnect if you activate the other app.
+## Step 9: Enjoy Private and Secure Browsing
 
-**Q: I purchased more time for my CicadaVPN account, but the app still says the account is "Out of time".**  
-You can update the time by logging out of the app (remember to write down your account number first) and then logging in again.
+That’s it! You’re now set up with CicadaVPN on your iPhone or iPad. Enjoy safe, private browsing and access to content worldwide.
 
-**Q: The CicadaVPN app drains the battery.**  
-The battery usage percentage is relative to how much you are using other apps on the device. If you don't use any other apps, CicadaVPN will have a high percentage.  
-This can also happen if you have a bad Internet connection signal, as CicadaVPN will use more battery to transfer data. Additionally, after an iOS update, background optimizations may temporarily increase battery usage.
-
-## Feature Requests
-
-**Q: Does the app have a kill switch?**  
-The CicadaVPN app uses the "on-demand VPN" function in iOS, which acts as a kill switch when the VPN is connected. It should not leak traffic (with some exceptions) as our VPN always appears as being "up". It is not using "includeAllNetworks".
-
-**Q: I want the app to connect or disconnect CicadaVPN automatically on some Wi-Fi networks.**  
-This feature is not planned to be added as it can be a security and privacy risk; someone could set up a network with the same name, causing your device to connect or disconnect automatically.
-
-**Q: Will you add split tunneling to the app?**  
-It is not possible to do this on iOS/iPadOS.
-
+For any additional questions or support, feel free to contact us at [support@cicadavpn.com](mailto:support@cicadavpn.com).
