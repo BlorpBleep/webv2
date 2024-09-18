@@ -22,8 +22,7 @@
           "key": "activation_keys",
           "title": "Activation",
           "keywords": "cli, command line interface",
-          "path": "/docs/faq/activation_keys.mdx",
-          "newPost": true
+          "path": "/docs/faq/activation_keys.mdx"
         },
         {
           "key": "accounts_subscriptions",
@@ -115,8 +114,7 @@
           "key": "macos",
           "title": "macOS",
           "keywords": "cli, command line interface",
-          "path": "/docs/guides/macos.mdx",
-          "newPost": true
+          "path": "/docs/guides/macos.mdx"
         },
         {
           "key": "windows",
@@ -163,8 +161,7 @@
           "key": "switchguard",
           "title": "SwitchGuard",
           "keywords": "api references, nextui, api, cli",
-          "path": "/docs/features/switchguard.mdx",
-          "newPost": true
+          "path": "/docs/features/switchguard.mdx"
         },
         {
           "key": "nextui-provider",
@@ -210,6 +207,12 @@
           "path": "/docs/features/40gbp.mdx"
         },
         {
+          "key": "teams",
+          "title": "Teams",
+          "keywords": "api references, nextui, api, nextui provider",
+          "path": "/docs/features/teams.mdx"
+        },
+        {
           "key": "familyfilter",
           "title": "Family Filter",
           "keywords": "api references, nextui, api, nextui provider",
@@ -246,8 +249,7 @@
           "key": "cookie",
           "title": "Cookie",
           "keywords": "cookie, nextui",
-          "path": "/docs/policies/cookie.mdx",
-          "newPost": true
+          "path": "/docs/policies/cookie.mdx"
         }
       ]
     }
