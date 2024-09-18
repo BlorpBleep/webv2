@@ -3,13 +3,14 @@ import { FaUserCircle, FaTimes } from "react-icons/fa";
 import { NavbarItem, Link } from "@nextui-org/react";
 import NextLink from "next/link";
 import { ThemeSwitch } from "@/components";
+import { supabase } from "@/utils/supabase";
 
 interface MobileDrawerProps {
   isMenuOpen: boolean;
   onClose: () => void;
   accountLinks: { href: string; label: string; icon: React.ReactNode }[];
   onSelect: (section: string) => void;
-  onLogout: () => void; // Add onLogout prop here
+  onLogout: () => void;
 }
 
 export const MobileDrawer: FC<MobileDrawerProps> = ({
@@ -17,13 +18,46 @@ export const MobileDrawer: FC<MobileDrawerProps> = ({
   onClose,
   accountLinks,
   onSelect,
-  onLogout, // Destructure onLogout from props
+  onLogout,
 }) => {
-  const [user, setUser] = useState<{ email?: string; avatarUrl?: string } | null>(null);
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+  const [fullName, setFullName] = useState<string | null>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log("MobileDrawer Props:", { isMenuOpen, accountLinks, onSelect });
-  }, [isMenuOpen, accountLinks, onSelect]);
+    const fetchUserProfile = async () => {
+      try {
+        const session = await supabase.auth.getSession();
+        if (session.error || !session.data.session) {
+          setIsLoggedIn(false);
+          return;
+        }
+
+        setIsLoggedIn(true);
+        const userId = session.data.session.user.id;
+
+        const { data: user, error: userError } = await supabase
+          .from("users")
+          .select("full_name, avatar_url")
+          .eq("id", userId)
+          .single();
+
+        if (userError) {
+          console.error("Error fetching user profile:", userError.message);
+          return;
+        }
+
+        if (user) {
+          setFullName(user.full_name);
+          setAvatarUrl(user.avatar_url || null);
+        }
+      } catch (error) {
+        console.error("Unexpected error:", error);
+      }
+    };
+
+    fetchUserProfile();
+  }, []);
 
   return (
     <div
@@ -31,51 +65,61 @@ export const MobileDrawer: FC<MobileDrawerProps> = ({
         isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
       onClick={onClose}
+      style={{
+        backgroundColor: "rgba(0, 0, 0, 0.4)",
+      }}
     >
       <div
-        className={`fixed top-0 right-0 h-full w-4/5 bg-gray-100 dark:bg-gray-900 z-[100001] transform transition-transform ease-in-out duration-300 ${
+        className={`fixed top-0 right-0 h-full w-4/5 bg-white z-[100001] transform transition-transform ease-in-out duration-300 ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
         onClick={(e) => e.stopPropagation()}
+        style={{
+          borderTopLeftRadius: "20px",
+          borderBottomLeftRadius: "20px",
+          boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+        }}
       >
-        {/* Close Button and Theme Switch */}
-        <div className="p-4 flex justify-between items-center border-b border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-900">
+        <div className="p-4 flex justify-between items-center border-b border-gray-300 bg-gray-200 dark:bg-gray-300 rounded-tl-lg">
           <ThemeSwitch />
-          <FaTimes className="text-gray-900 dark:text-gray-200 w-6 h-6 cursor-pointer" onClick={onClose} />
+          <FaTimes className="text-gray-900 dark:text-gray-500 w-6 h-6 cursor-pointer" onClick={onClose} />
         </div>
 
-        {/* Drawer Content */}
         <div className="flex flex-col justify-between h-full">
-          {/* User Info */}
-          <div className="p-4 bg-gray-100 dark:bg-gray-900 flex flex-col flex-grow border-b border-gray-300 dark:border-gray-700">
+          <div className="p-4 bg-white flex flex-col flex-grow border-b border-gray-300">
             <div className="flex items-center mb-4">
-              {user ? (
-                <>
-                  <img
-                    src={user.avatarUrl || "/default-avatar.png"}
-                    alt="User Avatar"
-                    className="w-10 h-10 rounded-full"
-                  />
-                  <div className="ml-3">
-                    <p className="text-xs text-gray-500 dark:text-gray-400">LOGGED IN AS</p>
-                    <p className="text-sm font-semibold text-gray-900 dark:text-gray-200">{user.email}</p>
-                  </div>
-                </>
+              {avatarUrl ? (
+                <img
+                  src={avatarUrl}
+                  alt="User Avatar"
+                  className="w-10 h-10 rounded-full"
+                  onError={(e) => {
+                    e.currentTarget.src = "/default-avatar.png";
+                  }}
+                />
               ) : (
-                <>
-                  <FaUserCircle className="w-10 h-10 text-gray-600 dark:text-gray-400" />
-                  <div className="ml-3">
-                    <p className="text-sm font-semibold text-gray-900 dark:text-gray-200">LOG-IN FOR MORE</p>
-                  </div>
-                </>
+                <FaUserCircle className="w-10 h-10 text-gray-600" />
               )}
+              <div className="ml-3">
+                {fullName ? (
+                  <>
+                    <p className="text-xs text-gray-500">LOGGED IN AS</p>
+                    <p className="text-sm font-medium text-gray-900">{fullName}</p>
+                  </>
+                ) : (
+                  <NextLink href="/auth" passHref legacyBehavior>
+                    <Link className="text-sm font-medium text-gray-900">
+                      LOG-IN FOR MORE
+                    </Link>
+                  </NextLink>
+                )}
+              </div>
             </div>
 
-            {/* Navigation Links */}
             <div className="flex flex-col gap-3 mt-4">
               <NavbarItem>
                 <NextLink href="/account" passHref legacyBehavior>
-                  <Link className="text-sm font-semibold text-gray-900 dark:text-gray-200" onClick={onClose}>
+                  <Link className="text-sm font-medium text-gray-900" onClick={onClose}>
                     My Account
                   </Link>
                 </NextLink>
@@ -83,7 +127,7 @@ export const MobileDrawer: FC<MobileDrawerProps> = ({
 
               <NavbarItem>
                 <NextLink href="/pricing" passHref legacyBehavior>
-                  <Link className="text-sm font-semibold text-gray-900 dark:text-gray-200" onClick={onClose}>
+                  <Link className="text-sm font-medium text-gray-900" onClick={onClose}>
                     Pricing
                   </Link>
                 </NextLink>
@@ -91,7 +135,7 @@ export const MobileDrawer: FC<MobileDrawerProps> = ({
 
               <NavbarItem>
                 <NextLink href="/docs/guides/iphone" passHref legacyBehavior>
-                  <Link className="text-sm font-semibold text-gray-900 dark:text-gray-200" onClick={onClose}>
+                  <Link className="text-sm font-medium text-gray-900" onClick={onClose}>
                     Help
                   </Link>
                 </NextLink>
@@ -99,7 +143,7 @@ export const MobileDrawer: FC<MobileDrawerProps> = ({
 
               <NavbarItem>
                 <NextLink href="/downloads" passHref legacyBehavior>
-                  <Link className="text-sm font-semibold text-gray-900 dark:text-gray-200" onClick={onClose}>
+                  <Link className="text-sm font-medium text-gray-900" onClick={onClose}>
                     Downloads
                   </Link>
                 </NextLink>
@@ -107,7 +151,7 @@ export const MobileDrawer: FC<MobileDrawerProps> = ({
 
               <NavbarItem>
                 <NextLink href="/blog" passHref legacyBehavior>
-                  <Link className="text-sm font-semibold text-gray-900 dark:text-gray-200" onClick={onClose}>
+                  <Link className="text-sm font-medium text-gray-900" onClick={onClose}>
                     Blog
                   </Link>
                 </NextLink>
@@ -115,31 +159,31 @@ export const MobileDrawer: FC<MobileDrawerProps> = ({
 
               <NavbarItem>
                 <NextLink href="/teams" passHref legacyBehavior>
-                  <Link className="text-sm font-semibold text-gray-900 dark:text-gray-200" onClick={onClose}>
+                  <Link className="text-sm font-medium text-gray-900" onClick={onClose}>
                     Teams
                   </Link>
                 </NextLink>
               </NavbarItem>
 
-              {/* Logout Link */}
-              <NavbarItem>
-                <Link
-                  className="text-sm font-semibold text-red-600 dark:text-red-400 cursor-pointer"
-                  onClick={onLogout} // Call onLogout when clicked
-                >
-                  Logout
-                </Link>
-              </NavbarItem>
+              {isLoggedIn && (
+                <NavbarItem>
+                  <Link
+                    className="text-sm font-medium text-red-600 cursor-pointer"
+                    onClick={onLogout}
+                  >
+                    Logout
+                  </Link>
+                </NavbarItem>
+              )}
             </div>
           </div>
 
-          {/* Footer */}
-          <div className="p-4 border-t bg-gray-100 dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-xs text-gray-600 dark:text-gray-400">
+          <div className="p-8 bg-gray-100 rounded-bl-lg flex justify-between items-center">
             <NextLink href="/privacy" passHref legacyBehavior>
-              <Link className="mr-4 text-gray-600 dark:text-gray-400">Privacy Policy</Link>
+              <Link className="text-xs text-gray-600">Privacy Policy</Link>
             </NextLink>
             <NextLink href="/terms" passHref legacyBehavior>
-              <Link className="text-gray-600 dark:text-gray-400">Terms of Service</Link>
+              <Link className="text-xs text-gray-600">Terms of Service</Link>
             </NextLink>
           </div>
         </div>
