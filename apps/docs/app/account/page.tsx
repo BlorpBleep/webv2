@@ -105,6 +105,12 @@ export default function AccountPage() {
     }
   };
 
+  // Prevent rendering until loading is false
+  if (loading) {
+    // You can return null or a loading indicator here
+    return null; // or return <p>Loading...</p>;
+  }
+
   return (
     <div className="flex min-h-screen bg-gray-100 dark:bg-gray-900">
       <div className="hidden lg:block lg:w-64">
@@ -120,7 +126,7 @@ export default function AccountPage() {
             Back to Account Overview
           </button>
         )}
-        {loading ? <p>Loading...</p> : renderContent()}
+        {renderContent()}
       </main>
     </div>
   );
