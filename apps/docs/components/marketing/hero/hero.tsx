@@ -10,6 +10,19 @@ import { MdOutlineDesktopMac } from 'react-icons/md';
 import { title, subtitle } from "@/components/primitives";
 import { trackEvent } from "@/utils/va";
 
+// Array of paths for different platforms
+const downloadPaths = {
+  windows: "/downloads/windows.msi",
+  macos: "/downloads/macos.pkg",
+  linux: "/downloads/linux.tar.gz",
+  ios: "https://apps.apple.com/us/app/cicadavpn/id6499138575", // Updated Apple Store link
+  android: "https://play.google.com/store/apps/details?id=com.vpn.client",
+  amazon: "https://www.amazon.com/dp/B00XXXXXXXX",
+  androidTV: "https://play.google.com/store/apps/details?id=com.vpn.client",
+  appleTV: "https://apps.apple.com/us/app/apple-tv/idXXXXXXXXXX",
+  chrome: "/docs/guides/chrome",
+  firefox: "docs/guides/firefox",
+};
 export const Hero = () => {
   const handlePressAnnouncement = (name: string, url: string) => {
     trackEvent("NavbarItem", {
@@ -80,26 +93,28 @@ export const Hero = () => {
       </section>
 
       {/* Supported Platforms Section */}
-      <section className="flex flex-col items-center pb-8 -mt-16 mb-12">
-        <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300">Supported on:</h3>
+      <section className="flex flex-col items-center pb-8 -mt-16">
+        <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300">Download for:</h3>
         <div className="grid grid-cols-4 gap-6 mt-4 md:grid-cols-6 lg:flex lg:flex-wrap lg:justify-center lg:gap-6">
-          {[ 
-            { icon: FaWindows, label: "Windows" },
-            { icon: FaAmazon, label: "Amazon Fire TV" },
-            { icon: FaAndroid, label: "Android" },
-            { icon: SiAndroid, label: "Android TV" },
-            { icon: SiAppletv, label: "Apple TV" },
-            { icon: FaGamepad, label: "Console" },
-            { icon: FaChrome, label: "Chrome" },
-            { icon: FaFirefox, label: "Firefox" },
-            { icon: FaApple, label: "iOS" },
-            { icon: FaLinux, label: "Linux" },
-            { icon: MdOutlineDesktopMac, label: "macOS" },
-            { icon: FaTv, label: "Smart TVs" }
+          {[
+            { icon: MdOutlineDesktopMac, label: "macOS", href: downloadPaths.macos },
+            { icon: FaApple, label: "iOS", href: downloadPaths.ios },
+            { icon: FaWindows, label: "Windows", href: downloadPaths.windows },
+            { icon: FaAndroid, label: "Android", href: downloadPaths.android },
+            { icon: FaAmazon, label: "Amazon Fire TV", href: downloadPaths.amazon },
+            { icon: SiAndroid, label: "Android TV", href: downloadPaths.androidTV },
+            { icon: SiAppletv, label: "Apple TV", href: downloadPaths.appleTV },
+            { icon: FaGamepad, label: "Console", href: downloadPaths.windows },
+            { icon: FaChrome, label: "Chrome", href: downloadPaths.chrome },
+            { icon: FaFirefox, label: "Firefox", href: downloadPaths.firefox },
+            { icon: FaLinux, label: "Linux", href: downloadPaths.linux },
+            { icon: FaTv, label: "Smart TVs", href: downloadPaths.amazon },
           ].map((platform, index) => (
             <div key={index} className="flex flex-col items-center text-center text-gray-500 dark:text-gray-400">
-              <platform.icon className="w-8 h-8 md:w-10 md:h-10" />
-              <span className="mt-2 text-xs md:text-sm">{platform.label}</span>
+              <a href={platform.href} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center">
+                <platform.icon className="w-8 h-8 md:w-10 md:h-10" />
+                <span className="mt-2 text-xs md:text-sm">{platform.label}</span>
+              </a>
             </div>
           ))}
         </div>
