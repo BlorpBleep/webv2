@@ -1,9 +1,10 @@
 import React, { FC, useState, useEffect } from "react";
-import { FaUserCircle, FaTimes } from "react-icons/fa";
+import { FaUserCircle, FaTimes, FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { NavbarItem, Link } from "@nextui-org/react";
 import NextLink from "next/link";
 import { ThemeSwitch } from "@/components";
 import { supabase } from "@/utils/supabase";
+import manifest from "@/config/routes.json"; // Import the routes.json
 
 interface MobileDrawerProps {
   isMenuOpen: boolean;
@@ -23,6 +24,9 @@ export const MobileDrawer: FC<MobileDrawerProps> = ({
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
   const [fullName, setFullName] = useState<string | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
+  // State to control opening of docs sections - all collapsed by default
+  const [openSections, setOpenSections] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -58,6 +62,44 @@ export const MobileDrawer: FC<MobileDrawerProps> = ({
 
     fetchUserProfile();
   }, []);
+
+  // Toggle the expansion of a section
+  const toggleSection = (key: string) => {
+    setOpenSections((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  // Render routes from routes.json, dropping the ".mdx" from paths
+  const renderRoutes = () => {
+    return manifest.routes.map((section) => {
+      const isOpen = openSections[section.key] ?? false; // Default to collapsed
+
+      return (
+        <div key={section.key}>
+          <button
+            className="flex items-center justify-between w-full text-left text-sm font-medium text-gray-900"
+            onClick={() => toggleSection(section.key)}
+          >
+            <span>{section.title}</span>
+            {isOpen ? <FaChevronUp className="w-4 h-4" /> : <FaChevronDown className="w-4 h-4" />}
+          </button>
+
+          {isOpen && (
+            <div className="mt-2 ml-4">
+              {section.routes.map((route) => (
+                <NavbarItem key={route.key}>
+                  <NextLink href={route.path.replace('.mdx', '')} passHref legacyBehavior>
+                    <Link className="text-sm font-medium text-gray-900" onClick={onClose}>
+                      {route.title}
+                    </Link>
+                  </NextLink>
+                </NavbarItem>
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    });
+  };
 
   return (
     <div
@@ -134,14 +176,6 @@ export const MobileDrawer: FC<MobileDrawerProps> = ({
               </NavbarItem>
 
               <NavbarItem>
-                <NextLink href="/docs/guides/iphone" passHref legacyBehavior>
-                  <Link className="text-sm font-medium text-gray-900" onClick={onClose}>
-                    Help
-                  </Link>
-                </NextLink>
-              </NavbarItem>
-
-              <NavbarItem>
                 <NextLink href="/downloads" passHref legacyBehavior>
                   <Link className="text-sm font-medium text-gray-900" onClick={onClose}>
                     Downloads
@@ -176,6 +210,12 @@ export const MobileDrawer: FC<MobileDrawerProps> = ({
                 </NavbarItem>
               )}
             </div>
+
+            {/* Separator for Docs Section */}
+            <div className="border-t border-gray-300 my-4"></div>
+
+            {/* Render Docs Routes from routes.json */}
+            {renderRoutes()}
           </div>
 
           <div className="p-8 bg-gray-100 rounded-bl-lg flex justify-between items-center">
