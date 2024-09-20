@@ -4,7 +4,7 @@
 import { useMemo, useState } from "react";
 import { Tabs, Tab, Card, CardBody, Image } from "@nextui-org/react";
 import NextImage from "next/image";
-import { FaShieldAlt, FaUserSecret, FaMobileAlt, FaLock } from "react-icons/fa";
+import { FaShieldAlt, FaUserSecret, FaMobileAlt, FaLock, FaTachometerAlt, FaAd, FaHeadset } from "react-icons/fa"; // Added icons
 import { shopCartStyles } from "./styles";
 import { title, subtitle, sectionWrapper, titleWrapper } from "@/components/primitives";
 import { useIsMobile } from "@/hooks/use-media-query";
@@ -62,9 +62,48 @@ const themesTabs = (isMobile) => [
       description: ["Secure data with military-grade encryption."],
     },
   },
+  {
+    id: "speed",
+    title: () => <p className="group-data-[selected=true]:text-green-500">Speed</p>,
+    icon: () => (
+      <FaTachometerAlt
+        className="text-default-400 group-data-[selected=true]:text-green-500"
+        size={isMobile ? 34 : 44}
+      />
+    ),
+    content: {
+      description: ["Experience blazing-fast VPN connections anywhere in the world."],
+    },
+  },
+  {
+    id: "ad-blocking",
+    title: () => <p className="group-data-[selected=true]:text-yellow-500">Ad Blocking</p>,
+    icon: () => (
+      <FaAd
+        className="text-default-400 group-data-[selected=true]:text-yellow-500"
+        size={isMobile ? 34 : 44}
+      />
+    ),
+    content: {
+      description: ["Block ads and protect your browsing experience with built-in ad blockers."],
+    },
+  },
+  {
+    id: "support",
+    title: () => <p className="group-data-[selected=true]:text-pink-500">Support</p>,
+    icon: () => (
+      <FaHeadset
+        className="text-default-400 group-data-[selected=true]:text-pink-500"
+        size={isMobile ? 34 : 44}
+      />
+    ),
+    content: {
+      description: ["Get 24/7 support from our expert team for any VPN-related issues."],
+    },
+  },
 ];
 
-type Theme = "privacy" | "anonymity" | "devices" | "encryption";
+type Theme = "privacy" | "anonymity" | "devices" | "encryption" | "speed" | "ad-blocking" | "support";
 type Tab = { id: string; title: () => JSX.Element; icon: () => JSX.Element; content: any };
 
 const CustomThemesExample = ({
@@ -89,7 +128,7 @@ const CustomThemesExample = ({
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 h-full">
       <Tabs
         disableAnimation
         disableCursorAnimation
@@ -116,18 +155,17 @@ const CustomThemesExample = ({
           />
         )}
       </Tabs>
-      <Card className={slots.wrapper()} radius="lg">
-        <CardBody className="relative flex-col md:flex-row md:items-center gap-4 md:gap-9 overflow-visible">
-          <div className={slots.imageWrapper()}>
+      <Card className={slots.wrapper()} radius="lg" style={{ flexGrow: 1 }}>
+        <CardBody className="relative flex-col md:flex-row md:items-center gap-0 p-0 overflow-hidden">
+          <div className="relative w-full h-full">
             <Image
               fill
               removeWrapper
               alt="VPN Service Image"
               as={NextImage}
-              className={slots.img()}
+              className="object-cover rounded-lg m-0 p-0"
               sizes="100vw"
-              // Image dynamically changes based on selected theme
-              src={`/images/${selectedTheme}.png`} // Images based on the theme's ID (e.g., privacy.png, anonymity.png)
+              src={`/images/${selectedTheme}.png`}
             />
           </div>
         </CardBody>
@@ -147,28 +185,25 @@ export const CustomThemes = () => {
 
   return (
     <section className={sectionWrapper({ class: "mt-24 lg:mt-22" })}>
-      {/* Main Title aligned to the left */}
-      <div className="flex justify-start">
-        <div className="w-full lg:w-full text-left">
-          <div className={titleWrapper()}>
-            <h1 className={title({ size: "lg", class: "text-left" })}>Best VPN for</h1>
-            <h1 className={title({ color: "blue", size: "lg", class: "text-left" })}>
+      <div className="flex flex-col gap-4 mb-8">
+        <div className={titleWrapper()}>
+          <h1 className={title({ size: "lg" })}>Best VPN for</h1>
+          <div className="mt-4">
+            <h1 className={title({ color: "blue", size: "lg" })}>
               Privacy & Anonymity
             </h1>
           </div>
-          {/* Updated text to span full width */}
-          <p className={subtitle({ class: "w-full text-left" })}>
-            Keep your internet activity hidden from anyone watching. This includes your ISP,
-            hackers, advertisers, & the government.
-          </p>
         </div>
+        <p className={subtitle({ class: "w-full text-left" })}>
+          Keep your internet activity hidden from anyone watching. This includes your ISP,
+          hackers, advertisers, & the government.
+        </p>
       </div>
 
-      {/* Two-column layout */}
-      <div className="flex flex-col gap-8 lg:flex-row">
-        {/* Left-hand side with dynamic content */}
-        <div className="w-full lg:w-1/2 p-6 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg shadow-md">
-          <div className="flex flex-col gap-4 text-white">
+      {/* Grid Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+        <div className="p-6 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg shadow-md flex flex-col justify-center">
+          <div className="flex flex-col gap-4 text-white h-full justify-center">
             {selectedContent.description.map((desc, index) => (
               <p key={index} className={title({ size: "lg", class: "text-white" })}>
                 {desc}
@@ -177,8 +212,7 @@ export const CustomThemes = () => {
           </div>
         </div>
 
-        {/* Right-hand side with tabs and image */}
-        <div className="w-full lg:w-1/2">
+        <div className="flex flex-col h-full">
           <CustomThemesExample
             selectedTheme={selectedTheme}
             tabs={tabs}
