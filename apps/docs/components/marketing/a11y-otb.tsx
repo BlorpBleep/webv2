@@ -53,7 +53,7 @@ export const A11yOtb = () => {
             </div>
           </div>
           <p className={subtitle()}>
-            Whether you're looking for privacy, speed, or advanced features, CicadaVPN has it all. Explore the features that make CicadaVPN a complete solution for your online security and content access needs.
+            Privacy, speed, or advanced features, CicadaVPN has it all. Explore our features for your online security & content access needs.
           </p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -70,15 +70,15 @@ export const A11yOtb = () => {
           </div>
           {/* Image on the right side, centered */}
           <GradientBox
-            className="h-full min-h-[320px] py-4 px-8 flex justify-center items-center"
-            color="pink"
+            className="h-full min-h-[320px] py-2 px-4 flex justify-center items-center"
+            color="green"
             to="top-right"
           >
             <Image
               src="/images/features.png" // Update with the correct image path
               alt="CicadaVPN Features"
-              width={400}
-              height={400}
+              width={420}
+              height={420}
               className="rounded-lg"
             />
           </GradientBox>
