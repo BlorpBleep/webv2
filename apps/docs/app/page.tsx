@@ -35,8 +35,10 @@ export default async function Home() {
     <main className="container mx-auto max-w-7xl px-6 flex-grow">
       <section className="flex flex-col items-center justify-center">
         <Hero />
+        <Spacer y={6} />
         <FeaturesGrid features={landingContent.topFeatures} />
         <Sponsors />
+        <Spacer y={6} />
         <CustomThemes />
         <A11yOtb />
         <DarkMode />

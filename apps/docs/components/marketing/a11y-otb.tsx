@@ -4,6 +4,7 @@
 import { Button } from "@nextui-org/react";
 import Image from "next/image";
 import Link from "next/link";
+import NextLink from "next/link";
 
 import { GradientBox } from "@/components";
 import { title, subtitle, titleWrapper, sectionWrapper } from "@/components/primitives";
@@ -43,13 +44,13 @@ const cicadaFeatures = [
 
 export const A11yOtb = () => {
   return (
-    <section className={sectionWrapper({ class: "mt-16 lg:mt-44" })}>
+    <section id="features" className={sectionWrapper({ class: "mt-16 lg:mt-44" })}>
       <div className="flex flex-col gap-8">
         <div>
           <div className={titleWrapper()}>
             <h1 className={title({ size: "lg" })}>Feature-Rich and Secure</h1>
             <div className="mt-4">
-              <h1 className={title({ size: "lg", color: "blue" })}>CicadaVPN Does Everything You Need.</h1>
+              <h1 className={title({ size: "lg", color: "blue" })}>CicadaVPN, Everything You Need.</h1>
             </div>
           </div>
           <p className={subtitle()}>
@@ -86,11 +87,11 @@ export const A11yOtb = () => {
         <div className="flex w-1/2 justify-start">
           <Button
             aria-label="Learn more about CicadaVPN's features"
-            as={Link}
-            className="max-w-fit mt-2 bg-blue-100 text-blue-500 dark:bg-blue-900 dark:text-blue-300"
+            as={NextLink}
+            className="max-w-fit bg-blue-100 text-blue-500 dark:bg-blue-200 dark:text-blue-900"
             href="/docs/features/switchguard"
             radius="full"
-            size="sm"
+            size="md"
             variant="flat"
           >
             Learn more

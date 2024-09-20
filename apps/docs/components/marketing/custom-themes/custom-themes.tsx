@@ -126,7 +126,8 @@ const CustomThemesExample = ({
               as={NextImage}
               className={slots.img()}
               sizes="100vw"
-              src="/images/vpn-privacy.png"
+              // Image dynamically changes based on selected theme
+              src={`/images/${selectedTheme}.png`} // Images based on the theme's ID (e.g., privacy.png, anonymity.png)
             />
           </div>
         </CardBody>
