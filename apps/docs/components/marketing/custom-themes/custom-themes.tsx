@@ -190,7 +190,7 @@ export const CustomThemes = () => {
           <h1 className={title({ size: "lg" })}>Best VPN for</h1>
           <div className="mt-4">
             <h1 className={title({ color: "blue", size: "lg" })}>
-              Privacy & Anonymity
+              Features, Privacy & Anonymity
             </h1>
           </div>
         </div>
