@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaChevronRight, FaLock, FaEnvelope, FaMobileAlt } from "react-icons/fa"; // Import icons
-import { supabase } from "@/utils/supabase"; // Import supabase client
+import { supabase } from "@/utils/supabaseClient"; // Import supabase client
 
 export default function Security() {
   const [email, setEmail] = useState<string | null>("");

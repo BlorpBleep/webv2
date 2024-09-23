@@ -10,7 +10,7 @@ import Security from "@/components/account/security";
 import Vouchers from "@/components/account/vouchers";
 import AccountOverview from "@/components/account/accountoverview";
 import PricingOffer from "@/components/account/PricingOffer";
-import { supabase } from "@/utils/supabase";
+import { supabase } from "@/utils/supabaseClient";
 import { FaChevronLeft } from "react-icons/fa";
 
 export default function AccountPage() {

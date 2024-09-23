@@ -5,7 +5,7 @@ import { getCurrentYear } from "@/utils/time";
 import { FaChevronRight } from "react-icons/fa";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { supabase } from "@/utils/supabase"; // Import supabase client
+import { supabase } from "@/utils/supabaseClient"; // Import supabase client
 
 export const Footer = () => {
   const pathname = usePathname();

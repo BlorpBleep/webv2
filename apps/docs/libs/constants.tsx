@@ -8,14 +8,14 @@ export const communityAccounts = [
     title: "Twitter",
     description: "For announcements, tips and general information.",
     icon: <TwitterIcon className="text-[#00ACEE]" size={32} />,
-    href: "https://twitter.com/getnextui",
+    href: "https://x.com/cicadavpn",
     isExternal: true,
   },
   {
     title: "Discord",
     description: "To get involved in the community, ask questions and share tips.",
     icon: <DiscordIcon className="text-[#7289DA]" size={32} />,
-    href: "https://discord.gg/9b6yyZKmH4",
+    href: "https://discord.com/channels/1287725294228344904/1287725294894972971",
     isExternal: true,
   },
   {
@@ -36,7 +36,7 @@ export const communityAccounts = [
     title: "YouTube",
     description: "For video updates, tutorials, and behind-the-scenes content.",
     icon: <YouTubeIcon className="text-[#FF0000]" size={32} />,
-    href: "https://www.youtube.com/yourchannel",
+    href: "https://www.youtube.com/@CicadaVPN",
     isExternal: true,
   },
   {

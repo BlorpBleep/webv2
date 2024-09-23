@@ -3,7 +3,7 @@ import { FaUserCircle, FaTimes, FaChevronDown, FaChevronUp } from "react-icons/f
 import { NavbarItem, Link } from "@nextui-org/react";
 import NextLink from "next/link";
 import { ThemeSwitch } from "@/components";
-import { supabase } from "@/utils/supabase";
+import { supabase } from "@/utils/supabaseClient";
 import manifest from "@/config/routes.json"; // Import the routes.json
 
 interface MobileDrawerProps {

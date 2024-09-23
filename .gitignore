@@ -5,7 +5,7 @@ out/
 # Node modules
 node_modules/
 
-packages/
+/packages/*
 
 # Environment variables
 .env.local
@@ -49,3 +49,6 @@ Thumbs.db
 /packages/core/theme
 /packages
 /packages
+/packages
+/packages/core/theme
+/packages/core/theme/dist/components

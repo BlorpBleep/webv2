@@ -10,6 +10,39 @@ export default function PricingPage() {
     seconds: "00",
   });
 
+  const handleClick = async (priceId) => {
+    try {
+      // Optionally, collect the customer's email if available
+      const customerEmail = ""; // Replace with actual email or prompt user for email
+
+      const response = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          priceId,
+          customerEmail,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.url) {
+        // Redirect to Stripe Checkout
+        window.location.href = data.url;
+      } else {
+        console.error("Failed to create checkout session:", data.error);
+        // Optionally, show an error message to the user
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      // Optionally, show an error message to the user
+    }
+  };
+
+
+
   useEffect(() => {
     const jwtExpiryTime = new Date();
     jwtExpiryTime.setMinutes(jwtExpiryTime.getMinutes() + 60); // Set expiry time to 60 minutes from now
@@ -54,7 +87,12 @@ export default function PricingPage() {
   {/* Best Value Offer (Order: First on mobile, middle on desktop screens, 10% bigger, with badge and border) */}
   <Card 
     className="py-4 shadow-lg bg-white dark:bg-gray-800 rounded-lg w-full lg:w-[33%] lg:min-h-[350px] lg:max-h-[620px] border-2 border-gradient-to-r from-[#F54180] to-[#338EF7] cursor-pointer relative sm:order-1 md:order-1 lg:order-2"
-    as="a" href="---https://buy.stripe.com/3cs3cOgCi0Z784obIN"
+    isPressable
+    
+    onPress={() => {
+      console.log('Card pressed');
+      handleClick('price_1PveRWGUjDHrefXGMe5eRQ1u');
+    }}
   >
     <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
       <p className="text-tiny uppercase font-bold text-gray-900 dark:text-gray-200">Best Value</p>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaChevronRight, FaMobileAlt, FaDownload, FaTrash } from "react-icons/fa"; // Import icons
-import { supabase } from "@/utils/supabase"; // Import supabase client
+import { supabase } from "@/utils/supabaseClient"; // Import supabase client
 
 export default function Devices() {
   const [devicesData, setDevicesData] = useState<any[]>([]);

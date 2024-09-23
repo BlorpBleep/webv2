@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaChevronRight, FaUserShield, FaShareAlt, FaPlus, FaTrash } from "react-icons/fa"; 
-import { supabase } from "@/utils/supabase";
+import { supabase } from "@/utils/supabaseClient";
 
 export default function Accounts() {
   const parentalControls = [

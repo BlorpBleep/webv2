@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaChevronRight, FaTicketAlt } from "react-icons/fa";
-import { supabase } from "@/utils/supabase"; // Ensure you have supabase client setup in your project
+import { supabase } from "@/utils/supabaseClient"; // Ensure you have supabase client setup in your project
 
 export default function Vouchers() {
   const [vouchers, setVouchers] = useState<any[]>([]);

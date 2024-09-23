@@ -16,7 +16,10 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "downlevelIteration": true,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["apps/docs/*"]}
   },
   "include": ["packages"],
   "exclude": ["**/node_modules", "**/dist", "**/.turbo"]
