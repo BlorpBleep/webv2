@@ -21,6 +21,7 @@
     "@iconify/react": "^4.1.1",
     "@internationalized/date": "^3.5.4",
     "@mapbox/rehype-prism": "^0.6.0",
+    "@next/third-parties": "^14.2.14",
     "@nextui-org/aria-utils": "workspace:*",
     "@nextui-org/badge": "workspace:*",
     "@nextui-org/code": "workspace:*",
