@@ -1,26 +1,25 @@
+// tsconfig.json
+
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "lib": ["dom", "esnext"],
-    "declaration": true,
-    "sourceMap": true,
-    "moduleResolution": "node",
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
     "skipLibCheck": true,
-    "strict": true,
-    "isolatedModules": true,
-    "noFallthroughCasesInSwitch": true,
-    "jsx": "react-jsx",
+    "strict": true, // Enables all strict type-checking options
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
     "esModuleInterop": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
-    "downlevelIteration": true,
-    "noImplicitAny": false,
-    "baseUrl": "./",
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "baseUrl": ".", // Base directory for resolving non-relative module names
     "paths": {
-      "@/*": ["apps/docs/*"]}
+      "@/*": ["./*"] // Maps '@/' to the project root
+    }
   },
-  "include": ["packages"],
-  "exclude": ["**/node_modules", "**/dist", "**/.turbo"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types/**/*.ts"],
+  "exclude": ["node_modules"]
 }
