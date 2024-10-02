@@ -12,7 +12,8 @@
     "preinstall": "node preinstall.js",
     "build:sponsors": "tsx scripts/build-sponsors.ts",
     "update:search-meta": "tsx scripts/update-search-meta.ts",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "tsc": "tsc"
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "^2.6.4",

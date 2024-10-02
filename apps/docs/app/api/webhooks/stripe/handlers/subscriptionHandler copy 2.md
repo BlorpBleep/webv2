@@ -4,10 +4,10 @@ import { stripe } from '@/utils/stripeClient'; // Centralized Stripe instance
 import { supabaseAdmin } from '@/utils/supabaseAdmin'; // Supabase client
 import { Database } from '@/types/supabase'; // Import the generated Database type
 
-// Example of making fields optional
+// Define SubscriptionRecord type based on the Supabase schema
 type SubscriptionRecord = {
   id: string;
-  user_id: string;
+  user_id: string; // User ID should be a UUID type
   status: string; // Adjust based on your enum
   metadata?: any; // Make optional
   price_id?: string | null; // Make optional
@@ -38,7 +38,7 @@ export async function provisionSubscription(session: any, userId: string) {
     // Check if this is a one-time payment (OTP)
     if (amountTotal > 0 && !subscriptionId) {
       console.log(`>>> Detected one-time payment (OTP). Amount Total: ${amountTotal}`);
-      await createOneTimePaymentSubscription(session);
+      await createOneTimePaymentSubscription(session, userId); // Pass userId to the OTP creation function
     } else if (subscriptionId) {
       // For subscriptions, retrieve subscription details from Stripe
       const subscription = await stripe.subscriptions.retrieve(subscriptionId);
@@ -47,11 +47,11 @@ export async function provisionSubscription(session: any, userId: string) {
       // Prepare subscription data for insertion into Supabase
       const subscriptionData: SubscriptionRecord = {
         id: subscription.id, // Stripe subscription ID
-        user_id: session.customer_details.email as string, // Ensure this is a string
+        user_id: userId, // Use retrieved user ID
         status: subscription.status as any, // Cast to correct enum type
+        metadata: subscription.metadata || null,
         price_id: subscription.items.data[0]?.price.id || null,
         quantity: subscription.items.data[0]?.quantity || 1,
-        // Comment out unnecessary fields for now
         cancel_at_period_end: subscription.cancel_at_period_end || false,
         created: new Date(subscription.created * 1000).toISOString(), // Creation time
         current_period_start: new Date(subscription.current_period_start * 1000).toISOString(), // Current period start
@@ -62,7 +62,7 @@ export async function provisionSubscription(session: any, userId: string) {
         trial_start: subscription.trial_start ? new Date(subscription.trial_start * 1000).toISOString() : null,
         trial_end: subscription.trial_end ? new Date(subscription.trial_end * 1000).toISOString() : null,
         stripe_subscription_id: subscription.id,
-        amount: amountTotal, // Capture the total amount
+        amount: amountTotal || null, // Capture the total amount
         currency: session.currency || null, // Set currency based on session data
         description: null // Optional description field
       };
@@ -85,15 +85,12 @@ export async function provisionSubscription(session: any, userId: string) {
   }
 }
 
-
-
-
 // Create a one-time payment subscription in Supabase
-async function createOneTimePaymentSubscription(session) {
+async function createOneTimePaymentSubscription(session, userId: string) {
   try {
     const otpSubscriptionData: SubscriptionRecord = {
       id: session.id || `otp_${Date.now()}`, // Generate a temporary ID if not provided
-      user_id: session.customer_details.email as string, // Fetch the user ID based on the customer email
+      user_id: userId, // Use the retrieved user ID
       status: 'one_time_purchase', // Status for one-time purchases
       metadata: session.metadata || null,
       price_id: null, // No price ID for OTP
@@ -101,6 +98,7 @@ async function createOneTimePaymentSubscription(session) {
       cancel_at_period_end: false,
       created: new Date(session.created * 1000).toISOString(), // Start at creation time
       current_period_start: new Date(session.created * 1000).toISOString(), // Start at creation time
+      current_period_end: null, // No specific end for OTP
       ended_at: null,
       cancel_at: null,
       canceled_at: null,

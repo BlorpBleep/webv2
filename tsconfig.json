@@ -1,12 +1,10 @@
-// tsconfig.json
-
 {
   "compilerOptions": {
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
     "skipLibCheck": true,
-    "strict": true, // Enables all strict type-checking options
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -15,9 +13,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "baseUrl": ".", // Base directory for resolving non-relative module names
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"] // Maps '@/' to the project root
+      "@/*": ["./*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types/**/*.ts"],

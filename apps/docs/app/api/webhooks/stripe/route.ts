@@ -1,7 +1,7 @@
 // File: app/api/webhooks/stripe/route.ts
 
 import { NextResponse } from 'next/server';
-import { handleWebhookEvent } from '@/app/api/webhooks/stripe/handlers/webhookHandler';
+import { handleWebhookEvent } from './handlers/webhookHandler';
 import { stripe, isProduction } from '@/utils/stripeClient';
 import type { NextRequest } from 'next/server';
 

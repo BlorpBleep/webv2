@@ -312,7 +312,7 @@ importers:
         version: link:../../packages/core/react
       '@nextui-org/scroll-shadow':
         specifier: ^2.1.19
-        version: 2.1.19(@nextui-org/system@packages+core+system)(@nextui-org/theme@packages+core+theme)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 2.1.19(@nextui-org/system@2.2.5(@nextui-org/theme@packages+core+theme)(framer-motion@11.5.4(@emotion/is-prop-valid@0.8.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@packages+core+theme)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@nextui-org/shared-icons':
         specifier: workspace:*
         version: link:../../packages/utilities/shared-icons
@@ -393,7 +393,7 @@ importers:
         version: 2.45.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       '@vercel/analytics':
         specifier: ^1.2.2
-        version: 1.3.1(next@13.5.1(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+        version: 1.3.1(next@13.5.1(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       bufferutil:
         specifier: ^4.0.8
         version: 4.0.8
@@ -447,13 +447,13 @@ importers:
         version: 3.0.0
       next:
         specifier: 13.5.1
-        version: 13.5.1(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 13.5.1(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       next-contentlayer:
         specifier: ^0.3.4
-        version: 0.3.4(contentlayer@0.3.4(esbuild@0.18.20))(esbuild@0.18.20)(next@13.5.1(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 0.3.4(contentlayer@0.3.4(esbuild@0.18.20))(esbuild@0.18.20)(next@13.5.1(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       next-themes:
         specifier: ^0.2.1
-        version: 0.2.1(next@13.5.1(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 0.2.1(next@13.5.1(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       nodemailer:
         specifier: ^6.9.15
         version: 6.9.15
@@ -556,7 +556,7 @@ importers:
     devDependencies:
       '@docusaurus/utils':
         specifier: 2.0.0-beta.3
-        version: 2.0.0-beta.3(@swc/core@1.7.24(@swc/helpers@0.5.13))(esbuild@0.18.20)
+        version: 2.0.0-beta.3(@swc/core@1.7.24(@swc/helpers@0.5.13))(esbuild@0.18.20)(webpack-cli@3.3.12(webpack@5.94.0))
       '@next/bundle-analyzer':
         specifier: ^13.4.6
         version: 13.5.6(bufferutil@4.0.8)(utf-8-validate@6.0.4)
@@ -625,7 +625,7 @@ importers:
         version: 1.2.0
       next-sitemap:
         specifier: ^4.1.8
-        version: 4.2.3(next@13.5.1(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+        version: 4.2.3(next@13.5.1(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       node-fetch:
         specifier: ^3.2.10
         version: 3.3.2
@@ -5443,6 +5443,19 @@ packages:
 
   '@nextui-org/shared-utils@2.0.7':
     resolution: {integrity: sha512-FxY3N0i1Al7Oz3yOQN0dSpG8UUrLIP3iYh3ubD7BhdQoZLl5xbG6++q1gqOzZXV+ZWeUFMY/or0ofzWxGHiOow==}
+
+  '@nextui-org/system-rsc@2.1.5':
+    resolution: {integrity: sha512-tkJLAyJu34Rr5KUMMqoB7cZjOVXB+7a/7N4ushZfuiLdoYijgmcXFMzLxjm+tbt9zA5AV+ivsfbHvscg77dJ6w==}
+    peerDependencies:
+      '@nextui-org/theme': '>=2.1.0'
+      react: ^18.2.0
+
+  '@nextui-org/system@2.2.5':
+    resolution: {integrity: sha512-nrX6768aiyWtpxX3OTFBIVWR+v9nlMsC3KaBinNfek97sNm7gAfTHi7q5kylE3L5yIMpNG+DclAKpuxgDQEmvw==}
+    peerDependencies:
+      framer-motion: '>=10.17.0'
+      react: ^18.2.0
+      react-dom: ^18.2.0
 
   '@nextui-org/use-data-scroll-overflow@2.1.6':
     resolution: {integrity: sha512-z9XzBF64qjTSp6jTttMDEPku7Xpgci/tYTokEQHWgydRg3FZEaBqRgOOMeiXAV1Py/kQB062MjPSneUtwYlozA==}
@@ -17284,7 +17297,7 @@ snapshots:
       '@types/node': 20.5.1
       chalk: 4.1.2
       cosmiconfig: 8.3.6(typescript@4.9.5)
-      cosmiconfig-typescript-loader: 4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@4.9.5))(ts-node@10.9.2(@swc/core@1.7.24(@swc/helpers@0.5.13))(@types/node@20.5.1)(typescript@4.9.5))(typescript@4.9.5)
+      cosmiconfig-typescript-loader: 4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@4.9.5))(ts-node@10.9.2(@swc/core@1.7.24(@swc/helpers@0.5.13))(@types/node@15.14.9)(typescript@4.9.5))(typescript@4.9.5)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -17439,12 +17452,12 @@ snapshots:
 
   '@discoveryjs/json-ext@0.5.7': {}
 
-  '@docusaurus/types@2.0.0-beta.3(@swc/core@1.7.24(@swc/helpers@0.5.13))(esbuild@0.18.20)':
+  '@docusaurus/types@2.0.0-beta.3(@swc/core@1.7.24(@swc/helpers@0.5.13))(esbuild@0.18.20)(webpack-cli@3.3.12(webpack@5.94.0))':
     dependencies:
       commander: 5.1.0
       joi: 17.13.3
       querystring: 0.2.0
-      webpack: 5.94.0(@swc/core@1.7.24(@swc/helpers@0.5.13))(esbuild@0.18.20)
+      webpack: 5.94.0(@swc/core@1.7.24(@swc/helpers@0.5.13))(esbuild@0.18.20)(webpack-cli@3.3.12(webpack@5.94.0))
       webpack-merge: 5.10.0
     transitivePeerDependencies:
       - '@swc/core'
@@ -17452,9 +17465,9 @@ snapshots:
       - uglify-js
       - webpack-cli
 
-  '@docusaurus/utils@2.0.0-beta.3(@swc/core@1.7.24(@swc/helpers@0.5.13))(esbuild@0.18.20)':
+  '@docusaurus/utils@2.0.0-beta.3(@swc/core@1.7.24(@swc/helpers@0.5.13))(esbuild@0.18.20)(webpack-cli@3.3.12(webpack@5.94.0))':
     dependencies:
-      '@docusaurus/types': 2.0.0-beta.3(@swc/core@1.7.24(@swc/helpers@0.5.13))(esbuild@0.18.20)
+      '@docusaurus/types': 2.0.0-beta.3(@swc/core@1.7.24(@swc/helpers@0.5.13))(esbuild@0.18.20)(webpack-cli@3.3.12(webpack@5.94.0))
       '@types/github-slugger': 1.3.0
       chalk: 4.1.2
       escape-string-regexp: 4.0.0
@@ -18188,17 +18201,39 @@ snapshots:
       '@nextui-org/shared-utils': 2.0.7
       react: 18.3.1
 
-  '@nextui-org/scroll-shadow@2.1.19(@nextui-org/system@packages+core+system)(@nextui-org/theme@packages+core+theme)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@nextui-org/scroll-shadow@2.1.19(@nextui-org/system@2.2.5(@nextui-org/theme@packages+core+theme)(framer-motion@11.5.4(@emotion/is-prop-valid@0.8.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@packages+core+theme)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@nextui-org/react-utils': 2.0.16(react@18.3.1)
       '@nextui-org/shared-utils': 2.0.7
-      '@nextui-org/system': link:packages/core/system
+      '@nextui-org/system': 2.2.5(@nextui-org/theme@packages+core+theme)(framer-motion@11.5.4(@emotion/is-prop-valid@0.8.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@nextui-org/theme': link:packages/core/theme
       '@nextui-org/use-data-scroll-overflow': 2.1.6(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
   '@nextui-org/shared-utils@2.0.7': {}
+
+  '@nextui-org/system-rsc@2.1.5(@nextui-org/theme@packages+core+theme)(react@18.3.1)':
+    dependencies:
+      '@nextui-org/theme': link:packages/core/theme
+      '@react-types/shared': 3.23.1(react@18.3.1)
+      clsx: 1.2.1
+      react: 18.3.1
+
+  '@nextui-org/system@2.2.5(@nextui-org/theme@packages+core+theme)(framer-motion@11.5.4(@emotion/is-prop-valid@0.8.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@internationalized/date': 3.5.5
+      '@nextui-org/react-utils': 2.0.16(react@18.3.1)
+      '@nextui-org/system-rsc': 2.1.5(@nextui-org/theme@packages+core+theme)(react@18.3.1)
+      '@react-aria/i18n': 3.11.1(react@18.3.1)
+      '@react-aria/overlays': 3.22.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@react-aria/utils': 3.24.1(react@18.3.1)
+      '@react-stately/utils': 3.10.1(react@18.3.1)
+      framer-motion: 11.5.4(@emotion/is-prop-valid@0.8.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+    transitivePeerDependencies:
+      - '@nextui-org/theme'
 
   '@nextui-org/use-data-scroll-overflow@2.1.6(react@18.3.1)':
     dependencies:
@@ -22014,11 +22049,11 @@ snapshots:
       '@typescript-eslint/types': 5.62.0
       eslint-visitor-keys: 3.4.3
 
-  '@vercel/analytics@1.3.1(next@13.5.1(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
+  '@vercel/analytics@1.3.1(next@13.5.1(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
     dependencies:
       server-only: 0.0.1
     optionalDependencies:
-      next: 13.5.1(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      next: 13.5.1(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
 
   '@vitejs/plugin-react@3.1.0(vite@4.5.3(@types/node@20.5.1)(lightningcss@1.26.0)(terser@5.31.6))':
@@ -23306,7 +23341,7 @@ snapshots:
 
   core-util-is@1.0.3: {}
 
-  cosmiconfig-typescript-loader@4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@4.9.5))(ts-node@10.9.2(@swc/core@1.7.24(@swc/helpers@0.5.13))(@types/node@20.5.1)(typescript@4.9.5))(typescript@4.9.5):
+  cosmiconfig-typescript-loader@4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@4.9.5))(ts-node@10.9.2(@swc/core@1.7.24(@swc/helpers@0.5.13))(@types/node@15.14.9)(typescript@4.9.5))(typescript@4.9.5):
     dependencies:
       '@types/node': 20.5.1
       cosmiconfig: 8.3.6(typescript@4.9.5)
@@ -24070,7 +24105,7 @@ snapshots:
       eslint: 7.32.0
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 3.6.3(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@4.9.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.30.0)(eslint@7.32.0)
-      eslint-plugin-import: 2.30.0(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@4.9.5))(eslint-import-resolver-typescript@3.6.3)(eslint@7.32.0)
+      eslint-plugin-import: 2.30.0(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@4.9.5))(eslint-import-resolver-typescript@2.7.1(eslint-plugin-import@2.30.0)(eslint@7.32.0))(eslint@7.32.0)
       eslint-plugin-jsx-a11y: 6.10.0(eslint@7.32.0)
       eslint-plugin-react: 7.35.2(eslint@7.32.0)
       eslint-plugin-react-hooks: 4.6.2(eslint@7.32.0)
@@ -24140,7 +24175,7 @@ snapshots:
       is-bun-module: 1.2.1
       is-glob: 4.0.3
     optionalDependencies:
-      eslint-plugin-import: 2.30.0(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@4.9.5))(eslint-import-resolver-typescript@3.6.3)(eslint@7.32.0)
+      eslint-plugin-import: 2.30.0(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@4.9.5))(eslint-import-resolver-typescript@2.7.1(eslint-plugin-import@2.30.0)(eslint@7.32.0))(eslint@7.32.0)
     transitivePeerDependencies:
       - '@typescript-eslint/parser'
       - eslint-import-resolver-node
@@ -24181,34 +24216,6 @@ snapshots:
       string-natural-compare: 3.0.1
 
   eslint-plugin-import@2.30.0(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@4.9.5))(eslint-import-resolver-typescript@2.7.1(eslint-plugin-import@2.30.0)(eslint@7.32.0))(eslint@7.32.0):
-    dependencies:
-      '@rtsao/scc': 1.1.0
-      array-includes: 3.1.8
-      array.prototype.findlastindex: 1.2.5
-      array.prototype.flat: 1.3.2
-      array.prototype.flatmap: 1.3.2
-      debug: 3.2.7
-      doctrine: 2.1.0
-      eslint: 7.32.0
-      eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.11.0(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@4.9.5))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@4.9.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.30.0)(eslint@7.32.0))(eslint@7.32.0)
-      hasown: 2.0.2
-      is-core-module: 2.15.1
-      is-glob: 4.0.3
-      minimatch: 3.1.2
-      object.fromentries: 2.0.8
-      object.groupby: 1.0.3
-      object.values: 1.2.0
-      semver: 6.3.1
-      tsconfig-paths: 3.15.0
-    optionalDependencies:
-      '@typescript-eslint/parser': 5.62.0(eslint@7.32.0)(typescript@4.9.5)
-    transitivePeerDependencies:
-      - eslint-import-resolver-typescript
-      - eslint-import-resolver-webpack
-      - supports-color
-
-  eslint-plugin-import@2.30.0(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@4.9.5))(eslint-import-resolver-typescript@3.6.3)(eslint@7.32.0):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.8
@@ -27723,12 +27730,12 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next-contentlayer@0.3.4(contentlayer@0.3.4(esbuild@0.18.20))(esbuild@0.18.20)(next@13.5.1(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  next-contentlayer@0.3.4(contentlayer@0.3.4(esbuild@0.18.20))(esbuild@0.18.20)(next@13.5.1(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@contentlayer/core': 0.3.4(esbuild@0.18.20)
       '@contentlayer/utils': 0.3.4
       contentlayer: 0.3.4(esbuild@0.18.20)
-      next: 13.5.1(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      next: 13.5.1(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
     transitivePeerDependencies:
@@ -27737,23 +27744,23 @@ snapshots:
       - markdown-wasm
       - supports-color
 
-  next-sitemap@4.2.3(next@13.5.1(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)):
+  next-sitemap@4.2.3(next@13.5.1(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)):
     dependencies:
       '@corex/deepmerge': 4.0.43
       '@next/env': 13.5.6
       fast-glob: 3.3.2
       minimist: 1.2.8
-      next: 13.5.1(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      next: 13.5.1(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
 
-  next-themes@0.2.1(next@13.5.1(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  next-themes@0.2.1(next@13.5.1(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
-      next: 13.5.1(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      next: 13.5.1(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
   next-tick@1.1.0: {}
 
-  next@13.5.1(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  next@13.5.1(@babel/core@7.25.2)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@next/env': 13.5.1
       '@swc/helpers': 0.5.2
@@ -27762,7 +27769,7 @@ snapshots:
       postcss: 8.4.14
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      styled-jsx: 5.1.1(react@18.3.1)
+      styled-jsx: 5.1.1(@babel/core@7.25.2)(react@18.3.1)
       watchpack: 2.4.0
       zod: 3.21.4
     optionalDependencies:
@@ -30094,10 +30101,12 @@ snapshots:
     dependencies:
       inline-style-parser: 0.1.1
 
-  styled-jsx@5.1.1(react@18.3.1):
+  styled-jsx@5.1.1(@babel/core@7.25.2)(react@18.3.1):
     dependencies:
       client-only: 0.0.1
       react: 18.3.1
+    optionalDependencies:
+      '@babel/core': 7.25.2
 
   sucrase@3.35.0:
     dependencies:
@@ -30314,14 +30323,14 @@ snapshots:
       '@swc/core': 1.7.24(@swc/helpers@0.5.13)
       esbuild: 0.15.18
 
-  terser-webpack-plugin@5.3.10(@swc/core@1.7.24(@swc/helpers@0.5.13))(esbuild@0.18.20)(webpack@5.94.0(@swc/core@1.7.24(@swc/helpers@0.5.13))(esbuild@0.18.20)):
+  terser-webpack-plugin@5.3.10(@swc/core@1.7.24(@swc/helpers@0.5.13))(esbuild@0.18.20)(webpack@5.94.0(@swc/core@1.7.24(@swc/helpers@0.5.13))(esbuild@0.15.18)(webpack-cli@3.3.12)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       jest-worker: 27.5.1
       schema-utils: 3.3.0
       serialize-javascript: 6.0.2
       terser: 5.31.6
-      webpack: 5.94.0(@swc/core@1.7.24(@swc/helpers@0.5.13))(esbuild@0.18.20)
+      webpack: 5.94.0(@swc/core@1.7.24(@swc/helpers@0.5.13))(esbuild@0.15.18)(webpack-cli@3.3.12)
     optionalDependencies:
       '@swc/core': 1.7.24(@swc/helpers@0.5.13)
       esbuild: 0.18.20
@@ -31176,7 +31185,7 @@ snapshots:
       - esbuild
       - uglify-js
 
-  webpack@5.94.0(@swc/core@1.7.24(@swc/helpers@0.5.13))(esbuild@0.18.20):
+  webpack@5.94.0(@swc/core@1.7.24(@swc/helpers@0.5.13))(esbuild@0.18.20)(webpack-cli@3.3.12(webpack@5.94.0)):
     dependencies:
       '@types/estree': 1.0.5
       '@webassemblyjs/ast': 1.12.1
@@ -31198,9 +31207,11 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 3.3.0
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.10(@swc/core@1.7.24(@swc/helpers@0.5.13))(esbuild@0.18.20)(webpack@5.94.0(@swc/core@1.7.24(@swc/helpers@0.5.13))(esbuild@0.18.20))
+      terser-webpack-plugin: 5.3.10(@swc/core@1.7.24(@swc/helpers@0.5.13))(esbuild@0.18.20)(webpack@5.94.0(@swc/core@1.7.24(@swc/helpers@0.5.13))(esbuild@0.15.18)(webpack-cli@3.3.12))
       watchpack: 2.4.2
       webpack-sources: 3.2.3
+    optionalDependencies:
+      webpack-cli: 3.3.12(webpack@5.94.0)
     transitivePeerDependencies:
       - '@swc/core'
       - esbuild

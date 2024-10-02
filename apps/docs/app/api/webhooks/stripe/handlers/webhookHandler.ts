@@ -1,17 +1,16 @@
 // File: handlers/webhookHandler.ts
 
 import { stripe } from '@/utils/stripeClient'; // Centralized Stripe instance
-import { supabaseAdmin, getUserByEmail, createUser } from '@/utils/supabaseAdmin';
+import { supabaseAdmin, getUserByEmail, createUser } from '@/utils/supabaseAdmin'; 
 import { v4 as uuidv4 } from 'uuid';
 import { Database } from '@/types/supabase'; // Import the generated Database type
 import { provisionSubscription } from './subscriptionHandler'; // Import the provisionSubscription function
+import { manageAccount } from './accountHandler'; // Import manageAccount function
 
 // Define TypeScript type aliases using Supabase's Database type
 type CustomerRecord = Database['public']['Tables']['customers']['Row'];
 
 // Handle 'checkout.session.completed' event
-// This function processes the completion of a checkout session, syncing user information 
-// and creating new users if they don't exist. It also syncs the user's profile picture if available.
 async function handleCheckoutCompleted(session) {
   // Log the raw session data received from Stripe for debugging
   console.log('>>> Raw session data received from Stripe:', JSON.stringify(session, null, 2));
@@ -55,6 +54,9 @@ async function handleCheckoutCompleted(session) {
       }
     }
 
+    // Manage account for the user
+    await manageAccount(userId); // Ensure the account is created or verified
+
     // Now provision the subscription based on the session
     await provisionSubscription(session, userId); // Pass both session and userId
 
@@ -64,14 +66,11 @@ async function handleCheckoutCompleted(session) {
 }
 
 // Handle other (unhandled) events
-// This function logs any unhandled event types that are received in the webhook.
 async function handleUnhandledEvent(event) {
   console.warn(`Unhandled event type: ${event.type}`);
 }
 
 // Sync user data to public.users table
-// This function updates or inserts user profile information in the Supabase 'users' table,
-// including email, full name, and profile picture URL if available.
 async function syncPublicUser(userId: string, email: string | null, fullName: string | null, profilePicUrl: string | null) {
   if (!email) {
     console.warn(`Cannot sync public user without email for user ID: ${userId}`);
