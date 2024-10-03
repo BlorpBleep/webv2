@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Database } from '@/types/supabase'; // Import the generated Database type
 import { provisionSubscription } from './subscriptionHandler'; // Import the provisionSubscription function
 import { manageAccount } from './accountHandler'; // Import manageAccount function
+import { sendReceiptEmail } from '@/app/api/webhooks/stripe/utils/emailUtils'; // Import the new email function
 
 // Define TypeScript type aliases using Supabase's Database type
 type CustomerRecord = Database['public']['Tables']['customers']['Row'];
@@ -96,11 +97,40 @@ async function syncPublicUser(userId: string, email: string | null, fullName: st
   }
 }
 
+// Handle 'charge.succeeded' event
+async function handleChargeSucceeded(charge) {
+  console.log('>>> Processing charge.succeeded event.');
+
+  const receiptUrl = charge.receipt_url;
+  const customerEmail = charge.receipt_email || charge.billing_details?.email;
+
+  if (!customerEmail) {
+    console.warn('No customer email found in charge.succeeded event.');
+    return;
+  }
+
+  if (!receiptUrl) {
+    console.warn('No receipt URL found in charge.succeeded event.');
+    return;
+  }
+
+  try {
+    // Send the receipt email
+    await sendReceiptEmail(customerEmail, receiptUrl);
+    console.log(`>>> Receipt email sent to ${customerEmail}`);
+  } catch (error) {
+    console.error('Error sending receipt email:', error);
+  }
+}
+
 // Export the event handler function
 export async function handleWebhookEvent(event) {
   switch (event.type) {
     case 'checkout.session.completed':
       await handleCheckoutCompleted(event.data.object);
+      break;
+    case 'charge.succeeded':
+      await handleChargeSucceeded(event.data.object);
       break;
     // Add additional cases for other events as needed
     default:

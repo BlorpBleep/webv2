@@ -1,3 +1,5 @@
+// utils/superbaseAdmin.ts
+
 import { createClient, User } from "@supabase/supabase-js";
 
 // Retrieve environment variables
