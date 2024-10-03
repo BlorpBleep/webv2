@@ -1,0 +1,26 @@
+
+> @nextui-org/spacer@2.0.32 build /Users/davidawatere/Documents/GitHub/webv2/packages/components/spacer
+> tsup src --dts
+
+CLI Building entry: src/index.ts, src/spacer.tsx, src/use-spacer.ts, src/utils.ts
+CLI Using tsconfig: tsconfig.json
+CLI tsup v6.4.0
+CLI Using tsup config: /Users/davidawatere/Documents/GitHub/webv2/packages/components/spacer/tsup.config.ts
+CLI Target: es2019
+CLI Cleaning output folder
+CJS Build start
+ESM Build start
+CJS dist/index.js      3.17 KB
+CJS dist/spacer.js     3.11 KB
+CJS dist/utils.js      1.56 KB
+CJS dist/use-spacer.js 2.83 KB
+CJS ⚡️ Build success in 33ms
+ESM dist/index.mjs          192.00 B
+ESM dist/use-spacer.mjs     133.00 B
+ESM dist/spacer.mjs         159.00 B
+ESM dist/chunk-XIKEQB64.mjs 1.13 KB
+ESM dist/chunk-JY477QOC.mjs 388.00 B
+ESM dist/utils.mjs          72.00 B
+ESM dist/chunk-CH7FQ62Q.mjs 591.00 B
+ESM ⚡️ Build success in 33ms
+DTS Build start

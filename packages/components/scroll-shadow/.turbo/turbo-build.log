@@ -1,0 +1,23 @@
+
+> @nextui-org/scroll-shadow@2.1.19 build /Users/davidawatere/Documents/GitHub/webv2/packages/components/scroll-shadow
+> tsup src --dts
+
+CLI Building entry: src/index.ts, src/scroll-shadow.tsx, src/use-scroll-shadow.ts
+CLI Using tsconfig: tsconfig.json
+CLI tsup v6.4.0
+CLI Using tsup config: /Users/davidawatere/Documents/GitHub/webv2/packages/components/scroll-shadow/tsup.config.ts
+CLI Target: es2019
+CLI Cleaning output folder
+CJS Build start
+ESM Build start
+CJS dist/scroll-shadow.js     3.14 KB
+CJS dist/index.js             3.20 KB
+CJS dist/use-scroll-shadow.js 2.76 KB
+CJS ⚡️ Build success in 21ms
+ESM dist/use-scroll-shadow.mjs 102.00 B
+ESM dist/chunk-577EFAJE.mjs    476.00 B
+ESM dist/index.mjs             207.00 B
+ESM dist/scroll-shadow.mjs     156.00 B
+ESM dist/chunk-NGBOO6ON.mjs    1.56 KB
+ESM ⚡️ Build success in 30ms
+DTS Build start

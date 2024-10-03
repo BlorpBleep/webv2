@@ -1,0 +1,37 @@
+
+> @nextui-org/react-rsc-utils@2.0.13 build /Users/davidawatere/Documents/GitHub/webv2/packages/utilities/react-rsc-utils
+> tsup src --dts
+
+CLI Building entry: src/children.ts, src/dom-props.ts, src/filter-dom-props.ts, src/functions.ts, src/index.ts
+CLI Using tsconfig: tsconfig.json
+CLI tsup v6.4.0
+CLI Using tsup config: /Users/davidawatere/Documents/GitHub/webv2/packages/utilities/react-rsc-utils/package.json
+CLI Target: es2019
+CLI Cleaning output folder
+CJS Build start
+ESM Build start
+CJS dist/dom-props.js        3.60 KB
+CJS dist/functions.js        83.40 KB
+CJS dist/index.js            88.00 KB
+CJS dist/filter-dom-props.js 4.70 KB
+CJS dist/children.js         83.91 KB
+CJS ⚡️ Build success in 142ms
+ESM dist/filter-dom-props.mjs 148.00 B
+ESM dist/dom-props.mjs        147.00 B
+ESM dist/children.mjs         184.00 B
+ESM dist/functions.mjs        136.00 B
+ESM dist/index.mjs            427.00 B
+ESM dist/chunk-RJKRL3AU.mjs   1.20 KB
+ESM dist/chunk-275ZWKVH.mjs   81.73 KB
+ESM dist/chunk-UYSIEMEK.mjs   1.05 KB
+ESM dist/chunk-BHLBMPLH.mjs   404.00 B
+ESM dist/chunk-RFWDHYLZ.mjs   2.57 KB
+ESM dist/chunk-3M4HORHM.mjs   872.00 B
+ESM ⚡️ Build success in 144ms
+DTS Build start
+DTS ⚡️ Build success in 3401ms
+DTS dist/index.d.ts            271.00 B
+DTS dist/children.d.ts         522.00 B
+DTS dist/dom-props.d.ts        124.00 B
+DTS dist/filter-dom-props.d.ts 1.12 KB
+DTS dist/functions.d.ts        641.00 B

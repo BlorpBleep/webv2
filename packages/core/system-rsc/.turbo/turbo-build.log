@@ -1,0 +1,33 @@
+
+> @nextui-org/system-rsc@2.1.5 build /Users/davidawatere/Documents/GitHub/webv2/packages/core/system-rsc
+> tsup src --dts
+
+CLI Building entry: src/extend-variants.d.ts, src/extend-variants.js, src/index.ts, src/types.ts, src/utils.ts
+CLI Using tsconfig: tsconfig.json
+CLI tsup v6.4.0
+CLI Using tsup config: /Users/davidawatere/Documents/GitHub/webv2/packages/core/system-rsc/package.json
+CLI Target: es2019
+CLI Cleaning output folder
+CJS Build start
+ESM Build start
+CJS dist/extend-variants.d.js 794.00 B
+CJS dist/types.js             758.00 B
+CJS dist/index.js             6.79 KB
+CJS dist/extend-variants.js   5.40 KB
+CJS dist/utils.js             2.98 KB
+CJS ⚡️ Build success in 37ms
+ESM dist/extend-variants.d.mjs 0 B
+ESM dist/types.mjs             0 B
+ESM dist/chunk-BUFOXQZZ.mjs    3.44 KB
+ESM dist/utils.mjs             234.00 B
+ESM dist/index.mjs             309.00 B
+ESM dist/extend-variants.mjs   117.00 B
+ESM dist/chunk-DRE2DOBH.mjs    1.83 KB
+ESM ⚡️ Build success in 39ms
+DTS Build start
+DTS ⚡️ Build success in 2297ms
+DTS dist/index.d.ts             546.00 B
+DTS dist/extend-variants.d.ts   3.16 KB
+DTS dist/extend-variants.d.d.ts 3.16 KB
+DTS dist/utils.d.ts             1.25 KB
+DTS dist/types.d.ts             2.50 KB

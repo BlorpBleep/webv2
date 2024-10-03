@@ -1,0 +1,26 @@
+
+> @nextui-org/link@2.0.34 build /Users/davidawatere/Documents/GitHub/webv2/packages/components/link
+> tsup src --dts
+
+CLI Building entry: src/index.ts, src/link-icon.tsx, src/link.tsx, src/use-link.ts
+CLI Using tsconfig: tsconfig.json
+CLI tsup v6.4.0
+CLI Using tsup config: /Users/davidawatere/Documents/GitHub/webv2/packages/components/link/tsup.config.ts
+CLI Target: es2019
+CLI Cleaning output folder
+CJS Build start
+ESM Build start
+ESM dist/link-icon.mjs      88.00 B
+ESM dist/chunk-WOFJE3YA.mjs 482.00 B
+ESM dist/link.mjs           138.00 B
+ESM dist/use-link.mjs       86.00 B
+ESM dist/chunk-J4MVMI6N.mjs 662.00 B
+ESM dist/chunk-UUF4FQYI.mjs 2.30 KB
+ESM dist/index.mjs          228.00 B
+ESM ⚡️ Build success in 23ms
+CJS dist/index.js     4.66 KB
+CJS dist/link-icon.js 1.46 KB
+CJS dist/use-link.js  3.52 KB
+CJS dist/link.js      4.13 KB
+CJS ⚡️ Build success in 23ms
+DTS Build start

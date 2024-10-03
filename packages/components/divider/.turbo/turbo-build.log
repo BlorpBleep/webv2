@@ -1,0 +1,26 @@
+
+> @nextui-org/divider@2.0.31 build /Users/davidawatere/Documents/GitHub/webv2/packages/components/divider
+> tsup src --dts
+
+CLI Building entry: src/divider.tsx, src/index.ts, src/use-divider.ts, src/use-separator.ts
+CLI Using tsconfig: tsconfig.json
+CLI tsup v6.4.0
+CLI Using tsup config: /Users/davidawatere/Documents/GitHub/webv2/packages/components/divider/tsup.config.ts
+CLI Target: es2019
+CLI Cleaning output folder
+CJS Build start
+ESM Build start
+ESM dist/divider.mjs        161.00 B
+ESM dist/index.mjs          197.00 B
+ESM dist/chunk-K2O2AEBF.mjs 399.00 B
+ESM dist/chunk-HGQPAK7A.mjs 982.00 B
+ESM dist/use-divider.mjs    109.00 B
+ESM dist/use-separator.mjs  82.00 B
+ESM dist/chunk-LVTFMK47.mjs 571.00 B
+ESM ⚡️ Build success in 48ms
+CJS dist/index.js         2.94 KB
+CJS dist/divider.js       2.88 KB
+CJS dist/use-divider.js   2.54 KB
+CJS dist/use-separator.js 1.60 KB
+CJS ⚡️ Build success in 48ms
+DTS Build start

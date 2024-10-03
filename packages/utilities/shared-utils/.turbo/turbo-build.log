@@ -1,0 +1,59 @@
+
+> @nextui-org/shared-utils@2.0.7 build /Users/davidawatere/Documents/GitHub/webv2/packages/utilities/shared-utils
+> tsup src --dts
+
+CLI Building entry: src/assertion.ts, src/clsx.ts, src/console.ts, src/dates.ts, src/dimensions.ts, src/functions.ts, src/index.ts, src/numbers.ts, src/object.ts, src/text.ts, src/types.ts
+CLI Using tsconfig: tsconfig.json
+CLI tsup v6.4.0
+CLI Using tsup config: /Users/davidawatere/Documents/GitHub/webv2/packages/utilities/shared-utils/package.json
+CLI Target: es2019
+CLI Cleaning output folder
+CJS Build start
+ESM Build start
+CJS dist/clsx.js       1.73 KB
+CJS dist/assertion.js  2.29 KB
+CJS dist/console.js    1.44 KB
+CJS dist/dimensions.js 1.13 KB
+CJS dist/functions.js  2.36 KB
+CJS dist/index.js      8.76 KB
+CJS dist/numbers.js    1.40 KB
+CJS dist/types.js      758.00 B
+CJS dist/dates.js      1.56 KB
+CJS dist/text.js       1.42 KB
+CJS dist/object.js     3.51 KB
+CJS ⚡️ Build success in 254ms
+ESM dist/chunk-WBQAMGXK.mjs 0 B
+ESM dist/types.mjs          31.00 B
+ESM dist/object.mjs         341.00 B
+ESM dist/console.mjs        66.00 B
+ESM dist/dates.mjs          102.00 B
+ESM dist/dimensions.mjs     76.00 B
+ESM dist/functions.mjs      270.00 B
+ESM dist/index.mjs          1.34 KB
+ESM dist/chunk-6BQDBGF4.mjs 781.00 B
+ESM dist/chunk-RFUEKIFS.mjs 474.00 B
+ESM dist/chunk-YZ42FBBZ.mjs 563.00 B
+ESM dist/chunk-SOU6N57Y.mjs 1.16 KB
+ESM dist/assertion.mjs      308.00 B
+ESM dist/numbers.mjs        124.00 B
+ESM dist/chunk-CAFRINWI.mjs 418.00 B
+ESM dist/chunk-MNNRULGA.mjs 367.00 B
+ESM dist/chunk-KARN4QIT.mjs 1.97 KB
+ESM dist/text.mjs           108.00 B
+ESM dist/chunk-FDFRQJ7U.mjs 130.00 B
+ESM dist/chunk-MCFSCOSB.mjs 1.03 KB
+ESM dist/clsx.mjs           66.00 B
+ESM ⚡️ Build success in 255ms
+DTS Build start
+DTS ⚡️ Build success in 2612ms
+DTS dist/index.d.ts      752.00 B
+DTS dist/assertion.d.ts  763.00 B
+DTS dist/clsx.d.ts       65.00 B
+DTS dist/console.d.ts    100.00 B
+DTS dist/dates.d.ts      105.00 B
+DTS dist/dimensions.d.ts 73.00 B
+DTS dist/functions.d.ts  1.13 KB
+DTS dist/numbers.d.ts    821.00 B
+DTS dist/object.d.ts     1.18 KB
+DTS dist/text.d.ts       145.00 B
+DTS dist/types.d.ts      63.00 B

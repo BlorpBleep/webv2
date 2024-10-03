@@ -44,11 +44,9 @@ Thumbs.db
 !.yarn/plugins
 !.yarn/sdks
 !.yarn/versions
-/packages/
-/packages/core
-/packages/core/theme
-/packages
-/packages
-/packages
-/packages/core/theme
-/packages/core/theme/dist/components
+
+
+# Ignore build artifacts within packages
+/packages/**/dist/
+/packages/**/build/
+/packages/**/node_modules/

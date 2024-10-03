@@ -1,0 +1,19 @@
+
+> @nextui-org/use-is-mobile@2.0.9 build /Users/davidawatere/Documents/GitHub/webv2/packages/hooks/use-is-mobile
+> tsup src --dts
+
+CLI Building entry: src/index.ts
+CLI Using tsconfig: tsconfig.json
+CLI tsup v6.4.0
+CLI Using tsup config: /Users/davidawatere/Documents/GitHub/webv2/packages/hooks/use-is-mobile/package.json
+CLI Target: es2019
+CLI Cleaning output folder
+CJS Build start
+ESM Build start
+CJS dist/index.js 1.29 KB
+CJS ⚡️ Build success in 164ms
+ESM dist/index.mjs 293.00 B
+ESM ⚡️ Build success in 164ms
+DTS Build start
+DTS ⚡️ Build success in 3038ms
+DTS dist/index.d.ts 66.00 B

@@ -1,0 +1,26 @@
+
+> @nextui-org/kbd@2.0.33 build /Users/davidawatere/Documents/GitHub/webv2/packages/components/kbd
+> tsup src --dts
+
+CLI Building entry: src/index.ts, src/kbd.tsx, src/use-kbd.ts, src/utils.ts
+CLI Using tsconfig: tsconfig.json
+CLI tsup v6.4.0
+CLI Using tsup config: /Users/davidawatere/Documents/GitHub/webv2/packages/components/kbd/tsup.config.ts
+CLI Target: es2019
+CLI Cleaning output folder
+CJS Build start
+ESM Build start
+CJS dist/index.js   3.78 KB
+CJS dist/use-kbd.js 2.14 KB
+CJS dist/kbd.js     3.72 KB
+CJS dist/utils.js   1.82 KB
+CJS ⚡️ Build success in 18ms
+ESM dist/chunk-HWGFRUSM.mjs 942.00 B
+ESM dist/use-kbd.mjs        70.00 B
+ESM dist/kbd.mjs            153.00 B
+ESM dist/utils.mjs          116.00 B
+ESM dist/index.mjs          177.00 B
+ESM dist/chunk-HXMFKBAZ.mjs 1005.00 B
+ESM dist/chunk-7BVYOJX6.mjs 812.00 B
+ESM ⚡️ Build success in 19ms
+DTS Build start

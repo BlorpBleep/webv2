@@ -1,0 +1,19 @@
+
+> @nextui-org/use-scroll-position@2.0.8 build /Users/davidawatere/Documents/GitHub/webv2/packages/hooks/use-scroll-position
+> tsup src --dts
+
+CLI Building entry: src/index.ts
+CLI Using tsconfig: tsconfig.json
+CLI tsup v6.4.0
+CLI Using tsup config: /Users/davidawatere/Documents/GitHub/webv2/packages/hooks/use-scroll-position/package.json
+CLI Target: es2019
+CLI Cleaning output folder
+CJS Build start
+ESM Build start
+ESM dist/index.mjs 1.67 KB
+ESM ⚡️ Build success in 65ms
+CJS dist/index.js 2.72 KB
+CJS ⚡️ Build success in 65ms
+DTS Build start
+DTS ⚡️ Build success in 3238ms
+DTS dist/index.d.ts 824.00 B
