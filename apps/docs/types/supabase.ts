@@ -519,6 +519,9 @@ export type Database = {
           metadata: Json | null
           price_id: string | null
           quantity: number | null
+          amount: number | null
+          currency: string | null
+          description: string | null
           status: Database["public"]["Enums"]["subscription_status"] | null
           stripe_subscription_id: string | null
           trial_end: string | null
@@ -537,6 +540,9 @@ export type Database = {
           metadata?: Json | null
           price_id?: string | null
           quantity?: number | null
+          amount: number | null
+          currency: string | null
+          description: string | null
           status?: Database["public"]["Enums"]["subscription_status"] | null
           stripe_subscription_id?: string | null
           trial_end?: string | null
@@ -555,6 +561,9 @@ export type Database = {
           metadata?: Json | null
           price_id?: string | null
           quantity?: number | null
+          amount: number | null
+          description: string | null
+          currency: string | null
           status?: Database["public"]["Enums"]["subscription_status"] | null
           stripe_subscription_id?: string | null
           trial_end?: string | null

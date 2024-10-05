@@ -1,70 +1,140 @@
-// File: subscriptionHandler.ts
+// File: handlers/subscriptionHandler.ts
 
-import { stripe } from '@/utils/stripeClient'; // Centralized Stripe instance
-import { supabaseAdmin } from '@/utils/supabaseAdmin'; // Supabase client
-import { Database } from '@/types/supabase'; // Import the generated Database type
+import { stripe } from '@/utils/stripeClient';
+import { supabaseAdmin } from '@/utils/supabaseAdmin';
+import { Database } from '@/types/supabase';
 
-// Define SubscriptionRecord type based on the Supabase schema
-type SubscriptionRecord = {
+export type SubscriptionRecord = {
   id: string;
-  user_id: string; // User ID should be a UUID type
-  status: string; // Adjust based on your enum
-  metadata?: any; // Make optional
-  price_id?: string | null; // Make optional
-  quantity?: number | null; // Make optional
-  cancel_at_period_end?: boolean | null; // Make optional
-  created: string; // Required
-  current_period_start?: string; // Make optional
-  current_period_end?: string | null; // Make optional
-  ended_at?: string | null; // Make optional
-  cancel_at?: string | null; // Make optional
-  canceled_at?: string | null; // Make optional
-  trial_start?: string | null; // Make optional
-  trial_end?: string | null; // Make optional
-  stripe_subscription_id?: string | null; // Make optional
-  amount?: number | null; // Ensure this is present and optional
-  currency?: string | null; // Make optional
-  description?: string | null; // Make optional
+  user_id: string;
+  status: string;
+  metadata?: any;
+  price_id?: string | null;
+  quantity?: number | null;
+  cancel_at_period_end?: boolean | null;
+  created: string;
+  current_period_start?: string;
+  current_period_end?: string | null;
+  ended_at?: string | null;
+  cancel_at?: string | null;
+  canceled_at?: string | null;
+  trial_start?: string | null;
+  trial_end?: string | null;
+  stripe_subscription_id?: string | null;
+  amount?: number | null;
+  currency?: string | null;
+  description?: string | null;
 };
 
-// Provision subscription information in Supabase
-export async function provisionSubscription(session: any, userId: string) {
+/**
+ * Ensures that a specific price exists in Supabase. If not, fetches it from Stripe and inserts it.
+ * @param priceId - The Stripe price ID.
+ * @returns A boolean indicating whether the price exists after the function executes.
+ */
+async function ensurePriceExists(priceId: string): Promise<boolean> {
+  const { data, error } = await supabaseAdmin
+    .from('prices')
+    .select('id')
+    .eq('id', priceId)
+    .single();
+
+  if (error) {
+    if (error.code === 'PGRST116') { // Price not found
+      console.log(`Price ID ${priceId} not found in Supabase. Fetching from Stripe...`);
+      try {
+        const price = await stripe.prices.retrieve(priceId);
+        const supabasePrice: Database['public']['Tables']['prices']['Insert'] = {
+          id: price.id,
+          active: price.active,
+          currency: price.currency,
+          interval: price.recurring?.interval || null,
+          interval_count: price.recurring?.interval_count || null,
+          metadata: price.metadata || {},
+          product_id: price.product as string,
+          trial_period_days: price.recurring?.trial_period_days || null,
+          type: price.type as Database['public']['Enums']['pricing_type'],
+          unit_amount: price.unit_amount || null,
+        };
+
+        const { data: insertedData, error: insertError } = await supabaseAdmin
+          .from('prices')
+          .insert([supabasePrice]);
+
+        if (insertError) {
+          console.error(`Failed to insert price ${priceId} into Supabase:`, insertError.message);
+          return false;
+        }
+
+        console.log(`Price ${priceId} inserted into Supabase successfully.`);
+        return true;
+      } catch (stripeError) {
+        console.error(`Error fetching price ${priceId} from Stripe:`, stripeError);
+        return false;
+      }
+    } else {
+      console.error(`Error fetching price ${priceId} from Supabase:`, error.message);
+      return false;
+    }
+  }
+
+  // Price exists
+  return true;
+}
+
+/**
+ * Provisions subscription information in Supabase.
+ * @param session - The Stripe Checkout session object.
+ * @param userId - The ID of the user in your system.
+ */
+export async function provisionSubscription(session: any, userId: string, subscriptionId: string | null)  {
   console.log(`>>> Provisioning subscription for session ID: ${session.id}`);
 
-  const amountTotal = session.amount_total; // Amount for one-time payment
-  const subscriptionId = session.subscription; // Subscription ID
+  const amountTotal = session.amount_total;
+  const subscriptionValue = session.subscription;
 
   try {
-    // Check if this is a one-time payment (OTP)
-    if (amountTotal > 0 && !subscriptionId) {
+    // If amount is greater than 0 and there's no subscription, it's a one-time payment (OTP)
+    if (amountTotal > 0 && !subscriptionValue) {
       console.log(`>>> Detected one-time payment (OTP). Amount Total: ${amountTotal}`);
-      await createOneTimePaymentSubscription(session, userId); // Pass userId to the OTP creation function
-    } else if (subscriptionId) {
-      // For subscriptions, retrieve subscription details from Stripe
-      const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+      await createOneTimePaymentSubscription(session, userId);
+    } else if (subscriptionValue) {
+      // If there's a subscription value, fetch the subscription details from Stripe
+      const subscription = await stripe.subscriptions.retrieve(subscriptionValue);
       console.log(`>>> Retrieved subscription from Stripe:`, subscription);
-      
-      // Prepare subscription data for insertion into Supabase
+
+      const priceId = subscription.items.data[0]?.price.id || null;
+
+      if (priceId) {
+        // Ensure that the price exists in Supabase, if not, insert it
+        const priceExists = await ensurePriceExists(priceId);
+        if (!priceExists) {
+          throw new Error(`Price ID ${priceId} does not exist in Supabase after synchronization.`);
+        }
+      }
+
+      // Prepare the subscription data to be inserted into Supabase
       const subscriptionData: SubscriptionRecord = {
-        id: subscription.id, // Stripe subscription ID
-        user_id: userId, // Use retrieved user ID
-        status: subscription.status as any, // Cast to correct enum type
+        id: subscriptionValue, // Use the subscription value as the ID
+        user_id: userId,
+        status: subscription.status as any,
         metadata: subscription.metadata || null,
         price_id: subscription.items.data[0]?.price.id || null,
         quantity: subscription.items.data[0]?.quantity || 1,
         cancel_at_period_end: subscription.cancel_at_period_end || false,
-        created: new Date(subscription.created * 1000).toISOString(), // Creation time
-        current_period_start: new Date(subscription.current_period_start * 1000).toISOString(), // Current period start
-        current_period_end: subscription.current_period_end ? new Date(subscription.current_period_end * 1000).toISOString() : null, // End time if available
+        created: new Date(subscription.created * 1000).toISOString(),
+        current_period_start: new Date(subscription.current_period_start * 1000).toISOString(),
+        current_period_end: subscription.current_period_end
+          ? new Date(subscription.current_period_end * 1000).toISOString()
+          : null,
         ended_at: subscription.ended_at ? new Date(subscription.ended_at * 1000).toISOString() : null,
         cancel_at: subscription.cancel_at ? new Date(subscription.cancel_at * 1000).toISOString() : null,
         canceled_at: subscription.canceled_at ? new Date(subscription.canceled_at * 1000).toISOString() : null,
         trial_start: subscription.trial_start ? new Date(subscription.trial_start * 1000).toISOString() : null,
         trial_end: subscription.trial_end ? new Date(subscription.trial_end * 1000).toISOString() : null,
         stripe_subscription_id: subscription.id,
-        amount: amountTotal || null, // Capture the total amount
-        currency: session.currency || null, // Set currency based on session data
-        description: null // Optional description field
+        amount: amountTotal || null,
+        currency: session.currency || null,
+        description: null,
       };
 
       console.log(`>>> Inserting subscription data into Supabase:`, subscriptionData);
@@ -85,19 +155,24 @@ export async function provisionSubscription(session: any, userId: string) {
   }
 }
 
-// Create a one-time payment subscription in Supabase
-async function createOneTimePaymentSubscription(session, userId: string) {
+/**
+ * Creates a one-time payment subscription in Supabase.
+ * @param session - The Stripe Checkout session object.
+ * @param userId - The ID of the user in your system.
+ */
+async function createOneTimePaymentSubscription(session: any, userId: string) {
   try {
+    // Prepare the data for the one-time payment subscription to be inserted into Supabase
     const otpSubscriptionData: SubscriptionRecord = {
-      id: session.id || `otp_${Date.now()}`, // Generate a temporary ID if not provided
+      id: session.subscription || `otp_${Date.now()}`, // Use subscription value if available, otherwise generate a temporary ID
       user_id: userId, // Use the retrieved user ID
       status: 'one_time_purchase', // Status for one-time purchases
       metadata: session.metadata || null,
       price_id: null, // No price ID for OTP
       quantity: 1, // Quantity for one-time purchase
       cancel_at_period_end: false,
-      created: new Date(session.created * 1000).toISOString(), // Start at creation time
-      current_period_start: new Date(session.created * 1000).toISOString(), // Start at creation time
+      created: new Date(session.created * 1000).toISOString(),
+      current_period_start: new Date(session.created * 1000).toISOString(),
       current_period_end: null, // No specific end for OTP
       ended_at: null,
       cancel_at: null,
@@ -107,7 +182,7 @@ async function createOneTimePaymentSubscription(session, userId: string) {
       stripe_subscription_id: null, // No Stripe subscription ID for OTP
       amount: session.amount_total || 0, // Use the amount total from the session
       currency: session.currency || null, // Set currency based on session data
-      description: null // Optional description field
+      description: null, // Optional description field
     };
 
     console.log(`>>> Inserting one-time payment subscription data into Supabase:`, otpSubscriptionData);
