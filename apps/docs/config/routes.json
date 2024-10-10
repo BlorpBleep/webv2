@@ -250,6 +250,12 @@
           "title": "Cookie",
           "keywords": "cookie, nextui",
           "path": "/docs/policies/cookie.mdx"
+        },
+        {
+          "key": "referral",
+          "title": "Referral",
+          "keywords": "referral, nextui",
+          "path": "/docs/policies/referral_terms.mdx"
         }
       ]
     }

@@ -24,6 +24,7 @@ sitemap.xml
 .contentlayer/
 /apps/docs/.contentlayer/
 
+/sync/*
 
 # misc
 .DS_Store
@@ -47,3 +48,4 @@ yarn-error.log*
 *.tsbuildinfo
 
 schema.md
+*.sql

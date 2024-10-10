@@ -86,7 +86,7 @@ async function ensurePriceExists(priceId: string): Promise<boolean> {
  * @param session - The Stripe Checkout session object.
  * @param userId - The ID of the user in your system.
  */
-export async function provisionSubscription(session: any, userId: string, subscriptionId: string | null)  {
+export async function provisionSubscription(session: any, userId: string, subscriptionId: string | null) {
   console.log(`>>> Provisioning subscription for session ID: ${session.id}`);
 
   const amountTotal = session.amount_total;
@@ -103,6 +103,7 @@ export async function provisionSubscription(session: any, userId: string, subscr
       console.log(`>>> Retrieved subscription from Stripe:`, subscription);
 
       const priceId = subscription.items.data[0]?.price.id || null;
+      const description = subscription.items.data[0]?.price.product?.description || null; // Fetch description
 
       if (priceId) {
         // Ensure that the price exists in Supabase, if not, insert it
@@ -134,7 +135,7 @@ export async function provisionSubscription(session: any, userId: string, subscr
         stripe_subscription_id: subscription.id,
         amount: amountTotal || null,
         currency: session.currency || null,
-        description: null,
+        description: description || "Subscription", // Insert description if available, otherwise default to "Subscription"
       };
 
       console.log(`>>> Inserting subscription data into Supabase:`, subscriptionData);
@@ -182,7 +183,7 @@ async function createOneTimePaymentSubscription(session: any, userId: string) {
       stripe_subscription_id: null, // No Stripe subscription ID for OTP
       amount: session.amount_total || 0, // Use the amount total from the session
       currency: session.currency || null, // Set currency based on session data
-      description: null, // Optional description field
+      description: session.metadata?.description || "One-time purchase", // Use description from metadata or fallback
     };
 
     console.log(`>>> Inserting one-time payment subscription data into Supabase:`, otpSubscriptionData);

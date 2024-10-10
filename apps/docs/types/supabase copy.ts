@@ -1,3 +1,6 @@
+
+
+
 export type Json =
   | string
   | number
@@ -23,7 +26,6 @@ export type Database = {
           marked_inactive_by_user: string | null
           max_devices: string | null
           max_ports: string | null
-          referral_code: string | null
           status: string | null
           user_id: string | null
         }
@@ -40,7 +42,6 @@ export type Database = {
           marked_inactive_by_user?: string | null
           max_devices?: string | null
           max_ports?: string | null
-          referral_code?: string | null
           status?: string | null
           user_id?: string | null
         }
@@ -57,7 +58,6 @@ export type Database = {
           marked_inactive_by_user?: string | null
           max_devices?: string | null
           max_ports?: string | null
-          referral_code?: string | null
           status?: string | null
           user_id?: string | null
         }
@@ -65,7 +65,7 @@ export type Database = {
           {
             foreignKeyName: "accounts_user_id_fkey"
             columns: ["user_id"]
-            isOneToOne: true
+            isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
           },
@@ -428,44 +428,6 @@ export type Database = {
         }
         Relationships: []
       }
-      referrals: {
-        Row: {
-          created_at: string | null
-          friend_email: string
-          id: string
-          referral_code: string
-          referrer_account_id: string | null
-          status: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          created_at?: string | null
-          friend_email: string
-          id?: string
-          referral_code: string
-          referrer_account_id?: string | null
-          status?: string | null
-          updated_at?: string | null
-        }
-        Update: {
-          created_at?: string | null
-          friend_email?: string
-          id?: string
-          referral_code?: string
-          referrer_account_id?: string | null
-          status?: string | null
-          updated_at?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "referrals_referrer_account_id_fkey"
-            columns: ["referrer_account_id"]
-            isOneToOne: false
-            referencedRelation: "accounts"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       relays: {
         Row: {
           relay_data: Json | null
@@ -549,20 +511,20 @@ export type Database = {
       }
       subscriptions: {
         Row: {
-          amount: number | null
           cancel_at: string | null
           cancel_at_period_end: boolean | null
           canceled_at: string | null
           created: string
-          currency: string | null
-          current_period_end: string | null
+          current_period_end: string
           current_period_start: string
-          description: string | null
           ended_at: string | null
           id: string
           metadata: Json | null
           price_id: string | null
           quantity: number | null
+          amount: number | null
+          currency: string | null
+          description: string | null
           status: Database["public"]["Enums"]["subscription_status"] | null
           stripe_subscription_id: string | null
           trial_end: string | null
@@ -570,20 +532,20 @@ export type Database = {
           user_id: string
         }
         Insert: {
-          amount?: number | null
           cancel_at?: string | null
           cancel_at_period_end?: boolean | null
           canceled_at?: string | null
           created?: string
-          currency?: string | null
-          current_period_end?: string | null
+          current_period_end?: string
           current_period_start?: string
-          description?: string | null
           ended_at?: string | null
           id: string
           metadata?: Json | null
           price_id?: string | null
           quantity?: number | null
+          amount: number | null
+          currency: string | null
+          description: string | null
           status?: Database["public"]["Enums"]["subscription_status"] | null
           stripe_subscription_id?: string | null
           trial_end?: string | null
@@ -591,20 +553,20 @@ export type Database = {
           user_id: string
         }
         Update: {
-          amount?: number | null
           cancel_at?: string | null
           cancel_at_period_end?: boolean | null
           canceled_at?: string | null
           created?: string
-          currency?: string | null
-          current_period_end?: string | null
+          current_period_end?: string
           current_period_start?: string
-          description?: string | null
           ended_at?: string | null
           id?: string
           metadata?: Json | null
           price_id?: string | null
           quantity?: number | null
+          amount: number | null
+          description: string | null
+          currency: string | null
           status?: Database["public"]["Enums"]["subscription_status"] | null
           stripe_subscription_id?: string | null
           trial_end?: string | null

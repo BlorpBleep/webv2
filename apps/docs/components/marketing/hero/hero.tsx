@@ -82,7 +82,7 @@ export const Hero = () => {
         {/* Right-hand side image */}
         <div className="relative z-10 w-full lg:w-1/2 flex justify-center items-center hidden md:flex">
           <Image
-          
+            priority={true}
             src="/images/cicada.png"
             alt="CicadaVPN"
             width={400}
