@@ -157,7 +157,7 @@ const AccountPage: React.FC = () => {
       case "twitter":
         shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
           referralLink
-        )}&text=${encodeURIComponent("Join me on CicaDaVPN! Use my referral link: ")}`;
+        )}&text=${encodeURIComponent("Join me on CicadaVPN! Use my referral link: ")}`;
         break;
       case "facebook":
         shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
@@ -171,22 +171,22 @@ const AccountPage: React.FC = () => {
         break;
       case "whatsapp":
         shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(
-          "Join me on CicaDaVPN! Use my referral link: " + referralLink
+          "Join me on CicadaVPN! Use my referral link: " + referralLink
         )}`;
         break;
       case "pinterest":
         shareUrl = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(
           referralLink
-        )}&description=${encodeURIComponent("Join me on CicaDaVPN! Use my referral link: ")}`;
+        )}&description=${encodeURIComponent("Join me on CicadaVPN! Use my referral link: ")}`;
         break;
       case "email":
-        shareUrl = `mailto:?subject=Join me on CicaDaVPN&body=${encodeURIComponent(
+        shareUrl = `mailto:?subject=Join me on CicadaVPN&body=${encodeURIComponent(
           "Use my referral link to join: " + referralLink
         )}`;
         break;
       case "sms":
         shareUrl = `sms:?body=${encodeURIComponent(
-          "Join me on CicaDaVPN! Use my referral link: " + referralLink
+          "Join me on CicadaVPN! Use my referral link: " + referralLink
         )}`;
         break;
       default:
@@ -227,15 +227,6 @@ const AccountPage: React.FC = () => {
     <div className="flex flex-col items-center min-h-screen p-6 bg-gray-100 dark:bg-gray-900">
 
       <div className="flex space-x-8 mb-8">
-        <Button
-          variant="ghost"
-          className="border-none text-gray-900 dark:text-white flex flex-col items-center"
-          onClick={() => membershipRef.current?.scrollIntoView({ behavior: "smooth" })}
-          aria-label="Membership"
-        >
-          <FaUser size={80}  color="black"/>
-          <span className="mt-2 text-medium">Membership</span>
-        </Button>
 
         <Button
           variant="ghost"
@@ -392,7 +383,7 @@ const AccountPage: React.FC = () => {
                 rewards including free months, a free hoodie, backpack, baseball cap, or wireless charger.
               </p>
               <p className="text-sm mb-4">
-                The more friends you invite, the more rewards you can earn! Share your referral link now and start earning exclusive benefits. By inviting your network, you contribute to the growth of CicaDaVPN and increase your chances of receiving even bigger rewards in the future.
+                The more friends you invite, the more rewards you can earn! Share your referral link now and start earning exclusive benefits. By inviting your network, you contribute to the growth of CicadaVPN and increase your chances of receiving even bigger rewards in the future.
               </p>
               <a
                 href="/docs/policies/referral_terms"

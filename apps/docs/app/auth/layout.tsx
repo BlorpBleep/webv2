@@ -1,3 +1,5 @@
+// app/layout.tsx
+
 import { Image } from "@nextui-org/react";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
