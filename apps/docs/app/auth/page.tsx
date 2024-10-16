@@ -16,6 +16,7 @@ import {
 } from "@nextui-org/react";
 import { FaApple, FaGoogle } from "react-icons/fa";
 import { supabase } from "@/utils/supabaseClient";
+import { validateEmail, validatePassword } from "@/utils/validation"; // Import validation functions
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -45,6 +46,20 @@ export default function AuthPage() {
     e.preventDefault();
     setError(null);
 
+    // Validate Email
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    // Validate Password
+    if (!validatePassword(password)) {
+      setError(
+        "Password must be at least 8 characters long and include uppercase letters, lowercase letters, numbers, and special characters."
+      );
+      return;
+    }
+
     if (isLogin) {
       if (showEmailLogin) {
         // Handle Login with Email
@@ -64,6 +79,11 @@ export default function AuthPage() {
         // Handle Sign Up with Email
         if (password !== confirmPassword) {
           setError("Passwords do not match");
+          return;
+        }
+
+        if (!terms) {
+          setError("You must agree to the Terms and Privacy Policy.");
           return;
         }
 
@@ -229,6 +249,7 @@ export default function AuthPage() {
                         setEmail(e.target.value)
                       }
                       required
+                      autoComplete="email" // Enable browser autocomplete
                       className="mb-4 rounded dark:bg-gray-800 dark:text-white dark:border-gray-600 w-full"
                     />
 
@@ -248,6 +269,7 @@ export default function AuthPage() {
                         setPassword(e.target.value)
                       }
                       required
+                      autoComplete="current-password" // Enable browser password suggestions
                       className="mb-4 rounded dark:bg-gray-800 dark:text-white dark:border-gray-600 w-full"
                     />
 
@@ -257,15 +279,15 @@ export default function AuthPage() {
                         isSelected={remember}
                         onChange={() => setRemember(!remember)}
                         color="primary"
-                        className=" dark:text-white"
+                        className="dark:text-white"
+                        // Removed 'required' to make it optional
                       >
                         <span className="text-sm">Remember for 30 days</span>
-                        
                       </Checkbox>
                       <Link
                         href="/forgot-password"
                         color="primary"
-                        className="mt-2 sm:mt-0 text-center sm:text-left dark:text-blue-400"
+                        className="text-center sm:text-left dark:text-blue-400"
                       >
                         <span className="text-sm">Forgot password?</span>
                       </Link>
@@ -323,6 +345,7 @@ export default function AuthPage() {
                         setEmail(e.target.value)
                       }
                       required
+                      autoComplete="email"
                       className="mb-4 rounded dark:bg-gray-800 dark:text-white dark:border-gray-600 w-full"
                     />
 
@@ -342,6 +365,7 @@ export default function AuthPage() {
                         setPassword(e.target.value)
                       }
                       required
+                      autoComplete="new-password" // Enable browser to suggest strong passwords
                       className="mb-4 rounded dark:bg-gray-800 dark:text-white dark:border-gray-600 w-full"
                     />
 
@@ -361,16 +385,18 @@ export default function AuthPage() {
                         setConfirmPassword(e.target.value)
                       }
                       required
+                      autoComplete="new-password"
                       className="mb-4 rounded dark:bg-gray-800 dark:text-white dark:border-gray-600 w-full"
                     />
 
                     {/* Terms and Privacy Policy */}
-                    <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
+                    <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-4 mb-8">
                       <Checkbox
                         isSelected={terms}
                         onChange={() => setTerms(!terms)}
                         color="primary"
-                        className="mb-2 sm:mb-0 dark:text-white"
+                        className="dark:text-white"
+                        required // Makes checkbox mandatory
                       >
                         I agree to the{" "}
                         <Link
