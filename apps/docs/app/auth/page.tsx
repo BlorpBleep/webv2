@@ -14,7 +14,7 @@ import {
   Spacer,
   Divider,
 } from "@nextui-org/react";
-import { FaApple, FaGoogle } from "react-icons/fa";
+import { FaApple, FaGoogle, FaEye, FaEyeSlash, FaTimes } from "react-icons/fa"; // Added FaTimes for clear button
 import { supabase } from "@/utils/supabaseClient";
 import { validateEmail, validatePassword } from "@/utils/validation"; // Import validation functions
 
@@ -29,6 +29,8 @@ export default function AuthPage() {
   const [terms, setTerms] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // State for password visibility
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false); // State for confirm password visibility
   const router = useRouter();
 
   useEffect(() => {
@@ -40,6 +42,8 @@ export default function AuthPage() {
     setShowEmailSignUp(false);
     setShowEmailLogin(false);
     setError(null);
+    setShowPassword(false); // Reset password visibility when toggling mode
+    setShowConfirmPassword(false); // Reset confirm password visibility when toggling mode
   };
 
   const handleAuth = async (e: React.FormEvent) => {
@@ -192,7 +196,7 @@ export default function AuthPage() {
               color="primary"
               aria-label={isLogin ? "Log In with Google" : "Sign Up with Google"}
               startContent={<FaGoogle />}
-              onPress={() => handleOAuthLogin("google")}
+              onClick={() => handleOAuthLogin("google")}
               className="dark:bg-gray-300 justify-start rounded-full w-full"
             >
               {isLogin ? "Continue with Google" : "Sign Up with Google"}
@@ -202,7 +206,7 @@ export default function AuthPage() {
               color="primary"
               aria-label={isLogin ? "Log In with Apple" : "Sign Up with Apple"}
               startContent={<FaApple />}
-              onPress={() => handleOAuthLogin("apple")}
+              onClick={() => handleOAuthLogin("apple")}
               className="dark:bg-gray-300 justify-start rounded-full w-full"
             >
               {isLogin ? "Continue with Apple" : "Sign Up with Apple"}
@@ -221,7 +225,7 @@ export default function AuthPage() {
                     variant="flat"
                     color="primary"
                     aria-label="Login with Email"
-                    onPress={() => setShowEmailLogin(true)}
+                    onClick={() => setShowEmailLogin(true)}
                     className="mb-4 dark:bg-gray-100 justify-start rounded-full w-full"
                   >
                     Login with Email
@@ -239,7 +243,6 @@ export default function AuthPage() {
                     </label>
                     <Input
                       id="login-email"
-                      isClearable
                       color="primary"
                       size="lg"
                       placeholder="Email"
@@ -251,19 +254,32 @@ export default function AuthPage() {
                       required
                       autoComplete="email" // Enable browser autocomplete
                       className="mb-4 rounded dark:bg-gray-800 dark:text-white dark:border-gray-600 w-full"
+                      endContent={
+                        <div className="flex items-center space-x-2">
+                          {email && (
+                            <button
+                              type="button"
+                              onClick={() => setEmail("")}
+                              className="text-gray-500 dark:text-gray-300 focus:outline-none"
+                              aria-label="Clear email"
+                            >
+                              <FaTimes />
+                            </button>
+                          )}
+                        </div>
+                      }
                     />
 
-                    {/* Password Input */}
+                    {/* Password Input with Reveal/Hide */}
                     <label htmlFor="login-password" className="sr-only">
                       Password
                     </label>
                     <Input
                       id="login-password"
-                      isClearable
                       color="primary"
                       size="lg"
                       placeholder="Password"
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       value={password}
                       onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         setPassword(e.target.value)
@@ -271,6 +287,18 @@ export default function AuthPage() {
                       required
                       autoComplete="current-password" // Enable browser password suggestions
                       className="mb-4 rounded dark:bg-gray-800 dark:text-white dark:border-gray-600 w-full"
+                      endContent={
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="text-gray-500 dark:text-gray-300 focus:outline-none"
+                          aria-label={
+                            showPassword ? "Hide password" : "Show password"
+                          }
+                        >
+                          {showPassword ? <FaEyeSlash /> : <FaEye />}
+                        </button>
+                      }
                     />
 
                     {/* Remember and Forgot Password */}
@@ -317,7 +345,7 @@ export default function AuthPage() {
                     variant="flat"
                     color="primary"
                     aria-label="Sign Up with Email"
-                    onPress={() => setShowEmailSignUp(true)}
+                    onClick={() => setShowEmailSignUp(true)}
                     className="mb-4 dark:bg-gray-100 justify-start rounded-full w-full"
                   >
                     Sign Up with Email
@@ -335,7 +363,6 @@ export default function AuthPage() {
                     </label>
                     <Input
                       id="signup-email"
-                      isClearable
                       color="primary"
                       size="lg"
                       placeholder="Email"
@@ -347,19 +374,32 @@ export default function AuthPage() {
                       required
                       autoComplete="email"
                       className="mb-4 rounded dark:bg-gray-800 dark:text-white dark:border-gray-600 w-full"
+                      endContent={
+                        <div className="flex items-center space-x-2">
+                          {email && (
+                            <button
+                              type="button"
+                              onClick={() => setEmail("")}
+                              className="text-gray-500 dark:text-gray-300 focus:outline-none"
+                              aria-label="Clear email"
+                            >
+                              <FaTimes />
+                            </button>
+                          )}
+                        </div>
+                      }
                     />
 
-                    {/* Password Input */}
+                    {/* Password Input with Reveal/Hide */}
                     <label htmlFor="signup-password" className="sr-only">
                       Password
                     </label>
                     <Input
                       id="signup-password"
-                      isClearable
                       color="primary"
                       size="lg"
                       placeholder="Password"
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       value={password}
                       onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         setPassword(e.target.value)
@@ -367,19 +407,30 @@ export default function AuthPage() {
                       required
                       autoComplete="new-password" // Enable browser to suggest strong passwords
                       className="mb-4 rounded dark:bg-gray-800 dark:text-white dark:border-gray-600 w-full"
+                      endContent={
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="text-gray-500 dark:text-gray-300 focus:outline-none"
+                          aria-label={
+                            showPassword ? "Hide password" : "Show password"
+                          }
+                        >
+                          {showPassword ? <FaEyeSlash /> : <FaEye />}
+                        </button>
+                      }
                     />
 
-                    {/* Confirm Password Input */}
+                    {/* Confirm Password Input with Reveal/Hide */}
                     <label htmlFor="signup-confirm-password" className="sr-only">
                       Confirm Password
                     </label>
                     <Input
                       id="signup-confirm-password"
-                      isClearable
                       color="primary"
                       size="lg"
                       placeholder="Confirm Password"
-                      type="password"
+                      type={showConfirmPassword ? "text" : "password"}
                       value={confirmPassword}
                       onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         setConfirmPassword(e.target.value)
@@ -387,6 +438,22 @@ export default function AuthPage() {
                       required
                       autoComplete="new-password"
                       className="mb-4 rounded dark:bg-gray-800 dark:text-white dark:border-gray-600 w-full"
+                      endContent={
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setShowConfirmPassword(!showConfirmPassword)
+                          }
+                          className="text-gray-500 dark:text-gray-300 focus:outline-none"
+                          aria-label={
+                            showConfirmPassword
+                              ? "Hide confirm password"
+                              : "Show confirm password"
+                          }
+                        >
+                          {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                        </button>
+                      }
                     />
 
                     {/* Terms and Privacy Policy */}
@@ -437,7 +504,7 @@ export default function AuthPage() {
 
           {/* Toggle Link */}
           <Spacer y={1} />
-          
+
           <p className="text-center text-sm text-text dark:text-white">
             {isLogin
               ? "Don't have an account?"
@@ -445,7 +512,7 @@ export default function AuthPage() {
             <Link
               href="#"
               color="primary"
-              onPress={toggleMode}
+              onClick={toggleMode}
               className="dark:text-blue-400 text-sm"
             >
               {isLogin ? "Sign Up" : "Log In"}
