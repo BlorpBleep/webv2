@@ -49,13 +49,13 @@ export default function AuthPage() {
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-
+  
     // Validate Email
     if (!validateEmail(email)) {
       setError("Please enter a valid email address.");
       return;
     }
-
+  
     // Validate Password
     if (!validatePassword(password)) {
       setError(
@@ -63,7 +63,7 @@ export default function AuthPage() {
       );
       return;
     }
-
+  
     if (isLogin) {
       if (showEmailLogin) {
         // Handle Login with Email
@@ -71,7 +71,7 @@ export default function AuthPage() {
           email,
           password,
         });
-
+  
         if (error) {
           setError(error.message ?? "An unknown error occurred");
         } else {
@@ -85,12 +85,12 @@ export default function AuthPage() {
           setError("Passwords do not match");
           return;
         }
-
+  
         if (!terms) {
           setError("You must agree to the Terms and Privacy Policy.");
           return;
         }
-
+  
         const { error } = await supabase.auth.signUp({
           email,
           password,
@@ -98,15 +98,21 @@ export default function AuthPage() {
             emailRedirectTo: `${window.location.origin}/account`,
           },
         });
-
+  
         if (error) {
           setError(error.message ?? "An unknown error occurred");
         } else {
+          // **Set the 'justSignedUp' flag in localStorage**
+          if (typeof window !== "undefined") {
+            localStorage.setItem("justSignedUp", "true");
+          }
+          // **Redirect to /account**
           router.push("/account");
         }
       }
     }
   };
+  
 
   const handleOAuthLogin = async (provider: "apple" | "google") => {
     const { error } = await supabase.auth.signInWithOAuth({
